@@ -11,10 +11,18 @@ namespace Y.Core
 {
     public class ServiceBase<T> : IDao<T> where T : class, new()
     {
+        //无参构造函数
         public ServiceBase()
         {
-            //dao = new SqlSugarDao<T>();
+           dao = IOCBase.GetInstance<IDao<T>>(true);
+           // dao = new SqlSugarDao<T>();
         }
+        //可注入构造函数
+        //public ServiceBase(IDao<T> daoI)
+        //{
+        //    dao = daoI;
+        //    //dao = new SqlSugarDao<T>();
+        //}
         public IDao<T> Dao { get { return dao; } set { dao = value; } }
 
         private IDao<T> dao;

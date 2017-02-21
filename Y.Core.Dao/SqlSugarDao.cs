@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace Y.Core.Dao
 {
-    public class SqlSugarDao<TEntity> :IDependency,IDisposable, IDao<TEntity> where TEntity : class,new()
+    public class SqlSugarDao<TEntity> :IDisposable, IDao<TEntity> where TEntity : class,new()
     {
         /// <summary>
         /// 构造函数 创建DB实例
