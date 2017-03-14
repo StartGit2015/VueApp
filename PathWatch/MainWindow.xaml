@@ -1,0 +1,41 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PathWatch"
+        x:Class="PathWatch.MainWindow"
+
+        mc:Ignorable="d"
+        Title="文件监控系统" Height="350" Width="525" AutomationProperties.IsRowHeader="True" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="298" />
+            <ColumnDefinition Width="162" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Click="Button_Click" Grid.Column="0" Width="80" Grid.Row="0" RenderTransformOrigin="112,1" MinWidth="68" HorizontalAlignment="Left" Grid.ColumnSpan="2">启动监控</Button>
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Width="500" Grid.ColumnSpan="3">
+            <DataGrid HorizontalScrollBarVisibility="Auto"   Background="#F1EDC6" Name="fileInforGird" AutoGenerateColumns="False"
+                   CanUserAddRows="true" Height="300" Width="450" Grid.ColumnSpan="3" Margin="0,1,0,-10" Grid.RowSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="监控目录" Width="4*" Binding="{Binding LocalFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="目标目录" Width="4*" Binding="{Binding TargetFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="操作" Width="2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox  IsChecked="{Binding IsCheck,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <RichTextBox Grid.Column="0" Grid.Row="2" Name="logOut" Background="White" Margin="0,0,0,31" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</Window>
