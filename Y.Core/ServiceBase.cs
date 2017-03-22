@@ -14,8 +14,8 @@ namespace Y.Core
         //无参构造函数
         public ServiceBase()
         {
-           dao = IOCBase.GetInstance<IDao<T>>(true);
-           // dao = new SqlSugarDao<T>();
+           //dao = IOCBase.GetInstance<IDao<T>>(true);
+            dao = new SqlSugarDao<T>();
         }
         //可注入构造函数
         //public ServiceBase(IDao<T> daoI)

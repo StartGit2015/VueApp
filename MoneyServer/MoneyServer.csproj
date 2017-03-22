@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyEntity\MoneyEntity.csproj">
-      <Project>{8bb687fa-aa1a-4b64-bdd6-b68217ceef38}</Project>
-      <Name>MoneyEntity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Y.Core.Interface\Y.Core.Interface.csproj">
       <Project>{53eb04b0-ef16-4782-9117-a5feee39629d}</Project>
       <Name>Y.Core.Interface</Name>

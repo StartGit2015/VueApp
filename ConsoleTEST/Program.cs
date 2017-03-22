@@ -15,7 +15,7 @@ namespace ConsoleTEST
 {
     class Program
     {
-        public static IContainer containt { get; set; }
+        //public static IContainer containt { get; set; }
         static void Main(string[] args)
         {
 

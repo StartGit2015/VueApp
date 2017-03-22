@@ -61,22 +61,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{c0f79e2a-54fa-4c6d-9a43-919984291c47}</Project>
-      <Name>Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyEntity\MoneyEntity.csproj">
-      <Project>{8bb687fa-aa1a-4b64-bdd6-b68217ceef38}</Project>
-      <Name>MoneyEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyServer\MoneyServer.csproj">
-      <Project>{50ccc82d-304d-4b21-a91c-e75f7e854aa2}</Project>
-      <Name>MoneyServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Servers\Servers.csproj">
-      <Project>{ed2acb6b-614b-4bca-87d1-2dae4897ff03}</Project>
-      <Name>Servers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Y.Core.Dao\Y.Core.Dao.csproj">
       <Project>{4295912f-83a6-4e20-8e55-881ba462cea0}</Project>
       <Name>Y.Core.Dao</Name>
