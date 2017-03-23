@@ -16,7 +16,11 @@
         @Html.ActionLink("笔记首页", "Index", "Home", new { area = "" }, new { @class = "layui-btn layui-this" })
         @Html.ActionLink("新增记录", "AddContent", "Home", new { area = "" }, new { @class = "layui-btn" })
     </div>
-    
+    <script>
+        layui.config({
+            base: '../theme/layui/lay/modules/'
+        }).use('global');
+    </script>
     <div class="layui-main">
         @RenderBody()
     </div>
@@ -26,10 +30,5 @@
     @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Render.Section("scripts", required: false)*@
-    <script>
-        layui.config({
-            base: 'theme/layui/lay/modules/'
-        }).use('global');
-    </script>
 </body >
 </html >

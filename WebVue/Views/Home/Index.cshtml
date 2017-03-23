@@ -4,10 +4,15 @@
 </div>
 
 <script>
-    layui.use(['tree', 'layer'], function () {
+    layui.use(['tree','jquery', 'layer'], function () {
         var layer = layui.layer
             , $ = layui.jquery;
-
+        var node;
+        $.getJSON('/home/GetTree', function (data) {
+            console.log(data);
+            node = data;
+        });
+        layer.msg('当前节名称：' + node[0].name);
         layui.tree({
             elem: '#treemenu' //指定元素
             , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
@@ -15,13 +20,10 @@
                 layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
                 console.log(item);
             }
-            , nodes: function () {
-                $.getJSON('Home/GetTree', function (json) {
-                    return json;
-                }
-            )}
-        });
-    })
+            , nodes: node
+        }
+      )}
+    )
 
 
 </script>
