@@ -1,19 +1,58 @@
-﻿<div class="layui-main">
-    <div class="layui-tree">
-        <ul class="layui-tree">
-            <li>
-                <h2  class="layui-elem-quote">新增笔记</h2>
-            </li>
-        </ul>
+﻿<div id="noteedit">
+    <div id="addnote" style="float:left;width:45%;padding-left:10px;height:auto">
+        <h2 class="layui-elem-quote">新增笔记</h2>
+        <p>标题：<input class="layui-input" v-model="titlename" placeholder="请输入标题"></p>
+        <textarea class="layui-textarea" style="height:200px;width:100%" id="codeEdit" v-model="contentvalue">
+            {{contentvalue}}
+        </textarea>
+        <button class="layui-btn" v-on:click="save">保存</button>
+    </div>
+    <div  style="float:left;width:45%;height:200px">
+        <h2 class="layui-elem-quote">预览</h2>
+        <p ><code>code</code></p>
+        <pre  class="layui-code" lay-skin="notepad" lay-title="Code">{{contentvalue}}
+      </pre>
     </div>
 </div>
-
 <script>
-    var app = new Vue({
-        el: '#test',
-        data: {
-            message: '这个是测试数据！',
-            time: new Date()
-        }
+    layui.use(['layedit', 'layer'], function () {
+        var layedit = layui.layedit, layer = layui.layer,
+            $ = layui.jquery;
+
+        //构建一个默认的编辑器
+        //var index = layedit.build('codeEdit', {
+        //    tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right'],
+        //    height: 150
+        //});
+
+
+        var app = new Vue({
+            el: '#noteedit',
+            data: {
+                parentid: '0',
+                typename: 'C#',
+                titlename: '',
+                contentvalue: '请输入要收藏的代码！'
+            },
+            methods: {
+                save: function () {
+                    $.ajax({
+                        type: 'post',
+                        url: '/home/AddContent',
+                        datatype: 'json',
+                        data: this.data,
+                        success: function (data) {
+                            layer.msg("保存成功！",1000);
+                        }
+                    })
+                }
+            }
+        });
+
+
+
+
+
+
     })
 </script>

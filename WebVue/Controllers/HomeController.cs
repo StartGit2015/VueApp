@@ -22,6 +22,10 @@ namespace WebVue.Controllers
 
         public ActionResult AddContent(Content model)
         {
+            if(model.ContentValue !=null)
+            {
+                contentServer.Insert(model);
+            }
             return View();
         }
 
