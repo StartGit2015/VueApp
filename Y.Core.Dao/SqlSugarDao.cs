@@ -15,8 +15,8 @@ namespace Y.Core.Dao
         /// </summary>
         public SqlSugarDao()
         {
-            var connect = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            var DbType = SqlSugarRepository.DbType.Sqlite;
+            var connect = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var DbType = SqlSugarRepository.DbType.SqlServer;
             db = DbRepository.GetInstance(DbType, connect);
         }
         /// <summary>

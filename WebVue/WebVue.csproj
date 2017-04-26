@@ -294,6 +294,7 @@
     <Content Include="theme\layui\font\iconfont.ttf" />
     <Content Include="theme\layui\font\iconfont.woff" />
     <Content Include="Views\Home\AddContent.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

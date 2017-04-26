@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IT内容学习笔记</title>
+    <title>@ViewBag.title</title>
     @*@Styles.Render("~/Content/css")*@
     <link href="~/theme/layui/css/layui.css" rel="stylesheet" />
     <script src="~/theme/layui/lay/dest/layui.all.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-<body>
-    <div class ="layui-bg-blue">
+<body style="overflow:hidden">
+    <div class ="layui-header layui-bg-blue" style="height:auto">
         @Html.ActionLink("笔记首页", "Index", "Home", new { area = "" }, new { @class = "layui-btn layui-this" })
         @Html.ActionLink("新增记录", "AddContent", "Home", new { area = "" }, new { @class = "layui-btn" })
     </div>
@@ -25,9 +25,7 @@
     <div class="layui">
         @RenderBody()
     </div>
-    <div class="layui-foot" id="test">
-
-    </div>
+    <ul class="layui-fixbar"><li class="layui-icon layui-fixbar-top" style="display: list-item;" lay-type="top"></li></ul>
     @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Render.Section("scripts", required: false)*@

@@ -1,30 +1,39 @@
 ﻿<div id="noteedit">
-    <div id="addnote" style="float:left;width:45%;padding-left:10px;height:auto">
+    <div id="addnote" style="float:left;width:100%;padding-left:10px;height:auto">
         <h2 class="layui-elem-quote">新增笔记</h2>
-        <p>标题：<input class="layui-input" v-model="titlename" placeholder="请输入标题"></p>
-        <textarea class="layui-textarea" style="height:200px;width:100%" id="codeEdit" v-model="contentvalue">
-            {{contentvalue}}
-        </textarea>
-        <button class="layui-btn" v-on:click="save">保存</button>
+        <form class="layui-form" action="/home/AddContent" method="post">
+            <p>标题：<input class="layui-input" lay-verify="required" autocomplete="off" name="titlename" type="text" v-model="titlename" placeholder="请输入标题"></p>
+            <p>Code<textarea class="layui-textarea" lay-verify="required" name="contentvalue" v-model="contentvalue" placeholder="请输入内容"></textarea></p>
+            <button class="layui-btn" lay-submit lay-filter="nodesubmit">提交</button>
+            <button class="layui-btn" type="reset" lay-submit lay-filter="nodesubmit"></button>
+        </form>
     </div>
-    <div  style="float:left;width:45%;height:200px">
+    @*<div  style="float:left;width:45%;height:200px">
         <h2 class="layui-elem-quote">预览</h2>
         <p ><code>code</code></p>
         <pre  class="layui-code" lay-skin="notepad" lay-title="Code">{{contentvalue}}
       </pre>
-    </div>
+    </div>*@
 </div>
 <script>
-    layui.use(['layedit', 'layer'], function () {
-        var layedit = layui.layedit, layer = layui.layer,
+    layui.use(['layedit', 'layer','form'], function () {
+        var layedit = layui.layedit, layer = layui.layer, form = layui.form(),
             $ = layui.jquery;
 
-        //构建一个默认的编辑器
-        //var index = layedit.build('codeEdit', {
-        //    tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right'],
-        //    height: 150
-        //});
+        form.on('submit(nodesubmit)', function (data) {
+            var index = layer.open({
+                type: 3,
+                icon: 0,
+                time:5000,
+                content:'正在提交。。。'
+            }
+            );
+            $.post('/home/AddContent', data.field, function (ref) {
 
+            });
+            form.reset();
+            return false;
+        })
 
         var app = new Vue({
             el: '#noteedit',
@@ -32,7 +41,7 @@
                 parentid: '0',
                 typename: 'C#',
                 titlename: '',
-                contentvalue: '请输入要收藏的代码！'
+                contentvalue: ''
             },
             methods: {
                 save: function () {
@@ -40,9 +49,10 @@
                         type: 'post',
                         url: '/home/AddContent',
                         datatype: 'json',
-                        data: this.data,
-                        success: function (data) {
-                            layer.msg("保存成功！",1000);
+                        contentType: 'application/json',
+                        data: JSON.stringify(this.data),
+                        success: function (json) {
+                            layer.msg("保存成功！");
                         }
                     })
                 }

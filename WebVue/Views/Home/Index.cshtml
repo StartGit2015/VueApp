@@ -1,67 +1,47 @@
 ﻿@using VueEntity;
-<div style="width:20%;float:left"> 
-    <ul class="layui-nav layui-nav-tree" lay-filter="">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">默认展开</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;">选项1</a></dd>
-                <dd><a href="javascript:;">选项2</a></dd>
-                <dd><a href="">跳转</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">解决方案</a>
-            <dl class="layui-nav-child">
-                <dd><a href="">移动模块</a></dd>
-                <dd><a href="">后台模版</a></dd>
-                <dd><a href="">电商平台</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        @foreach (Content c in ViewBag.model)
-        {
-        <li class="layui-nav-item"><a href="">@c.TitleName</a></li>
-        }
+<title>@ViewBag.title</title>
+<div>
+    <div style="width:auto;height:600px;float:left;overflow-y:scroll">
+        <ul class="layui-nav layui-nav-tree layui-side" lay-filter="">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            @foreach (Content c in ViewBag.model)
+            {
+                <li class="layui-nav-item"><a href="javascript:void(0)" data-id="@c.ID"  data-content="@c.ContentValue" 
+                     onclick="codeVue(this)">@c.TitleName </a></li>
+            }
+        </ul>
+    </div>
 
-    </ul>
-</div>
-
-<div class="layui-bg-gray" style="width:70%;overflow:auto;float:left">
-    <pre class="layui-code" lay-skin="notepad" lay-title="Code">//代码区域
-Lay.fn.event = function(modName, events, params){
-  var that = this, result = null, filter = events.match(/\(.*\)$/)||[];
-  var set = (events = modName + '.'+ events).replace(filter, ''); 
-};
+    <div class="layui-bg-gray" style="width:70%;overflow:hidden;float:left">
+        <a class="layui-btn layui-btn-primary" data-id="" id="codeDelete">删除</a>
+        <pre class="layui-code" id="codeVue" lay-skin="notepad" lay-title="Code">//代码区域
+            《Code》
       </pre>
-
+    </div>
 </div>
 
 <script>
+    function codeVue(a) {
+        var content = a.dataset.content;
+        var codeVue = document.getElementById("codeVue");
+        document.getElementById("codeDelete").dataset.id = a.dataset.id
+        codeVue.innerText = content;
+    };
     
     layui.use(['element','jquery','layer'],function () {
         var layer = layui.layer, $ = layui.jquery;
         var element = layui.element();
-
-        var node = new Object();
-        $.getJSON('/home/GetTree',function (data) {
-            node = data;
+        var btndle = $("#codeDelete");
+        btndle.on("click", function () {
+            var id = btndle.attr("data-id");
+            layer.msg("确定要删除" + id + "吗？")
+            $.post("/home/Del/", { id: id }, function (ref) {
+            });
         });
+        //直接写方法
+        Window.setcode = function (code) {
 
-
+        }
       }
     )
 

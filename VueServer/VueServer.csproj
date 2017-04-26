@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ContentServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserVeliDataServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VueEntity\VueEntity.csproj">

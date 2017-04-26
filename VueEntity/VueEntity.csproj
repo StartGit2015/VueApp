@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content.cs" />
+    <Compile Include="ContentType.CS" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserVeliData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

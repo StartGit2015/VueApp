@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace VueEntity
         /// <summary>
         /// 分类名称
         /// </summary>
+        [DefaultValue("未分类")]
         public string TypeName { get; set; }
 
         /// <summary>
@@ -35,13 +37,13 @@ namespace VueEntity
         public string ContentValue { get; set; }
 
 
-        public string CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public int IsDelete { get; set; }
 
         /// <summary>
-        /// 子对象
+        /// 链接
         /// </summary>
-        public List<Content> ContentChild { get; set; }
+        public string Url { get; set; }
     }
 }
