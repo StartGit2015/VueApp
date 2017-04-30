@@ -49,10 +49,6 @@
       <Project>{ee2facb0-eb19-4216-b71a-bc51ff255a77}</Project>
       <Name>VueEntity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Y.Core.Interface\Y.Core.Interface.csproj">
-      <Project>{53eb04b0-ef16-4782-9117-a5feee39629d}</Project>
-      <Name>Y.Core.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Y.Core\Y.Core.csproj">
       <Project>{8c2e9627-04b1-4e50-9057-d0d264e8cc25}</Project>
       <Name>Y.Core</Name>

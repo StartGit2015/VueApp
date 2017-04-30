@@ -325,14 +325,6 @@
       <Project>{43a09695-8cbe-4e28-9b47-a6ba48c4d340}</Project>
       <Name>VueServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Y.Core.Dao\Y.Core.Dao.csproj">
-      <Project>{4295912f-83a6-4e20-8e55-881ba462cea0}</Project>
-      <Name>Y.Core.Dao</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Y.Core.Interface\Y.Core.Interface.csproj">
-      <Project>{53eb04b0-ef16-4782-9117-a5feee39629d}</Project>
-      <Name>Y.Core.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Y.Core\Y.Core.csproj">
       <Project>{8c2e9627-04b1-4e50-9057-d0d264e8cc25}</Project>
       <Name>Y.Core</Name>
