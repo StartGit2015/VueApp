@@ -84,7 +84,7 @@ namespace Y.Core.Interface
         /// 查询所有记录
         /// </summary>
         /// <returns></returns>
-        IEnumerable<TEntity> QueryAll();
+        IEnumerable<TEntity> QueryList(Expression<Func<TEntity,bool>> select);
         /// <summary>
         /// 获取指定列最大值
         /// </summary>

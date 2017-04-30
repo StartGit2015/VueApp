@@ -81,9 +81,9 @@ namespace Y.Core
             return dao.Insert(model);
         }
 
-        public IEnumerable<T> QueryAll()
+        public IEnumerable<T> QueryList(Expression<Func<T, bool>> select)
         {
-            return dao.QueryAll();
+            return dao.QueryList(select);
         }
 
         public void Update(T model)

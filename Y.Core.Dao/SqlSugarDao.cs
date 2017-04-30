@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Y.Core.Interface;
 using SqlSugarRepository;
 using System.Configuration;
+using System.Data;
 
 namespace Y.Core.Dao
 {
@@ -92,9 +93,9 @@ namespace Y.Core.Dao
             return db.Insert(model);
         }
 
-        public IEnumerable<TEntity> QueryAll()
+        public IEnumerable<TEntity> QueryList(Expression<Func<TEntity, bool>> select)
         {
-            return db.Queryable<TEntity>().ToList();
+            return db.Queryable<TEntity>().Where<TEntity>(select).ToList();
         }
 
         public void Update(TEntity model)
@@ -113,17 +114,6 @@ namespace Y.Core.Dao
             };
         }
 
-        /// <summary>
-        /// 释放对象
-        /// </summary>
-        public void Dispose()
-        {
-            if(db!=null)
-            {
-                db.Dispose();
-            }
-        }
-
         public void BeginTran()
         {
             db.BeginTran();
@@ -137,6 +127,16 @@ namespace Y.Core.Dao
         public void RollbackTran()
         {
             db.RollbackTran();
+        }
+        /// <summary>
+        /// 释放对象
+        /// </summary>
+        public void Dispose()
+        {
+            if(db!=null)
+            {
+                db.Dispose();
+            }
         }
     }
 }
