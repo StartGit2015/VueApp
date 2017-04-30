@@ -23,10 +23,6 @@ namespace Y.Core.Dao
         /// 数据访问对象
         /// </summary>
         public ISqlSugarClient db = null;
-        /// <summary>
-        /// 事物对象
-        /// </summary>
-        public IDaoTransection DaoTransection => (IDaoTransection)db;
 
         /// <summary>
         /// 是否书写日志
@@ -126,6 +122,21 @@ namespace Y.Core.Dao
             {
                 db.Dispose();
             }
+        }
+
+        public void BeginTran()
+        {
+            db.BeginTran();
+        }
+
+        public void CommitTran()
+        {
+            db.CommitTran();
+        }
+
+        public void RollbackTran()
+        {
+            db.RollbackTran();
         }
     }
 }

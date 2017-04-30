@@ -13,17 +13,12 @@ namespace Y.Core.Interface
     /// 数据访问层的基础接口
     /// </summary>
     /// <typeparam name="TEntity">操作对象</typeparam>
-    public interface IDao<TEntity>:IDependency where TEntity : class
+    public interface IDao<TEntity>:IDaoTransection,IDependency where TEntity : class
     {
         /// <summary>
         /// 日志对象属性，设置后才能自动写日志
         /// </summary>
         ILog Log { get; set; }
-        /// <summary>
-        /// 事物对象
-        /// </summary>
-        IDaoTransection DaoTransection { get; }
-
         /// <summary>
         /// 通过主键返回对象
         /// </summary>

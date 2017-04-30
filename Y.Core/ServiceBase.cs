@@ -9,7 +9,7 @@ using Y.Core.Dao;
 
 namespace Y.Core
 {
-    public class ServiceBase<T> : IDao<T> where T : class, new()
+    public class ServiceBase<T> :IDaoTransection, IDao<T> where T : class, new()
     {
         //无参构造函数
         public ServiceBase()
@@ -18,15 +18,14 @@ namespace Y.Core
             dao = new SqlSugarDao<T>();
         }
         //可注入构造函数
-        //public ServiceBase(IDao<T> daoI)
-        //{
-        //    dao = daoI;
-        //    //dao = new SqlSugarDao<T>();
-        //}
+        public ServiceBase(IDao<T> dao)
+        {
+            if(dao != null)
+                this.dao = dao;
+        }
         public IDao<T> Dao { get { return dao; } set { dao = value; } }
 
         private IDao<T> dao;
-        public IDaoTransection DaoTransection => (IDaoTransection)dao.DaoTransection.GetDb<T>();
 
         public bool IsWriteLog { get ; set; }
         public ILog Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -95,6 +94,21 @@ namespace Y.Core
         public void WriteTransLog()
         {
             throw new NotImplementedException();
+        }
+
+        public void BeginTran()
+        {
+            dao.BeginTran();
+        }
+
+        public void CommitTran()
+        {
+            dao.CommitTran();
+        }
+
+        public void RollbackTran()
+        {
+            dao.RollbackTran();
         }
     }
 }

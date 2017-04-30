@@ -11,7 +11,7 @@ namespace Y.Core.Interface
     /// </summary>
     public interface IDaoTransection 
     {
-        IDao<TEntity> GetDb<TEntity>() where TEntity : class;
+        //IDao<TEntity> GetDb<TEntity>() where TEntity : class;
 
         void BeginTran();
 
