@@ -9,8 +9,11 @@ using Y.Core.Dao;
 
 namespace Y.Core
 {
-    public class ServiceBase<T> :IDaoTransection, IDao<T> where T : class, new()
+    public class ServiceBase<T> :IDao<T> where T : class, new()
     {
+        private IDao<T> dao;
+        public IDao<T> Dao { get { return dao; } set { dao = value; } }
+
         //无参构造函数
         public ServiceBase()
         {
@@ -23,10 +26,7 @@ namespace Y.Core
             if(dao != null)
                 this.dao = dao;
         }
-        public IDao<T> Dao { get { return dao; } set { dao = value; } }
-
-        private IDao<T> dao;
-
+        
         public bool IsWriteLog { get ; set; }
         public ILog Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

@@ -15,6 +15,7 @@ namespace Y.Core.Interface
     /// <typeparam name="TEntity">操作对象</typeparam>
     public interface IDao<TEntity>:IDaoTransection,IDependency where TEntity : class
     {
+        
         /// <summary>
         /// 日志对象属性，设置后才能自动写日志
         /// </summary>
