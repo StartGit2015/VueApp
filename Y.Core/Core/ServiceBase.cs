@@ -15,10 +15,10 @@ namespace Y.Core
         public IDao<T> Dao { get { return dao; } set { dao = value; } }
 
         //无参构造函数
-        public ServiceBase()
+        public ServiceBase(string conStr=null)
         {
            //dao = IOCBase.GetInstance<IDao<T>>(true);
-            dao = new SqlSugarDao<T>();
+            dao = new SqlSugarDao<T>(conStr);
         }
         //可注入构造函数
         public ServiceBase(IDao<T> dao)

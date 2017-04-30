@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseTest.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,81 +9,118 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Y.Core.Dao;
+using Y.Core.Interface;
 
 namespace DataBaseTest
 {
-    /// <summary>
-    /// 测试监听数据库表变动的操作
-    /// </summary>
-    public partial class Form1 : Form
+    public partial class MainFrm : Form
     {
-        string conStr = "server=.;database=YBML;uid=sa;pwd=yxz";
-        string cmdStr = @"SELECT [public_top]
-      ,[public_item]
-      ,[public_name]
-      ,[spellshort]
-      ,[sp_id]
-      ,[specification]
-      ,[authorizecode]
-      ,[frm_name]
-      ,[mnu_name]
-      ,[unit]
-      ,[price]
-      ,[limit_high_price]
-      ,[ratio_0]
-      ,[ratio_1]
-      ,[ratio_2]
-      ,[ratio_3]
-      ,[ratio_4]
-      ,[ratio_5]
-      ,[ratio_6]
-      ,[ratio_7]
-      ,[ratio_8]
-      ,[ratio_9]
-      ,[Bz]
-      ,[ProductName]
-  FROM[dbo].[V_Ybml]";
-        public Form1()
+        private IDao<Content> db;
+        public MainFrm()
         {
             InitializeComponent();
-            Load += Form1_Load;
-            FormClosing += Form1_FormClosing;      
         }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void btn_Test_Click(object sender, EventArgs e)
         {
-            SqlDependency.Stop(conStr);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            SqlDependency.Start(conStr);
-            UpdateData();
-        }
-
-        private void UpdateData()
-        {
-                SqlDataAdapter da = new SqlDataAdapter(cmdStr, conStr);
-               
-                
-                SqlDependency sqlDenpendency = new SqlDependency(da.SelectCommand);
-                sqlDenpendency.OnChange += SqlDenpendency_OnChange;
-
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                   
-                dataGridView1.Invoke(((MethodInvoker)delegate 
-                { dataGridView1.DataSource = dt; }));
-              
-        }
-
-        private void SqlDenpendency_OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            if (e.Info == SqlNotificationInfo.Insert ||e.Info == SqlNotificationInfo.Update ||e.Info == SqlNotificationInfo.Delete)
+            if (cmb_con.Text != "")
             {
-               
-                UpdateData();
+                db = new ContentServer(cmb_con.Text).Dao;
             }
+            else
+            {
+                db = new ContentServer().Dao;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (db==null)
+            {
+                return;
+            }
+
+            var dt = db.QueryList(o=>o.ID >0);
+
+            dgv_data.DataSource = dt;
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            var obj = dgv_data.CurrentRow.DataBoundItem as Content;
+            db.BeginTran();
+            try
+            {
+                db.IsWriteLog = true;
+                db.Insert(obj);
+                db.CommitTran();
+            }
+            catch (Exception)
+            {
+                db.RollbackTran();
+                throw;
+            }
+            
+
+            var dt = db.QueryList(o => o.ID > 0);
+            dgv_data.DataSource = dt;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var obj = dgv_data.CurrentRow.DataBoundItem as Content;
+            db.BeginTran();
+            db.Delete(obj);
+            db.CommitTran();
+
+            var dt = db.QueryList(o => o.ID > 0);
+            dgv_data.DataSource = dt;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var list = new List<Content>();
+
+            foreach (DataGridViewRow item in dgv_data.SelectedRows)
+            {
+                var obj = item.DataBoundItem as Content;
+                list.Add(obj);
+            }
+            try
+            {
+                db.Insert(list);
+                db.CommitTran();
+            }
+            catch (Exception)
+            {
+                db.RollbackTran();
+                throw;
+            }
+            var dt = db.QueryList(o => o.ID > 0);
+            dgv_data.DataSource = dt;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var list = new List<Content>();
+
+            foreach (DataGridViewRow item in dgv_data.SelectedRows)
+            {
+                var obj = item.DataBoundItem as Content;
+                list.Add(obj);
+            }
+            try
+            {
+                db.Deletes(list);
+                db.CommitTran();
+            }
+            catch (Exception)
+            {
+                db.RollbackTran();
+                throw;
+            }
+            var dt = db.QueryList(o => o.ID > 0);
+            dgv_data.DataSource = dt;
         }
     }
 }

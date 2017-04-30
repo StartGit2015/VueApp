@@ -12,15 +12,6 @@ namespace Y.Core.Dao
     public class SqlSugarDao<TEntity> :IDisposable, IDao<TEntity> where TEntity : class,new()
     {
         /// <summary>
-        /// 构造函数 创建DB实例
-        /// </summary>
-        public SqlSugarDao()
-        {
-            var connect = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            var DbType = SqlSugarRepository.DbType.SqlServer;
-            db = DbRepository.GetInstance(DbType, connect);
-        }
-        /// <summary>
         /// 数据访问对象
         /// </summary>
         public ISqlSugarClient db = null;
@@ -28,7 +19,37 @@ namespace Y.Core.Dao
         /// <summary>
         /// 是否书写日志
         /// </summary>
-        public bool IsWriteLog { get => db.IsEnableLogEvent; set => db.IsEnableLogEvent=value; }
+        public bool IsWriteLog { get => db.IsEnableLogEvent; set => db.IsEnableLogEvent = value; }
+        /// <summary>
+        /// 构造函数 创建DB实例
+        /// </summary>
+        ///<param name="constr">数据库连接</param>
+        public SqlSugarDao(string constr= "DefaultConnection")
+        {
+            var connect = ConfigurationManager.ConnectionStrings[constr].ConnectionString;
+            var providerName = ConfigurationManager.ConnectionStrings[constr].ProviderName;
+
+            var DbType = SqlSugarRepository.DbType.SqlServer;
+            switch (providerName)
+            {
+                case "SqlServer":
+                    DbType = SqlSugarRepository.DbType.SqlServer;
+                    break;
+                case "Sqlite":
+                    DbType = SqlSugarRepository.DbType.Sqlite;
+                    break;
+                case "Oracle":
+                    DbType = SqlSugarRepository.DbType.Oracle;
+                    break;
+                case "MySql":
+                    DbType = SqlSugarRepository.DbType.MySql;
+                    break;
+                default:
+                    throw new Exception("未在配置文件中指名数据库类型！");
+            }
+            db = DbRepository.GetInstance(DbType, connect);
+        }
+        
         public ILog Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public int Count(Expression<Func<TEntity, bool>> spec)
@@ -51,7 +72,7 @@ namespace Y.Core.Dao
         /// <returns></returns>
         public bool Delete(TEntity model)
         {
-            return db.Delete<TEntity>(model);
+            return db.Delete(model);
         }
         /// <summary>
         /// 删除对象
@@ -60,7 +81,7 @@ namespace Y.Core.Dao
         /// <returns></returns>
         public bool Deletes(List<TEntity> entitys)
         {
-            return db.Delete<TEntity>(entitys);
+            return db.Delete(entitys);
         }
 
         public bool Exist(object id)
