@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ComFunc\FontAwesomeFunc.cs" />
+    <Compile Include="Core\ComFunc\ResourcesFunc.cs" />
+    <Compile Include="Core\ComFunc\SysBaseExtend.cs" />
+    <Compile Include="Core\Core.Enum\FaEnum.cs" />
     <Compile Include="Core\IOCBase.cs" />
     <Compile Include="Core\ServiceBase.cs" />
     <Compile Include="Dao\SqlSugarDao.cs" />

@@ -10,6 +10,8 @@ using System.Drawing.Design;
 using System.Data;
 using System.Collections;
 using Microsoft.SqlServer.Server;
+using Y.Core.Enum;
+using Y.Core.ComFunc;
 
 namespace CFW.WinFormBase.Controls
 {
@@ -18,10 +20,10 @@ namespace CFW.WinFormBase.Controls
     /// </summary>
     public class TextBoxBase : TextBox
     {
-        public TextBoxBase(): base()
+        public TextBoxBase() : base()
         {
             SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.Opaque | ControlStyles.DoubleBuffer, true);
-            
+
             this.BackColor = Color.Transparent;
         }
 
@@ -54,7 +56,7 @@ namespace CFW.WinFormBase.Controls
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if(e.X > (this.Location.X + this.Width - this.Height)) { this.Cursor = Cursors.Hand; }
+            if (e.X > (this.Location.X + this.Width - this.Height)) { this.Cursor = Cursors.Hand; }
         }
 
         private Color undLineColor = Color.Blue;
@@ -93,7 +95,7 @@ namespace CFW.WinFormBase.Controls
         [Description("获取ID value值")]
         public string TextValue
         {
-            get { return textvalue.Length > 0 ? textvalue:Text; }
+            get { return textvalue.Length > 0 ? textvalue : Text; }
             set
             {
                 textvalue = value;
@@ -176,7 +178,7 @@ namespace CFW.WinFormBase.Controls
             }
             if (hasUndLine)
             {
-               
+
                 //GDIHelper.DrawLine(g, new Pen(this.undLineColor, 2.5f), new Point(0, this.Height), new Point(this.Width, this.Height));
             }
             g.Dispose();
@@ -184,7 +186,8 @@ namespace CFW.WinFormBase.Controls
 
         private string GetTextByValueID(string text)
         {
-            if(dataSource != null){
+            if (dataSource != null)
+            {
                 var valueName = dataSource.Exists(m => m.Value == text) ? dataSource.Find(m => m.Value == text).Text : text;
                 textvalue = text;
                 if (valueName.Length < 1) { valueName = text; }
@@ -249,11 +252,13 @@ namespace CFW.WinFormBase.Controls
                         picB.Image = FontAwesome.GetImage(item);
                         picB.Name = item.ToString();
                         picList.Add(picB);
-                        picB.Click += delegate (object sender, EventArgs e) {
+                        picB.Click += delegate (object sender, EventArgs e)
+                        {
                             SelectPic = (PictureBox)sender;
                             editForm.Text = SelectPic.Name;
                         };
-                        picB.DoubleClick += delegate (object sender, EventArgs e) {
+                        picB.DoubleClick += delegate (object sender, EventArgs e)
+                        {
                             SelectPic = (PictureBox)sender;
                             editForm.Text = SelectPic.Name;
                             editForm.Close();
@@ -270,4 +275,6 @@ namespace CFW.WinFormBase.Controls
                     return SelectPic.Name;
                 }
             }
+        }
+    }
 }
