@@ -18,9 +18,9 @@ namespace Y.Core.WinForm.Controls
     /// <summary>
     /// 系统级Button
     /// </summary>
-    public class TextBoxBase : TextBox
+    public class TextBoxEx: TextBox
     {
-        public TextBoxBase() : base()
+        public TextBoxEx() : base()
         {
             SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.Opaque | ControlStyles.DoubleBuffer, true);
 

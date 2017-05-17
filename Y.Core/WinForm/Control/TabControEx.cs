@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace CFW.WinFormBase.Controls.YContorls
 {
-    public partial class TabControlBase : TabControl
+    public partial class TabControlEx : TabControl
     {
 
         #region 属性字段
@@ -150,7 +150,7 @@ namespace CFW.WinFormBase.Controls.YContorls
         }
         #endregion
 
-        public TabControlBase(): base()
+        public TabControlEx(): base()
         {
             base.SetStyle(
                   ControlStyles.UserPaint |                      // 控件将自行绘制，而不是通过操作系统来绘制  

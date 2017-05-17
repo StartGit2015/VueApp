@@ -78,7 +78,7 @@ namespace Y.Core.WinForm.Utility
         /// </summary>
         /// <param name="control">The control.</param>
         /// User:Ryan  CreateTime:2011-08-19 16:52.
-        public static void BindMouseMoveEvent(Control control)
+        public static void BindMouseMoveEvent(System.Windows.Forms.Control control)
         {
             if (control != null)
             {

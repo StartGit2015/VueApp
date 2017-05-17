@@ -86,6 +86,7 @@
     <Compile Include="WinForm\AppCode\Utility\GDIHelper.cs" />
     <Compile Include="WinForm\AppCode\Utility\Guard.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Enums\APIsEnums.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\Enums\ControlEnum.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\Comctl32.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\Gdi32.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\IniConfig.cs" />
@@ -94,24 +95,43 @@
     <Compile Include="WinForm\AppCode\{Win32}\Structs\APIsStructs.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Structs\RoundRectangle.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Structs\Structs.cs" />
-    <Compile Include="WinForm\Control\ComboBoxBase.cs">
+    <Compile Include="WinForm\Control\ComboBoxEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WinForm\Control\TabControlBase.cs">
+    <Compile Include="WinForm\Control\ControlEx\YToolStripRendere.cs" />
+    <Compile Include="WinForm\Control\TabControEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WinForm\Control\TextBoxBase.cs">
+    <Compile Include="WinForm\Control\TextBoxEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WinForm\Control\ValiDataManageCmp.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\BaseForm.ControlBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\BaseForm.Render.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\FormControlBoxRender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Web\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WinForm\FormEx\BaseForm\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

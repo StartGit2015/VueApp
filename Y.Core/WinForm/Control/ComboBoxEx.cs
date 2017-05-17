@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
+using System.Win32;
+
 namespace CFW.WinFormBase.Controls
 {
-    public partial class ComboBoxBase : ComboBox
+    public partial class ComboBoxEx : ComboBox
     {
-        [System.Runtime.InteropServices.DllImport("user32.dll ")]
-        static extern IntPtr GetWindowDC(IntPtr hWnd);//返回hWnd参数所指定的窗口的设备环境。  
-
-        [System.Runtime.InteropServices.DllImport("user32.dll ")]
-        static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC); //函数释放设备上下文环境（DC）
-
-        public ComboBoxBase():base()
+        public ComboBoxEx():base()
         {
             SetStyle(ControlStyles.SupportsTransparentBackColor 
                 | ControlStyles.ResizeRedraw
@@ -104,14 +100,14 @@ namespace CFW.WinFormBase.Controls
             switch (m.Msg)
             {
                 case 0xF:
-                    IntPtr hDC = GetWindowDC(m.HWnd);
+                    IntPtr hDC = Win32.GetWindowDC(m.HWnd);
                     if (hDC.ToInt32() == 0) //如果取设备上下文失败则返回  
                     { return; }
 
                     Graphics g = Graphics.FromHdc(hDC);
                     PaintComboBox(g);
                     //释放DC    
-                    ReleaseDC(m.HWnd, hDC);
+                    Win32.ReleaseDC(m.HWnd, hDC);
                     break;
                 default:
                     break;
