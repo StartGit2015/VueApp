@@ -67,7 +67,7 @@ namespace CFW.WinFormBase.Controls
                 else
                 {
 
-                    errTip.SetError(item.Key, msgDic[item.Key]?? "请输入正确的数据");
+                    errTip.SetError(item.Key, msgDic[item.Key].Length == 0?"": "请输入正确的数据");
                     ret = false;
                 }
                 
@@ -136,6 +136,7 @@ namespace CFW.WinFormBase.Controls
             //从集合中取出该item的描述
             Validata value;
             dic.TryGetValue(item, out value);
+            msgDic[item] = "";
             return value;
         }
 
@@ -150,11 +151,13 @@ namespace CFW.WinFormBase.Controls
             {
                 //从集合中移除该item，并取消其相关事件绑定
                 dic.Remove(item);
+                msgDic.Remove(item);
             }
             else
             {
                 //添加或更改该item的描述
                 dic[item] = value;//这种写法对于dic中不存在的Key，会自动添加
+                msgDic[item] = "";
             }
         }
 
