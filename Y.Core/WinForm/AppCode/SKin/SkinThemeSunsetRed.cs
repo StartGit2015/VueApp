@@ -9,7 +9,6 @@ namespace Y.Core.WinForm.SKin
     /// <summary>
     /// 主题色彩：夕阳西下，明月天涯
     /// </summary>
-    /// User:Ryan  CreateTime:2012-8-7 22:22.
     internal class SkinThemeSunsetRed : SkinTheme
     {
         public SkinThemeSunsetRed()
@@ -20,8 +19,6 @@ namespace Y.Core.WinForm.SKin
         /// <summary>
         /// 初始化主题色彩方案
         /// </summary>
-        /// User:Ryan  CreateTime:2012-8-7 22:11.
-        /// User:Ryan  CreateTime:2012-8-7 22:19.
         public override void IniSkinTheme()
         {
             this.ThemeStyle = EnumTheme.SunsetRed;

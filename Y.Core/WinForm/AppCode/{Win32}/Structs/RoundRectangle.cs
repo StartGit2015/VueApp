@@ -11,7 +11,6 @@ namespace System.Drawing
     /// <summary>
     /// 可设置圆角的矩形区域
     /// </summary>
-    /// User:Ryan  CreateTime:2011-07-19 9:52.
     internal class RoundRectangle
     {
         #region Initializes
@@ -21,7 +20,6 @@ namespace System.Drawing
         /// </summary>
         /// <param name="roundRect">The roundRect.</param>
         /// <param name="radius">The radius.</param>
-        /// User:Ryan  CreateTime:2011-07-19 16:59.
         public RoundRectangle(Rectangle rect, int radius)
             : this(rect, new CornerRadius(radius))
         {
@@ -32,7 +30,6 @@ namespace System.Drawing
         /// </summary>
         /// <param name="roundRect">The roundRect.</param>
         /// <param name="_CornerRadius">The corner radius.</param>
-        /// User:Ryan  CreateTime:2011-07-19 16:59.
         public RoundRectangle(Rectangle rect, CornerRadius cornerRadius)
         {
             this.Rect = rect;
@@ -47,7 +44,6 @@ namespace System.Drawing
         /// 获取或者设置矩形区域
         /// </summary>
         /// <value>The roundRect.</value>
-        /// User:Ryan  CreateTime:2011-07-19 16:59.
         public Rectangle Rect { get; set; }
 
         /// <summary>
@@ -67,7 +63,6 @@ namespace System.Drawing
         /// <returns>
         /// Return a data(or instance) of GraphicsPath.
         /// </returns>
-        /// User:Ryan  CreateTime:2011-07-20 11:52.
         public GraphicsPath ToGraphicsBezierPath()
         {
             GraphicsPath path = new GraphicsPath();
@@ -91,7 +86,6 @@ namespace System.Drawing
         /// 获取该圆角矩形的GraphicsPath对象(圆角使用矩形圆弧曲线曲线实现)
         /// </summary>
         /// <returns></returns>
-        /// User:K.Anding  CreateTime:2011-7-31 23:25.
         public GraphicsPath ToGraphicsArcPath()
         {
             GraphicsPath path = new GraphicsPath();
@@ -115,7 +109,6 @@ namespace System.Drawing
         /// <returns>
         /// Return a data(or instance) of GraphicsPath.
         /// </returns>
-        /// User:Ryan  CreateTime:2011-07-20 11:52.
         public GraphicsPath ToGraphicsAnglesWingPath()
         {
             GraphicsPath path = new GraphicsPath();
