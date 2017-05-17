@@ -13,7 +13,7 @@ using Microsoft.SqlServer.Server;
 using Y.Core.Enum;
 using Y.Core.ComFunc;
 
-namespace CFW.WinFormBase.Controls
+namespace Y.Core.WinForm.Controls
 {
     /// <summary>
     /// 系统级Button
@@ -244,7 +244,7 @@ namespace CFW.WinFormBase.Controls
                     panl.FlowDirection = FlowDirection.TopDown;
                     panl.AutoScroll = true;
                     panl.Dock = DockStyle.Fill;
-                    foreach (FaEnum item in Enum.GetValues(typeof(FaEnum)))
+                    foreach (FaEnum item in  System.Enum.GetValues(typeof(FaEnum)))
                     {
                         PictureBox picB = new PictureBox();
                         picB.Height = 35;

@@ -72,6 +72,28 @@
     <Compile Include="Interface\IDependency.cs" />
     <Compile Include="Interface\ILog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinForm\AppCode\SKin\ColorScheme.cs" />
+    <Compile Include="WinForm\AppCode\SKin\EnumTheme.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinManager.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinTheme.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinThemeBlueSea.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinThemeDefault.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinThemeKissOfAngel.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinThemeNoFlower.cs" />
+    <Compile Include="WinForm\AppCode\SKin\SkinThemeSunsetRed.cs" />
+    <Compile Include="WinForm\AppCode\Utility\Callback.cs" />
+    <Compile Include="WinForm\AppCode\Utility\ControlHelper.cs" />
+    <Compile Include="WinForm\AppCode\Utility\GDIHelper.cs" />
+    <Compile Include="WinForm\AppCode\Utility\Guard.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\Enums\APIsEnums.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\Comctl32.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\Gdi32.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\IniConfig.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\User32.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\NativeMethods\Win32.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\Structs\APIsStructs.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\Structs\RoundRectangle.cs" />
+    <Compile Include="WinForm\AppCode\{Win32}\Structs\Structs.cs" />
     <Compile Include="WinForm\Control\ComboBoxBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
