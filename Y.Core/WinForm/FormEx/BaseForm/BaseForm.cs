@@ -19,7 +19,7 @@ namespace Y.Core.WinForm.FormEx
     [ToolboxBitmap(typeof(Form))]
     public partial class BaseForm : Form
     {
-      #region 私有属性定义
+    #region 私有属性定义
 
       /// <summary>
       /// 圆角值
@@ -97,7 +97,7 @@ namespace Y.Core.WinForm.FormEx
       this.UpdateStyles();
       base.FormBorderStyle = FormBorderStyle.None;
       base.Padding = this.DefaultPadding;
-      this.StartPosition = FormStartPosition.CenterParent;
+      this.StartPosition = FormStartPosition.CenterScreen;
       base.Size = new Size(500, 350);
       this.ResetRegion();
       ////任务栏的logo
@@ -437,19 +437,19 @@ namespace Y.Core.WinForm.FormEx
         base.Region.Dispose();
       }
 
-      //Rectangle rect = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
-      //RoundRectangle roundRect = new RoundRectangle(rect, new CornerRadius(this._CornerRadius));
-      //using (System.Drawing.Drawing2D.GraphicsPath path = roundRect.ToGraphicsBezierPath())
-      //{
-      //    path.CloseFigure();
-      //    base.Region = new Region(path);
-      //}
+      Rectangle rect = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
+      RoundRectangle roundRect = new RoundRectangle(rect, new System.Win32.CornerRadius(this._CornerRadius));
+      using (System.Drawing.Drawing2D.GraphicsPath path = roundRect.ToGraphicsBezierPath())
+      {
+        path.CloseFigure();
+        base.Region = new Region(path);
+      }
 
       //这种方式设置窗口圆角，边框不好控制
-      int rgn = System.Win32.Win32.CreateRoundRectRgn(0, 0,
-          this.Size.Width, this.Size.Height,
-          this._CornerRadius + 1, this._CornerRadius);
-      System.Win32.Win32.SetWindowRgn(this.Handle, rgn, true);
+      //int rgn = System.Win32.Win32.CreateRoundRectRgn(0, 0,
+      //    this.Size.Width, this.Size.Height,
+      //    this._CornerRadius + 1, this._CornerRadius);
+      //System.Win32.Win32.SetWindowRgn(this.Handle, rgn, true);
     }
     #endregion
   }

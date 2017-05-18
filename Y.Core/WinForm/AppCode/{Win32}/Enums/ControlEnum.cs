@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 控件使用枚举
+/// </summary>
 namespace Y.Core.WinForm.Enums
 {
   #region EnumControlState
@@ -907,4 +910,5 @@ namespace Y.Core.WinForm.Enums
 
   }
   #endregion
+  
 }

@@ -13,14 +13,13 @@ namespace Y.Core.WinForm.SKin
     /// <summary>
     /// 皮肤管理中心:皮肤的编辑，设置，保存等等
     /// </summary>
-    /// User:Ryan  CreateTime:2012-8-3 14:16.
     internal class SkinManager
     {
-        #region private attributes
+        #region 私有字段属性
 
         private static SkinTheme _CurrentSkin;
 
-        private static readonly string SkinFilePath = System.Windows.Forms.Application.StartupPath + @"\Config\Skin.ini";
+        private static readonly string SkinFilePath = System.Windows.Forms.Application.StartupPath + @"\Skin.ini";
 
         private static readonly string SkinSectionName = "SkinManager";
 
@@ -43,7 +42,6 @@ namespace Y.Core.WinForm.SKin
         /// Gets  the current skin
         /// </summary>
         /// <value>The current skin.</value>
-        /// User:Ryan  CreateTime:2012-8-3 14:16.
         public static SkinTheme CurrentSkin
         {
             get
@@ -66,7 +64,6 @@ namespace Y.Core.WinForm.SKin
         /// Gets the default skin teme.
         /// </summary>
         /// <returns>Return a data(or instance) of SkinTheme.</returns>
-        /// User:Ryan  CreateTime:2012-8-3 14:14.
         private static SkinTheme GetSkinTeme()
         {
             try
@@ -95,13 +92,40 @@ namespace Y.Core.WinForm.SKin
                 return new SkinThemeDefault();
             }
         }
-
-        /// <summary>
-        /// 设置当前主题皮肤
-        /// </summary>
-        /// <param name="theme">The theme.</param>
-        /// User:Ryan  CreateTime:2012-8-7 22:57.
-        public static void SettingSkinTeme(EnumTheme theme)
+    /// <summary>
+    /// 根据皮肤枚举获取皮肤
+    /// </summary>
+    /// <param name="theme"></param>
+    /// <returns></returns>
+    public static SkinTheme GetSkinTeme(EnumTheme theme)
+        {
+          try
+          {
+            switch (theme)
+            {
+              case EnumTheme.BlueSea:
+                return new SkinThemeBlueSea();
+              case EnumTheme.KissOfAngel:
+                return new SkinThemeKissOfAngel();
+              case EnumTheme.NoFlower:
+                return new SkinThemeNoFlower();
+              case EnumTheme.SunsetRed:
+                return new SkinThemeSunsetRed();
+              case EnumTheme.Default:
+              default:
+                return new SkinThemeDefault();
+            }
+          }
+          catch (Exception ex)
+          {
+            return new SkinThemeDefault();
+          }
+        }
+    /// <summary>
+    /// 设置当前主题皮肤
+    /// </summary>
+    /// <param name="theme">The theme.</param>
+    public static void SettingSkinTeme(EnumTheme theme)
         {
             switch (theme)
             {
@@ -129,18 +153,16 @@ namespace Y.Core.WinForm.SKin
         /// <summary>
         /// 保存配置文件
         /// </summary>
-        /// User:Ryan  CreateTime:2012-8-7 22:45.
         public static void Save()
         {
             try
             {
                 IniConfig ini = new IniConfig(SkinFilePath);
                 ini.IniWriteValue(SkinSectionName, CurrentSkinName, ((int)CurrentSkin.ThemeStyle).ToString());
-                
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw ex;
             }
         }
     }

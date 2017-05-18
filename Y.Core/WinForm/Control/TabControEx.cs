@@ -22,8 +22,6 @@ namespace CFW.WinFormBase.Controls.YContorls
         private string _special = "";
 
         string[] _arraySpecial;
-
-        bool _down = false;
         /// <summary>
         /// 是否绘制关闭窗口按钮
         /// </summary>
@@ -255,7 +253,6 @@ namespace CFW.WinFormBase.Controls.YContorls
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            _down = true;
         }
 
         //protected override void OnPaint(PaintEventArgs e)

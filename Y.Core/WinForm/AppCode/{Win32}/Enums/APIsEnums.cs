@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// 控件API信息枚举
+/// </summary>
 namespace System.Win32
 {
     #region Window messages / WM

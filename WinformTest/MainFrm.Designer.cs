@@ -33,19 +33,19 @@
       // 
       // MainFrm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.BorderWidth = 10;
+      this.BorderWidth = 1;
       this.CapitionLogo = global::WinformTest.Properties.Resources.task;
       this.CaptionHeight = 35;
-      this.ClientSize = new System.Drawing.Size(500, 350);
+      this.ClientSize = new System.Drawing.Size(993, 584);
       this.ControlBoxSize = new System.Drawing.Size(32, 25);
+      this.CornerRadius = 0;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.Location = new System.Drawing.Point(0, 0);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "MainFrm";
-      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "测试窗口";
       this.ResumeLayout(false);
 

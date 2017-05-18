@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace Y.Core.WinForm.SKin
 {
+  /// <summary>
+  /// 皮肤基类
+  /// </summary>
     internal class SkinTheme
     {
         #region initialize

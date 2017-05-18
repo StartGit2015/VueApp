@@ -10,7 +10,6 @@ namespace System.Win32
     /// <summary>
     /// ini配置文件操作
     /// </summary>
-    /// User:Ryan  CreateTime:2012-8-7 23:23.
     internal class IniConfig
     {
         private string _FilePath;
@@ -25,7 +24,9 @@ namespace System.Win32
         /// <param name="filePath">文件路径</param> 
         public IniConfig(string filePath)
         {
+
             _FilePath = filePath;
+            if(!this.ExistINIFile()) throw new Exception("指定的配置文件地址错误！" + filePath);
         }
         /// <summary> 
         /// 写入INI文件 
@@ -41,7 +42,7 @@ namespace System.Win32
             }
             else
             {
-                throw new Exception("指定的配置文件读写错误！");
+                throw new Exception("指定的配置文件写入错误！");
             }
         }
         /// <summary> 

@@ -15,7 +15,6 @@ namespace Y.Core.WinForm.Utility
     /// <summary>
     /// 控件处理的基本帮助类
     /// </summary>
-    /// User:Ryan  CreateTime:2011-08-19 16:49.
     public class ControlHelper
     {
         /// <summary>

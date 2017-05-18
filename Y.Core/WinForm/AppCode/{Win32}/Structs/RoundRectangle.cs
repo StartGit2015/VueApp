@@ -50,7 +50,6 @@ namespace System.Drawing
         /// 获取或者设置圆角值
         /// </summary>
         /// <value>The corner radius.</value>
-        /// User:Ryan  CreateTime:2011-07-19 16:59.
         public CornerRadius CornerRadius { get; set; }
 
         #endregion

@@ -45,9 +45,9 @@ namespace System.Win32
     public struct WIN32_FIND_DATA
     {
         public uint fileAttributes;
-        public FILETIME creationTime;
-        public FILETIME lastAccessTime;
-        public FILETIME lastWriteTime;
+        public Runtime.InteropServices.ComTypes.FILETIME creationTime;
+        public Runtime.InteropServices.ComTypes.FILETIME lastAccessTime;
+        public Runtime.InteropServices.ComTypes.FILETIME lastWriteTime;
         public uint fileSizeHigh;
         public uint fileSizeLow;
         public uint reserved0;

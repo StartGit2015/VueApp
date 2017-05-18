@@ -11,7 +11,7 @@ using Y.Core.WinForm.FormEx;
 
 namespace WinformTest
 {
-  public partial class MainFrm :BaseForm
+  public partial class MainFrm : MainForm
   {
     public MainFrm()
     {
