@@ -12,7 +12,7 @@ using Y.Core.WinForm.Utility;
 
 namespace Y.Core.WinForm.Control
 {
-  internal class LabelEx : Label, IControlTheme
+  public class LabelEx : Label, IControlTheme
   {
     /// <summary>
     /// 控件主题
@@ -71,7 +71,7 @@ namespace Y.Core.WinForm.Control
         this.Invalidate();
       }
     }
-    public void DrawBackGround(Graphics g)
+    private void DrawBackGround(Graphics g)
     {
       GDIHelper.InitializeGraphics(g);
       Rectangle rect = new Rectangle(1, 1, this.Width - 3, this.Height - 3);
@@ -85,9 +85,8 @@ namespace Y.Core.WinForm.Control
     /// <param name="g">The Graphics.</param>
     private void DrawContent(Graphics g)
     {
-      Rectangle textRect = Bounds;
-      Color forceColor = this.Enabled ? this.ForeColor : _theme.UselessColor;
-      TextRenderer.DrawText(g, this.Text, this.Font, textRect, forceColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+      Rectangle textRect = new Rectangle(0,0,Width,Height);
+      TextRenderer.DrawText(g, this.Text, this.Font, textRect, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
     }
   }
 }

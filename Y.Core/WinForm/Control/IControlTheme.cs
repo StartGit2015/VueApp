@@ -18,10 +18,5 @@ namespace Y.Core.WinForm.Control
     /// </summary>
     EnumTheme ControlThemeEnum { get; set; }
     SkinTheme ControlTheme { get; set; }
-    /// <summary>
-    /// 绘制背景和边框等
-    /// </summary>
-    /// <param name="g"></param>
-    void DrawBackGround(Graphics g);
   }
 }

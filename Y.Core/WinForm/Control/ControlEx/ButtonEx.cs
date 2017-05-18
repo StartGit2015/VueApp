@@ -16,7 +16,7 @@ namespace Y.Core.WinForm.Control
 {
   [DefaultEvent("Click")]
   [ToolboxBitmap(typeof(Button))]
-  internal partial class ButtonEx : Button,IControlTheme
+  public partial class ButtonEx : Button,IControlTheme
   {
       #region 私有属性
 
@@ -65,7 +65,7 @@ namespace Y.Core.WinForm.Control
           base.TextImageRelation = TextImageRelation.ImageBeforeText;
           this.Size = new Size(100, 28);
           this.ResetRegion();
-
+          _theme = _theme ?? SkinManager.GetSkinTeme(_themeEnum);
       }
     #endregion
 
@@ -73,7 +73,7 @@ namespace Y.Core.WinForm.Control
 
       [Category("YProperties")]
       [Description("控件主题")]
-      [DefaultValue(EnumTheme.Default)]
+      [DefaultValue(EnumTheme.无)]
       public EnumTheme ControlThemeEnum
       {
       get { return _themeEnum; }

@@ -9,7 +9,7 @@ namespace Y.Core.WinForm.SKin
   /// <summary>
   /// 皮肤基类
   /// </summary>
-    internal class SkinTheme
+    public class SkinTheme
     {
         #region initialize
 
@@ -102,7 +102,6 @@ namespace Y.Core.WinForm.SKin
         /// <summary>
         /// 默认控件色彩
         /// </summary>
-        /// User:Ryan  CreateTime:2011-07-28 14:07.
         public GradientColor DefaultControlColor { get; set; }
 
         /// <summary>

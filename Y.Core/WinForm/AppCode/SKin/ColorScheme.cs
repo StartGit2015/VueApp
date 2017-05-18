@@ -51,7 +51,7 @@ namespace Y.Core.WinForm.SKin
     /// <summary>
     /// 阶梯渐变色彩
     /// </summary>
-    internal struct GradientColor
+    public struct GradientColor
     {
         /// <summary>
         /// (构造函数).Initializes a new instance of the <see cref="GradientColor"/> struct.

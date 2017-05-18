@@ -6,10 +6,10 @@ using System.Drawing;
 
 namespace Y.Core.WinForm.SKin
 {
-    /// <summary>
-    /// 主题色彩：夕阳西下，明月天涯
-    /// </summary>
-    internal class SkinThemeSunsetRed : SkinTheme
+  /// <summary>
+  /// 主题色彩：夕阳西下，明月天涯
+  /// </summary>
+  public class SkinThemeSunsetRed : SkinTheme
     {
         public SkinThemeSunsetRed()
             : base()

@@ -117,4 +117,319 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pib_backgimg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 134</value>
+  </data>
+  <data name="&gt;&gt;btn_似水年华.Name" xml:space="preserve">
+    <value>btn_似水年华</value>
+  </data>
+  <data name="btn_落日黄昏.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 130</value>
+  </data>
+  <data name="&gt;&gt;lb_opactity.Name" xml:space="preserve">
+    <value>lb_opactity</value>
+  </data>
+  <data name="&gt;&gt;lb_opactity.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.LabelEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="lb_opactity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 299</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_落日黄昏.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ckb_Optickty.Text" xml:space="preserve">
+    <value>开启主题背景</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="trackOpacity.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lb_opactity.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btn_面朝大海.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;btn_面朝大海.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ckb_Optickty.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btn_似水年华.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btn_面朝大海.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 50</value>
+  </data>
+  <data name="&gt;&gt;btn_Defult.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="btn_Defult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="btn_似水年华.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_天使之吻.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_天使之吻.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="trackOpacity.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="lb_opactity.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="trackOpacity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 159</value>
+  </data>
+  <data name="btn_Defult.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btn_落日黄昏.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btn_Close.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btn_落日黄昏.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;pib_backgimg.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_Close.Name" xml:space="preserve">
+    <value>btn_Close</value>
+  </data>
+  <data name="&gt;&gt;ckb_Optickty.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;trackOpacity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_落日黄昏.Text" xml:space="preserve">
+    <value>落日黄昏</value>
+  </data>
+  <data name="ckb_Optickty.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btn_Defult.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="btn_Close.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="btn_Close.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btn_似水年华.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ckb_Optickty.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btn_天使之吻.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pib_backgimg.Name" xml:space="preserve">
+    <value>pib_backgimg</value>
+  </data>
+  <data name="&gt;&gt;trackOpacity.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btn_Close.Text" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="&gt;&gt;btn_面朝大海.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;trackOpacity.Name" xml:space="preserve">
+    <value>trackOpacity</value>
+  </data>
+  <data name="&gt;&gt;btn_Defult.Name" xml:space="preserve">
+    <value>btn_Defult</value>
+  </data>
+  <data name="pib_backgimg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="trackOpacity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 134</value>
+  </data>
+  <data name="&gt;&gt;btn_Close.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btn_似水年华.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lb_opactity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;btn_天使之吻.Name" xml:space="preserve">
+    <value>btn_天使之吻</value>
+  </data>
+  <data name="&gt;&gt;pib_backgimg.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btn_天使之吻.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;trackOpacity.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="pib_backgimg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 159</value>
+  </data>
+  <data name="&gt;&gt;btn_落日黄昏.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;pib_backgimg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_落日黄昏.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="btn_似水年华.Text" xml:space="preserve">
+    <value>似水年华</value>
+  </data>
+  <data name="btn_落日黄昏.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btn_天使之吻.Text" xml:space="preserve">
+    <value>天使之吻</value>
+  </data>
+  <data name="btn_Close.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 318</value>
+  </data>
+  <data name="&gt;&gt;btn_似水年华.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.ButtonEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="btn_Defult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.FormEx.BaseForm, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ckb_Optickty.Name" xml:space="preserve">
+    <value>ckb_Optickty</value>
+  </data>
+  <data name="btn_Defult.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="pib_backgimg.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lb_opactity.Text" xml:space="preserve">
+    <value>透明度</value>
+  </data>
+  <data name="&gt;&gt;btn_天使之吻.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btn_面朝大海.Name" xml:space="preserve">
+    <value>btn_面朝大海</value>
+  </data>
+  <data name="&gt;&gt;btn_Close.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>皮肤管理</value>
+  </data>
+  <data name="btn_天使之吻.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btn_面朝大海.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="btn_似水年华.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btn_面朝大海.Text" xml:space="preserve">
+    <value>面朝大海</value>
+  </data>
+  <data name="btn_面朝大海.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btn_面朝大海.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;btn_落日黄昏.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_落日黄昏.Name" xml:space="preserve">
+    <value>btn_落日黄昏</value>
+  </data>
+  <data name="ckb_Optickty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 16</value>
+  </data>
+  <data name="lb_opactity.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btn_天使之吻.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_似水年华.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btn_天使之吻.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 102</value>
+  </data>
+  <data name="&gt;&gt;lb_opactity.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_Defult.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btn_Close.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btn_Defult.Text" xml:space="preserve">
+    <value>默认皮肤</value>
+  </data>
+  <data name="&gt;&gt;ckb_Optickty.Type" xml:space="preserve">
+    <value>Y.Core.WinForm.Control.CheckBoxEx, Y.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ckb_Optickty.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btn_似水年华.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 75</value>
+  </data>
+  <data name="btn_Defult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 22</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>148, 342</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SkinManageForm</value>
+  </data>
+  <data name="btn_Close.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="lb_opactity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="ckb_Optickty.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 297</value>
+  </data>
+  <data name="btn_面朝大海.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>zh-CN</value>
+  </metadata>
 </root>

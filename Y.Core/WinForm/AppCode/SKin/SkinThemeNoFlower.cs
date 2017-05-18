@@ -6,11 +6,11 @@ using System.Drawing;
 
 namespace Y.Core.WinForm.SKin
 {
-    /// <summary>
-    /// 主题色彩：如花美眷，似水流年
-    /// </summary>
-    /// User:Ryan  CreateTime:2012-8-7 22:22.
-    internal class SkinThemeNoFlower : SkinTheme
+  /// <summary>
+  /// 主题色彩：如花美眷，似水流年
+  /// </summary>
+  /// User:Ryan  CreateTime:2012-8-7 22:22.
+  public class SkinThemeNoFlower : SkinTheme
     {
         public SkinThemeNoFlower()
             : base()

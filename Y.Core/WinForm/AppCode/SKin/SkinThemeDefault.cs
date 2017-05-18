@@ -10,7 +10,7 @@ namespace Y.Core.WinForm.SKin
     /// 系统默认
     /// </summary>
     /// User:Ryan  CreateTime:2012-8-7 22:16.
-    internal class SkinThemeDefault : SkinTheme
+    public class SkinThemeDefault : SkinTheme
     {
         public SkinThemeDefault()
             : base()

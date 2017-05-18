@@ -113,11 +113,14 @@
     <Compile Include="WinForm\Control\ControlEx\LabelEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WinForm\Control\ControlEx\YToolStripRendere.cs" />
-    <Compile Include="WinForm\Control\IControlTheme.cs" />
-    <Compile Include="WinForm\Control\TabControEx.cs">
+    <Compile Include="WinForm\Control\ControlEx\TabControlEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WinForm\Control\ControlEx\TextBoxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\Control\ControlEx\YToolStripRendere.cs" />
+    <Compile Include="WinForm\Control\IControlTheme.cs" />
     <Compile Include="WinForm\Control\TextBoxEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -162,6 +165,9 @@
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\MainForm\SkinManageForm.resx">
+      <DependentUpon>SkinManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEx\MainForm\SkinManageForm.zh-CN.resx">
       <DependentUpon>SkinManageForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

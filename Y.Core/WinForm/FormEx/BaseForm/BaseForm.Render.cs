@@ -123,7 +123,7 @@ namespace Y.Core.WinForm.FormEx
         return;
       }
 
-      Rectangle rect = new Rectangle(0, 0, this.Width - 2, this.Height - 2);
+      Rectangle rect = new Rectangle(0, 0, this.Width - 2 , this.Height - 2);
       RoundRectangle roundRect = new RoundRectangle(rect, new CornerRadius(this.CornerRadius));
       //GDIHelper.DrawPathBorder(g, roundRect);
       using (GraphicsPath path = this._CornerRadius == 0 ? roundRect.ToGraphicsBezierPath() : roundRect.ToGraphicsArcPath())

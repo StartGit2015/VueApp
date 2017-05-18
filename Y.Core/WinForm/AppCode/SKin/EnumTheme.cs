@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Y.Core.WinForm.SKin
 {
-  internal enum EnumTheme
+  public enum EnumTheme
     {
+        无 = -1,
         Default = 0,
 
         BlueSea = 1,

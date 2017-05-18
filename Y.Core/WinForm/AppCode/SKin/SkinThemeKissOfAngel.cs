@@ -6,11 +6,11 @@ using System.Drawing;
 
 namespace Y.Core.WinForm.SKin
 {
-    /// <summary>
-    /// 主题色彩：天使之吻
-    /// </summary>
-    /// User:Ryan  CreateTime:2012-8-7 22:21.
-    internal class SkinThemeKissOfAngel:SkinTheme
+  /// <summary>
+  /// 主题色彩：天使之吻
+  /// </summary>
+  /// User:Ryan  CreateTime:2012-8-7 22:21.
+  public class SkinThemeKissOfAngel:SkinTheme
     {
         public SkinThemeKissOfAngel()
             : base()

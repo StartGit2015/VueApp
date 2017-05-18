@@ -64,10 +64,11 @@ namespace Y.Core.WinForm.FormEx
     private void SaveTheme(Button btn)
     {
       int themEmnu = btn.Tag.ToString().ToInt();
+      var img= (Bitmap)pib_backgimg.BackgroundImage;
       SkinManager.SettingSkinTeme(themEmnu.ToEnumByValue<EnumTheme>());
-      SkinManager.CurrentSkin.BackGroundImageEnable = ckb_Optickty.Checked;
+      if (img != null) SkinManager.CurrentSkin.BackGroundImageEnable = ckb_Optickty.Checked;
       SkinManager.CurrentSkin.BackGroundImageOpacity = trackOpacity.Value / 100F;
-      SkinManager.CurrentSkin.BackGroundImage = (Bitmap)pib_backgimg.BackgroundImage;
+      if(img != null)SkinManager.CurrentSkin.BackGroundImage = (Bitmap)pib_backgimg.BackgroundImage;
       SkinManager.Save();
     }
     /// <summary>

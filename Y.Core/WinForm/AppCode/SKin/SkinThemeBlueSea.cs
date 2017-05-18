@@ -6,11 +6,11 @@ using System.Drawing;
 
 namespace Y.Core.WinForm.SKin
 {
-    /// <summary>
-    /// 主题色彩：面朝大海，春暖花开
-    /// </summary>
-    /// User:Ryan  CreateTime:2012-8-7 22:17.
-    internal class SkinThemeBlueSea : SkinTheme
+  /// <summary>
+  /// 主题色彩：面朝大海，春暖花开
+  /// </summary>
+  /// User:Ryan  CreateTime:2012-8-7 22:17.
+  public class SkinThemeBlueSea : SkinTheme
     {
         public SkinThemeBlueSea()
             : base()
