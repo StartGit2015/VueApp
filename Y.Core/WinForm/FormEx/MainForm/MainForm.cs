@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Win32;
 using System.Windows.Forms;
+using Y.Core.WinForm.Control;
 using Y.Core.WinForm.Enums;
 using Y.Core.WinForm.Utility;
 
@@ -399,6 +400,49 @@ namespace Y.Core.WinForm.FormEx
       this.ClientSize = new System.Drawing.Size(761, 507);
       this.Name = "MainForm";
       this.ResumeLayout(false);
+      this.IsMdiContainer = true;
+
+    }
+
+    /// <summary>
+    /// 向tab控件增加BaseForm窗口  窗口存在时 选中tabpage
+    /// </summary>
+    /// <param name="tabControl"></param>
+    /// <param name="form">实例化好的form</param>
+    public void AddTabFrm(TabControlEx tabControl, BaseForm frm)
+    {
+      foreach (TabPage item in tabControl.TabPages)
+      {
+        if (item.Name == "tabPage_" + frm.Name)
+        {
+          tabControl.SelectedTab = item;
+          return;
+        }
+      }
+      try
+      {
+        TabPage tabPage = new TabPage();
+        tabPage.Name = "tabPage_" + frm.Name;
+        tabPage.Text = frm.Text;
+        tabControl.Controls.Add(tabPage);
+
+        frm.MdiParent  = this;
+        frm.FormBorderStyle = FormBorderStyle.None;
+        frm.Dock = DockStyle.Fill;
+        frm.TopLevel = false;
+        frm.ShowIcon = false;
+        frm.ShowInTaskbar = false;
+        frm.CaptionHeight = 0;
+        frm.ControlBox = false;
+        frm.Show();
+
+        tabPage.Controls.Add(frm);
+        tabControl.SelectedTab = tabPage;
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
 
     }
   }

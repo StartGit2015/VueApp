@@ -67,9 +67,10 @@
       this.tabControlEx1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControlEx1.HeightLightTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(67)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
       this.tabControlEx1.Location = new System.Drawing.Point(1, 35);
+      this.tabControlEx1.Margin = new System.Windows.Forms.Padding(4);
       this.tabControlEx1.Name = "tabControlEx1";
       this.tabControlEx1.SelectedIndex = 0;
-      this.tabControlEx1.Size = new System.Drawing.Size(743, 431);
+      this.tabControlEx1.Size = new System.Drawing.Size(991, 548);
       this.tabControlEx1.TabCornerRadius = 3;
       this.tabControlEx1.TabIndex = 0;
       // 
@@ -77,10 +78,11 @@
       // 
       this.tabPage1.Controls.Add(this.buttonEx1);
       this.tabPage1.Controls.Add(this.textBoxEx1);
-      this.tabPage1.Location = new System.Drawing.Point(4, 29);
+      this.tabPage1.Location = new System.Drawing.Point(4, 33);
+      this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage1.Name = "tabPage1";
-      this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage1.Size = new System.Drawing.Size(735, 398);
+      this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+      this.tabPage1.Size = new System.Drawing.Size(983, 511);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "选项卡一";
       this.tabPage1.UseVisualStyleBackColor = true;
@@ -101,11 +103,12 @@
       skinThemeDefault1.ThemeStyle = Y.Core.WinForm.SKin.EnumTheme.Default;
       skinThemeDefault1.UselessColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(159)))), ((int)(((byte)(159)))));
       this.buttonEx1.ControlTheme = skinThemeDefault1;
-      this.buttonEx1.ControlThemeEnum = Y.Core.WinForm.SKin.EnumTheme.无;
+      this.buttonEx1.ControlThemeEnum = Y.Core.WinForm.SKin.EnumTheme.Default;
       this.buttonEx1.Image = null;
-      this.buttonEx1.Location = new System.Drawing.Point(186, 18);
+      this.buttonEx1.Location = new System.Drawing.Point(248, 22);
+      this.buttonEx1.Margin = new System.Windows.Forms.Padding(4);
       this.buttonEx1.Name = "buttonEx1";
-      this.buttonEx1.Size = new System.Drawing.Size(78, 30);
+      this.buttonEx1.Size = new System.Drawing.Size(104, 38);
       this.buttonEx1.TabIndex = 1;
       this.buttonEx1.Text = "buttonEx1";
       this.buttonEx1.UseVisualStyleBackColor = true;
@@ -119,40 +122,45 @@
       this.textBoxEx1.HeightLightBolorColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(67)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
       this.textBoxEx1.Image = null;
       this.textBoxEx1.ImageSize = new System.Drawing.Size(0, 0);
-      this.textBoxEx1.Location = new System.Drawing.Point(6, 20);
+      this.textBoxEx1.Location = new System.Drawing.Point(8, 25);
+      this.textBoxEx1.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxEx1.Name = "textBoxEx1";
-      this.textBoxEx1.Padding = new System.Windows.Forms.Padding(2);
+      this.textBoxEx1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxEx1.PasswordChar = '\0';
-      this.textBoxEx1.Size = new System.Drawing.Size(174, 28);
+      this.textBoxEx1.Size = new System.Drawing.Size(232, 35);
       this.textBoxEx1.TabIndex = 0;
       this.textBoxEx1.Text = "textBoxEx1";
       // 
       // tabPage2
       // 
-      this.tabPage2.Location = new System.Drawing.Point(4, 29);
+      this.tabPage2.Location = new System.Drawing.Point(4, 33);
+      this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(735, 398);
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+      this.tabPage2.Size = new System.Drawing.Size(983, 502);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "选项卡二第二个选项卡";
       this.tabPage2.UseVisualStyleBackColor = true;
       // 
       // MainFrm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BorderWidth = 1;
       this.CapitionLogo = global::WinformTest.Properties.Resources.task;
       this.CaptionHeight = 35;
-      this.ClientSize = new System.Drawing.Size(745, 467);
+      this.ClientSize = new System.Drawing.Size(993, 584);
       this.ControlBoxSize = new System.Drawing.Size(32, 25);
       this.Controls.Add(this.tabControlEx1);
       this.CornerRadius = 0;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.IsMdiContainer = true;
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "MainFrm";
       this.Text = "测试窗口";
+      this.OnRibbonButtonClick += new System.EventHandler<Y.Core.WinForm.Utility.BtnEventArgs>(this.MainFrm_OnRibbonButtonClick);
       this.tabControlEx1.ResumeLayout(false);
       this.tabPage1.ResumeLayout(false);
       this.ResumeLayout(false);

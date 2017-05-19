@@ -89,6 +89,7 @@
     <Compile Include="WinForm\AppCode\Utility\Callback.cs" />
     <Compile Include="WinForm\AppCode\Utility\ControlEventArgs.cs" />
     <Compile Include="WinForm\AppCode\Utility\ControlHelper.cs" />
+    <Compile Include="WinForm\AppCode\Utility\Extension.cs" />
     <Compile Include="WinForm\AppCode\Utility\GDIHelper.cs" />
     <Compile Include="WinForm\AppCode\Utility\Guard.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Enums\APIsEnums.cs" />

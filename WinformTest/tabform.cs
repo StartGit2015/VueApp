@@ -8,21 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Y.Core.WinForm.FormEx;
-using Y.Core.WinForm.Utility;
 
 namespace WinformTest
 {
-  public partial class MainFrm : MainForm
+  public partial class tabform : BaseForm
   {
-    public MainFrm()
+    public tabform()
     {
       InitializeComponent();
-    }
-
-    private void MainFrm_OnRibbonButtonClick(object sender, Y.Core.WinForm.Utility.BtnEventArgs e)
-    {
-      tabform frm = new tabform();
-      AddTabFrm(tabControlEx1,frm);
     }
   }
 }
