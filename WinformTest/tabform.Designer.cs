@@ -31,11 +31,11 @@
       Y.Core.WinForm.SKin.SkinThemeDefault skinThemeDefault2 = new Y.Core.WinForm.SKin.SkinThemeDefault();
       this.tabControlEx1 = new Y.Core.WinForm.Control.TabControlEx();
       this.tabPage1 = new System.Windows.Forms.TabPage();
-      this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.comboBoxEx1 = new CFW.WinFormBase.Controls.ComboBoxEx();
-      this.controlVerify1 = new CFW.WinFormBase.Controls.ControlVerify();
       this.buttonEx1 = new Y.Core.WinForm.Control.ButtonEx();
+      this.comboBoxEx1 = new CFW.WinFormBase.Controls.ComboBoxEx();
+      this.tabPage2 = new System.Windows.Forms.TabPage();
       this.textBoxEx1 = new Y.Core.WinForm.Controls.TextBoxEx();
+      this.controlVerify1 = new CFW.WinFormBase.Controls.ControlVerify();
       this.tabControlEx1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -84,16 +84,17 @@
       this.tabPage1.Text = "tabPage1";
       this.tabPage1.UseVisualStyleBackColor = true;
       // 
-      // tabPage2
+      // buttonEx1
       // 
-      this.tabPage2.Controls.Add(this.textBoxEx1);
-      this.tabPage2.Location = new System.Drawing.Point(4, 33);
-      this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(773, 460);
-      this.tabPage2.TabIndex = 1;
-      this.tabPage2.Text = "tabPage2";
-      this.tabPage2.UseVisualStyleBackColor = true;
+      this.buttonEx1.ControlTheme = skinThemeDefault2;
+      this.buttonEx1.ControlThemeEnum = Y.Core.WinForm.SKin.EnumTheme.Default;
+      this.buttonEx1.Image = null;
+      this.buttonEx1.Location = new System.Drawing.Point(204, 61);
+      this.buttonEx1.Name = "buttonEx1";
+      this.buttonEx1.Size = new System.Drawing.Size(182, 69);
+      this.buttonEx1.TabIndex = 1;
+      this.buttonEx1.Text = "buttonEx1";
+      this.buttonEx1.UseVisualStyleBackColor = true;
       // 
       // comboBoxEx1
       // 
@@ -105,17 +106,16 @@
       this.comboBoxEx1.Size = new System.Drawing.Size(121, 26);
       this.comboBoxEx1.TabIndex = 0;
       // 
-      // buttonEx1
+      // tabPage2
       // 
-      this.buttonEx1.ControlTheme = skinThemeDefault2;
-      this.buttonEx1.ControlThemeEnum = Y.Core.WinForm.SKin.EnumTheme.Default;
-      this.buttonEx1.Image = null;
-      this.buttonEx1.Location = new System.Drawing.Point(204, 61);
-      this.buttonEx1.Name = "buttonEx1";
-      this.buttonEx1.Size = new System.Drawing.Size(100, 28);
-      this.buttonEx1.TabIndex = 1;
-      this.buttonEx1.Text = "buttonEx1";
-      this.buttonEx1.UseVisualStyleBackColor = true;
+      this.tabPage2.Controls.Add(this.textBoxEx1);
+      this.tabPage2.Location = new System.Drawing.Point(4, 33);
+      this.tabPage2.Name = "tabPage2";
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage2.Size = new System.Drawing.Size(773, 460);
+      this.tabPage2.TabIndex = 1;
+      this.tabPage2.Text = "tabPage2";
+      this.tabPage2.UseVisualStyleBackColor = true;
       // 
       // textBoxEx1
       // 
@@ -123,7 +123,7 @@
       this.textBoxEx1.Location = new System.Drawing.Point(80, 31);
       this.textBoxEx1.Name = "textBoxEx1";
       this.textBoxEx1.RButtonIcon = "";
-      this.textBoxEx1.Size = new System.Drawing.Size(291, 25);
+      this.textBoxEx1.Size = new System.Drawing.Size(106, 25);
       this.textBoxEx1.TabIndex = 0;
       this.textBoxEx1.TextValue = "";
       // 

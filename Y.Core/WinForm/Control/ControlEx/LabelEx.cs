@@ -76,7 +76,7 @@ namespace Y.Core.WinForm.Control
       GDIHelper.InitializeGraphics(g);
       Rectangle rect = new Rectangle(1, 1, this.Width - 3, this.Height - 3);
 
-      GDIHelper.FillRectangle(g, rect, _theme.DefaultControlColor);
+      GDIHelper.FillRectangle(g, rect, _theme.BaseColor);
     }
 
     /// <summary>

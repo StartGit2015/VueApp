@@ -394,9 +394,9 @@ namespace Y.Core.WinForm.FormEx
     {
       Graphics g = e.Graphics;
       GDIHelper.InitializeGraphics(g);
-      this.DrawFormBorder(g);
       this.DrawFormBackGround(g);
       this.DrawCaption(g);
+      this.DrawFormBorder(g);
     }
 
     protected override void WndProc(ref Message m)
@@ -432,18 +432,18 @@ namespace Y.Core.WinForm.FormEx
     /// </summary>
     private void ResetRegion()
     {
-      //if (base.Region != null)
-      //{
-      //  base.Region.Dispose();
-      //}
+      if (base.Region != null)
+      {
+        base.Region.Dispose();
+      }
 
-      //Rectangle rect = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
-      //RoundRectangle roundRect = new RoundRectangle(rect, new System.Win32.CornerRadius(this._CornerRadius));
-      //using (System.Drawing.Drawing2D.GraphicsPath path = roundRect.ToGraphicsBezierPath())
-      //{
-      //  path.CloseFigure();
-      //  base.Region = new Region(path);
-      //}
+      Rectangle rect = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
+      RoundRectangle roundRect = new RoundRectangle(rect, new System.Win32.CornerRadius(this._CornerRadius));
+      using (System.Drawing.Drawing2D.GraphicsPath path = roundRect.ToGraphicsBezierPath())
+      {
+        path.CloseFigure();
+        base.Region = new Region(path);
+      }
 
       //这种方式设置窗口圆角，边框不好控制
       //int rgn = System.Win32.Win32.CreateRoundRectRgn(0, 0,

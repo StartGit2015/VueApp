@@ -100,7 +100,7 @@ namespace Y.Core.WinForm.FormEx
     /// <param name="g">The g.</param>
     private void DrawFormBackGround(Graphics g)
     {
-      Rectangle rect = new Rectangle(0, 0, this.Width - 2, this.Height - 2);
+      Rectangle rect = new Rectangle(0, 0, this.Width -2 , this.Height - 2);
       if (SkinManager.CurrentSkin.BackGroundImageEnable)
       {
         GDIHelper.DrawImage(g, rect, SkinManager.CurrentSkin.BackGroundImage, SkinManager.CurrentSkin.BackGroundImageOpacity);
