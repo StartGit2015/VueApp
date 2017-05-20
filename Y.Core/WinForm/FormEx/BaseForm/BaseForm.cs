@@ -13,75 +13,75 @@ using Y.Core.WinForm.Enums;
 
 namespace Y.Core.WinForm.FormEx
 {
-    /// <summary>
-    /// UI设计的窗体基类
-    /// </summary>
-    [ToolboxBitmap(typeof(Form))]
-    public partial class BaseForm : Form
-    {
+  /// <summary>
+  /// UI设计的窗体基类
+  /// </summary>
+  [ToolboxBitmap(typeof(Form))]
+  public partial class BaseForm : Form
+  {
     #region 私有属性定义
 
-      /// <summary>
-      /// 圆角值
-      /// </summary>
-      private int _CornerRadius = 3;
+    /// <summary>
+    /// 圆角值
+    /// </summary>
+    private int _CornerRadius = 3;
 
-      /// <summary>
-      /// 标题栏高度
-      /// </summary>
-      private int _CaptionHeight = 27;
+    /// <summary>
+    /// 标题栏高度
+    /// </summary>
+    private int _CaptionHeight = 27;
 
-      /// <summary>
-      /// 标题栏字体
-      /// </summary>
-      private Font _CaptionFont = SystemFonts.CaptionFont;
+    /// <summary>
+    /// 标题栏字体
+    /// </summary>
+    private Font _CaptionFont = SystemFonts.CaptionFont;
 
-      /// <summary>
-      /// 标题颜色
-      /// </summary>
-      private Color _CaptionColor = Color.Black;
+    /// <summary>
+    /// 标题颜色
+    /// </summary>
+    private Color _CaptionColor = Color.Black;
 
-      /// <summary>
-      /// 边框宽度
-      /// </summary>
-      private int _BorderWidth = 3;
+    /// <summary>
+    /// 边框宽度
+    /// </summary>
+    private int _BorderWidth = 3;
 
-      /// <summary>
-      /// 是否可以调整大小
-      /// </summary>
-      private bool _ResizeEnable = true;
+    /// <summary>
+    /// 是否可以调整大小
+    /// </summary>
+    private bool _ResizeEnable = true;
 
-      /// <summary>
-      /// 控制按钮大小（最小化，最大化，关闭）
-      /// </summary>
-      private Size _ControlBoxSize = new Size(32, 18);
+    /// <summary>
+    /// 控制按钮大小（最小化，最大化，关闭）
+    /// </summary>
+    private Size _ControlBoxSize = new Size(32, 18);
 
-      /// <summary>
-      /// 边距
-      /// </summary>
-      private Point _Offset = new Point(3, 0);
+    /// <summary>
+    /// 边距
+    /// </summary>
+    private Point _Offset = new Point(3, 0);
 
-      /// <summary>
-      /// 图标大小
-      /// </summary>
-      private Size _LogoSize = new Size(26, 26);
+    /// <summary>
+    /// 图标大小
+    /// </summary>
+    private Size _LogoSize = new Size(26, 26);
 
-      /// <summary>
-      /// 内部间距
-      /// </summary>
-      private Padding _Padding = new Padding(3, 1, 3, 3);
+    /// <summary>
+    /// 内部间距
+    /// </summary>
+    private Padding _Padding = new Padding(3, 1, 3, 3);
 
-      /// <summary>
-      /// 窗体Logo
-      /// </summary>
-      private Image _CapitionLogo;
+    /// <summary>
+    /// 窗体Logo
+    /// </summary>
+    private Image _CapitionLogo;
 
-      private bool _inPosChanged;
+    private bool _inPosChanged;
 
-      /// <summary>
-      /// 窗体控制按钮绘制对象
-      /// </summary>
-      internal FormControlBoxRender ControlBoxRender;
+    /// <summary>
+    /// 窗体控制按钮绘制对象
+    /// </summary>
+    internal FormControlBoxRender ControlBoxRender;
 
     #endregion
     #region 初始化
@@ -281,11 +281,11 @@ namespace Y.Core.WinForm.FormEx
         return new Rectangle(0, 0, this.Width - this.Offset.X, this.CaptionHeight);
       }
     }
-
     protected Rectangle WorkRectangle
     {
       get
       {
+        //return new Rectangle(0, 0, Width, Height);
         return new Rectangle(this.Padding.Left,
             this.CaptionHeight + this.Padding.Top,
             this.Width - this.Padding.Left - this.Padding.Right,
