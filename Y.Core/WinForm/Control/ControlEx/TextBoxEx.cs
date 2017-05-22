@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Y.Core.WinForm.SKin;
 using Y.Core.WinForm.Enums;
 using Y.Core.WinForm.Utility;
+using Y.Core.ComFunc;
 
 namespace Y.Core.WinForm.Control.ControlEx
 {
@@ -511,18 +512,42 @@ namespace Y.Core.WinForm.Control.ControlEx
         }
       }
 
-      #endregion
-
-      #region  private Events
-
-      private void _TextBox_LostFocus(object sender, EventArgs e)
+    /// <summary>
+    /// 获取或设置一个值，该值指示没有数据时的提示信息。
+    /// </summary>
+    /// <value></value>
+    /// <returns>
+    /// </returns>
+    private bool hasText = false; ///是否有文字
+    private string _TipText = "";
+    [Category("YProperties")]
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Description("获取或设置一个值，该值指示没有数据时的提示信息")]
+    public string TipText
+    {
+      set
       {
+        this._TipText = value;
+        Text = value;
+      }
+    }
+    #endregion
+
+    #region  private Events
+
+    private void _TextBox_LostFocus(object sender, EventArgs e)
+      {
+        LogFunc.WriteLog("_TextBox_LostFocus:" +hasText.ToString());
+        if (!hasText) { Text = this._TipText;this.ForeColor = Color.Gray; }
         this._ControlState = EnumControlState.Default;
         this.Invalidate();
       }
 
       private void _TextBox_GotFocus(object sender, EventArgs e)
       {
+      LogFunc.WriteLog("_TextBox_GotFocus:" + hasText.ToString());
+      if (!hasText) { Text = ""; this.ForeColor = Color.Black; }
         this._ControlState = EnumControlState.HeightLight;
         this.Invalidate();
       }
@@ -561,7 +586,8 @@ namespace Y.Core.WinForm.Control.ControlEx
         {
           this.OnTextChanged(sender, e);
         }
-      }
+      if (!this._TextBox.Text.IsNullOrEmpty()) { hasText = true; } else { hasText = false; }
+    }
 
       private  void TXTextBox_OnImageButtonClick(object sender, EventArgs e)
       {

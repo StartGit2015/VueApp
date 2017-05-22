@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ComFunc\FontAwesomeFunc.cs" />
+    <Compile Include="Core\ComFunc\LogFunc.cs" />
     <Compile Include="Core\ComFunc\ResourcesFunc.cs" />
     <Compile Include="Core\ComFunc\SysBaseExtend.cs" />
     <Compile Include="Core\Core.Enum\FaEnum.cs" />
@@ -141,6 +142,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForm\FormEx\BaseForm\FormControlBoxRender.cs" />
+    <Compile Include="WinForm\FormEx\LogForm\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\FormEx\MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\BaseForm\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEx\LogForm\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
