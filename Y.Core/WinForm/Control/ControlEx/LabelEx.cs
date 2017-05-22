@@ -38,6 +38,16 @@ namespace Y.Core.WinForm.Control
     }
     #endregion
 
+    protected override CreateParams CreateParams
+    {
+      get
+      {
+        CreateParams ret = base.CreateParams;
+        ret.ExStyle = (int)Enums.WindowStyle.WS_THICKFRAME;
+        ret.ExStyle |= (int)Enums.WindowStyleEx.WS_EX_NOACTIVATE;
+        return ret;
+      }
+    }
 
     protected override void OnPaint(PaintEventArgs e)
     {

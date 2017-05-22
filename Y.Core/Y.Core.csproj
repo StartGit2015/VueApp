@@ -165,6 +165,9 @@
     <EmbeddedResource Include="WinForm\FormEx\BaseForm\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEx\MainForm\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\MainForm\SkinManageForm.resx">
       <DependentUpon>SkinManageForm.cs</DependentUpon>
     </EmbeddedResource>
