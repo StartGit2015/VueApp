@@ -22,7 +22,7 @@ namespace Y.Core.ComFunc
     private static LogForm logFrm = null;
     public static void WriteLog(string message)
     {
-      if(logFrm == null)
+      if(logFrm == null || logFrm.IsDisposed)
       {
         logFrm = new LogForm();
         logFrm.Show();
