@@ -398,9 +398,10 @@ namespace Y.Core.WinForm.FormEx
       // MainForm
       // 
       this.ClientSize = new System.Drawing.Size(761, 507);
+      this.CornerRadius = 4;
+      this.IsMdiContainer = true;
       this.Name = "MainForm";
       this.ResumeLayout(false);
-      this.IsMdiContainer = true;
 
     }
 
