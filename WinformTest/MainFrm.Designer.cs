@@ -137,7 +137,7 @@
       this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-      this.tabPage2.Size = new System.Drawing.Size(983, 502);
+      this.tabPage2.Size = new System.Drawing.Size(983, 511);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "选项卡二第二个选项卡";
       this.tabPage2.UseVisualStyleBackColor = true;
@@ -156,8 +156,6 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.IsMdiContainer = true;
       this.Margin = new System.Windows.Forms.Padding(4);
-      this.MaximizeBox = false;
-      this.MinimizeBox = false;
       this.Name = "MainFrm";
       this.Text = "测试窗口";
       this.OnRibbonButtonClick += new System.EventHandler<Y.Core.WinForm.Utility.BtnEventArgs>(this.MainFrm_OnRibbonButtonClick);

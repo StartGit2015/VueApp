@@ -70,7 +70,6 @@ namespace Y.Core.WinForm.FormEx
     /// 内部间距
     /// </summary>
     private Padding _Padding = new Padding(3, 1, 3, 3);
-
     /// <summary>
     /// 窗体Logo
     /// </summary>
@@ -236,7 +235,7 @@ namespace Y.Core.WinForm.FormEx
     }
 
     [Category("YProperties")]
-    [DefaultValue(3)]
+    [DefaultValue(0)]
     [Description("边框宽度")]
     public int BorderWidth
     {
@@ -273,7 +272,9 @@ namespace Y.Core.WinForm.FormEx
         base.Invalidate(new Rectangle(0, 0, this.Width, this._CaptionHeight + 1));
       }
     }
-
+    /// <summary>
+    /// 标题栏区域
+    /// </summary>
     protected Rectangle CaptionRect
     {
       get
@@ -281,11 +282,13 @@ namespace Y.Core.WinForm.FormEx
         return new Rectangle(0, 0, this.Width - this.Offset.X, this.CaptionHeight);
       }
     }
+    /// <summary>
+    /// 工作区域
+    /// </summary>
     protected Rectangle WorkRectangle
     {
       get
       {
-        //return new Rectangle(0, 0, Width, Height);
         return new Rectangle(this.Padding.Left,
             this.CaptionHeight + this.Padding.Top,
             this.Width - this.Padding.Left - this.Padding.Right,
@@ -301,6 +304,20 @@ namespace Y.Core.WinForm.FormEx
       }
     }
 
+    #endregion
+    #region 重载方法
+    //protected override CreateParams CreateParams
+    //{
+    //  get
+    //  {
+    //    CreateParams ret = base.CreateParams;
+    //    ret.ExStyle = (int)Enums.WindowStyle.WS_THICKFRAME;
+    //    //   (int)Enums.WindowStyle.WS_CHILD;
+    //    ret.ExStyle |= (int)Enums.WindowStyleEx.WS_EX_NOACTIVATE;
+    //    //   (int)Enums.WindowStyleEx.WS_EX_TOOLWINDOW;
+    //    return ret;
+    //  }
+    //}
     protected override CreateParams CreateParams
     {
       get
@@ -308,7 +325,10 @@ namespace Y.Core.WinForm.FormEx
         CreateParams cp = base.CreateParams;
         if (!DesignMode)
         {
-          cp.Style |= (int)Enums.WindowStyle.WS_THICKFRAME;
+          //cp.Style |= (int)Enums.WindowStyle.WS_SIZEBOX;
+          //cp.Style |= (int)Enums.WindowStyle.WS_THICKFRAME;
+          //cp.ExStyle |= (int)Enums.WindowStyleEx.WS_EX_NOACTIVATE | (int)Enums.WindowStyleEx.WS_EX_TOPMOST;
+
           if (ControlBox)
           {
             cp.Style |= (int)Enums.WindowStyle.WS_SYSMENU;
@@ -335,11 +355,7 @@ namespace Y.Core.WinForm.FormEx
 
         return cp;
       }
-    }
-
-    #endregion
-
-    #region 重载方法
+   }
 
     protected override void OnCreateControl()
     {
@@ -356,7 +372,6 @@ namespace Y.Core.WinForm.FormEx
         this.Invalidate();
       }
     }
-
     protected override void OnMouseMove(MouseEventArgs e)
     {
       base.OnMouseMove(e);
@@ -418,6 +433,7 @@ namespace Y.Core.WinForm.FormEx
           WmMinMaxInfo(ref m);
           break;
         case (int)WindowMessages.WM_LBUTTONDBLCLK:
+
         default:
           base.WndProc(ref m);
           break;
