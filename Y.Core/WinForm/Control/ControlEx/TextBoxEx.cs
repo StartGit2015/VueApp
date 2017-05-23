@@ -118,18 +118,16 @@ namespace Y.Core.WinForm.Control.ControlEx
         this._TextBox.GotFocus += new EventHandler(_TextBox_GotFocus);
         this._TextBox.LostFocus += new EventHandler(_TextBox_LostFocus);
         this._pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.Text = string.Empty;
-      }
+    }
+    #endregion
 
-      #endregion
+    #region Properties
 
-      #region Properties
-
-      /// <summary>
-      /// 获取或者设置控件的圆角值
-      /// </summary>
-      /// <value>The corner radius.</value>
-      [Category("YProperties")]
+    /// <summary>
+    /// 获取或者设置控件的圆角值
+    /// </summary>
+    /// <value>The corner radius.</value>
+    [Category("YProperties")]
       [Browsable(true)]
       [Description("圆角的半径值")]
       [DefaultValue(1)]
@@ -297,6 +295,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         }
       }
 
+    private Color _ForeColor = Color.Black;
       /// <summary>
       /// 获取或设置控件的前景色。
       /// </summary>
@@ -371,11 +370,11 @@ namespace Y.Core.WinForm.Control.ControlEx
       {
         get
         {
-          return this._TextBox.Text;
+        return hasText?this._TextBox.Text:"";
         }
         set
         {
-          this._TextBox.Text = string.IsNullOrEmpty(value) || value.Contains("txTextBox") ? string.Empty : value;
+          this._TextBox.Text = string.IsNullOrEmpty(value)? string.Empty : value;
         }
       }
 
@@ -526,37 +525,63 @@ namespace Y.Core.WinForm.Control.ControlEx
     [Description("获取或设置一个值，该值指示没有数据时的提示信息")]
     public string TipText
     {
+      get { return _TipText; }
       set
       {
         this._TipText = value;
-        Text = value;
+        if (Text.IsNullOrEmpty()) { Text = value; }
+      }
+    }
+
+    private Color _TipTextColor = Color.Gray;
+    /// <summary>
+    ///  获取或者设置高亮时的边框色
+    /// </summary>
+    /// <value>The color of the height lightColor bolor.</value>
+    [Category("YProperties")]
+    [Browsable(true)]
+    [Description("提示信息文字颜色")]
+    public Color TipTextColor
+    {
+      get { return this._TipTextColor; }
+      set
+      {
+        this._TipTextColor = value;
+        this.Validate();
       }
     }
     #endregion
 
     #region  private Events
 
+    protected override void OnLoad(EventArgs e)
+    {
+      base.OnLoad(e);
+      if (this.Text == "") { this.ForeColor = _TipTextColor; }
+    }
     private void _TextBox_LostFocus(object sender, EventArgs e)
       {
-        LogFunc.WriteLog("_TextBox_LostFocus:" +hasText.ToString());
-        if (!hasText) { Text = this._TipText;this.ForeColor = Color.Gray; }
+        if (!hasText) {
+        Text = this._TipText;
+        this.ForeColor = _TipTextColor;
+      }
         this._ControlState = EnumControlState.Default;
         this.Invalidate();
       }
 
       private void _TextBox_GotFocus(object sender, EventArgs e)
       {
-      LogFunc.WriteLog("_TextBox_GotFocus:" + hasText.ToString());
-      if (!hasText) { Text = ""; this.ForeColor = Color.Black; }
+      this.ForeColor = _ForeColor;
+      if (!hasText) { Text = ""; }
         this._ControlState = EnumControlState.HeightLight;
         this.Invalidate();
-      }
+    }
 
       protected override void OnPaint(PaintEventArgs e)
       {
         base.OnPaint(e);
         this.DrawBorder(e.Graphics);
-      }
+    }
 
       protected override void OnSizeChanged(EventArgs e)
       {
@@ -568,7 +593,6 @@ namespace Y.Core.WinForm.Control.ControlEx
       {
         base.OnCreateControl();
         this.ResetControlSize();
-        this.Text = this.Text == this.Name ? string.Empty : this.Text;
       }
 
       private void _pictureBox_Click(object sender, EventArgs e)
@@ -586,7 +610,9 @@ namespace Y.Core.WinForm.Control.ControlEx
         {
           this.OnTextChanged(sender, e);
         }
-      if (!this._TextBox.Text.IsNullOrEmpty()) { hasText = true; } else { hasText = false; }
+      if (!this._TextBox.Text.IsNullOrEmpty() && this._TextBox.Text != _TipText)
+      { hasText = true; } else
+      { hasText = false; }
     }
 
       private  void TXTextBox_OnImageButtonClick(object sender, EventArgs e)
@@ -693,15 +719,15 @@ namespace Y.Core.WinForm.Control.ControlEx
         this._pictureBox.TabIndex = 1;
         this._pictureBox.TabStop = false;
         this._pictureBox.Click += new System.EventHandler(this._pictureBox_Click);
-        // 
-        // TXTextBox
-        // 
+      // 
+      // TextBox
+       
         this.BackColor = System.Drawing.Color.Transparent;
         this.Controls.Add(this._pictureBox);
         this.Controls.Add(this._TextBox);
         this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-        this.ForeColor = System.Drawing.SystemColors.WindowText;
-        this.Name = "TXTextBox";
+        this._ForeColor = ForeColor;
+        this.Name = "TextBox";
         this.Padding = new System.Windows.Forms.Padding(2);
         this.Size = new System.Drawing.Size(333, 21);
         ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();

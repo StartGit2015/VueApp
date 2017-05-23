@@ -17,15 +17,17 @@ namespace WinformTest
     public tabform()
     {
       InitializeComponent();
-      textBoxEx1.TipText = "okok1!";
-      textBoxEx2.TipText = "okok2!";
-
-      LogFunc.WriteLog("ok");
     }
 
     private void buttonEx1_Click(object sender, EventArgs e)
     {
-      LogFunc.WriteLog("ok");
+      textBoxEx1.Text = "10";
+    }
+
+    private void buttonEx3_Click(object sender, EventArgs e)
+    {
+      var text = textBoxEx1.Text;
+      LogFunc.WriteLog("textBoxEx1:" +text);
     }
   }
 }

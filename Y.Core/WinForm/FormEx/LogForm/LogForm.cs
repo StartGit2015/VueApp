@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Y.Core.ComFunc;
 
 namespace Y.Core.WinForm.FormEx
 {
@@ -26,6 +27,7 @@ namespace Y.Core.WinForm.FormEx
     public LogForm()
     {
       InitializeComponent();
+      this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, 0);
     }
 
     private void InitializeComponent()
@@ -40,7 +42,7 @@ namespace Y.Core.WinForm.FormEx
       this.richTextBox.ForeColor = System.Drawing.Color.White;
       this.richTextBox.Location = new System.Drawing.Point(3, 25);
       this.richTextBox.Name = "richTextBox";
-      this.richTextBox.Size = new System.Drawing.Size(224, 403);
+      this.richTextBox.Size = new System.Drawing.Size(360, 1014);
       this.richTextBox.TabIndex = 0;
       this.richTextBox.Text = "";
       // 
@@ -48,7 +50,7 @@ namespace Y.Core.WinForm.FormEx
       // 
       this.BackColor = System.Drawing.Color.Black;
       this.CaptionHeight = 25;
-      this.ClientSize = new System.Drawing.Size(230, 431);
+      this.ClientSize = new System.Drawing.Size(366, 1042);
       this.Controls.Add(this.richTextBox);
       this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
       this.MaximizeBox = false;
@@ -56,6 +58,7 @@ namespace Y.Core.WinForm.FormEx
       this.Name = "LogForm";
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.Text = "日志记录";
       this.TopMost = true;
       this.TransparencyKey = System.Drawing.SystemColors.ActiveCaption;
@@ -74,8 +77,7 @@ namespace Y.Core.WinForm.FormEx
         richTextBox.Lines = newLine;
       }
       var lenth = richTextBox.TextLength;
-      richTextBox.Text += "\r\n";
-      richTextBox.Text += DateTime.Now.ToString() + " :" + message;
+      richTextBox.Text += DateTime.Now.ToString() + " :" + message + "\r\n";
       
       richTextBox.Select(lenth, 0);
       richTextBox.ScrollToCaret();
