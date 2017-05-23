@@ -20,16 +20,46 @@ namespace Y.Core.WinForm.FormEx
   /// </summary>
   public partial class BaseForm
   {
-    public virtual void BckWorker_DoWork(object sender, DoWorkEventArgs e)
+    private static LoadForm loadingFrm = null;
+    /// <summary>
+    /// 执行一个无参数无返回值的同步方法
+    /// </summary>
+    /// <param name="work"></param>
+    public void DoWork(Action work)
     {
-      
+      ShowLoading();
+      var task = new Task(work);
+      LogFunc.WriteLog("new Task(work)");
+      task.Start();
+      LogFunc.WriteLog("task.Start();");
+      //ShowLoading(false);
     }
 
-    public void DoWaitWork(Action work)
+    /// <summary>
+    /// 显示Loading界面
+    /// </summary>
+    /// <param name="showOrHid"></param>
+    public void ShowLoading(bool showOrHid = true)
     {
+      if(loadingFrm == null || loadingFrm.IsDisposed)
+      {
+        LogFunc.WriteLog("loadingFrm == null");
+        loadingFrm = new LoadForm();
+        loadingFrm.TopMost = true;
+        //loadingFrm.Parent = this;
+        loadingFrm.Size = this.Size;
+        loadingFrm.Location = this.Location;
+      }
 
-      
+      if (showOrHid)
+      {
+        loadingFrm.Show();
+        LogFunc.WriteLog("loadingFrm == Show");
+      } else
+      {
+        loadingFrm.Hide();
+        LogFunc.WriteLog("loadingFrm == Hide");
+      }
     }
-
   }
 }

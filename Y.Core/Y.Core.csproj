@@ -145,6 +145,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForm\FormEx\BaseForm\FormControlBoxRender.cs" />
+    <Compile Include="WinForm\FormEx\LoadForm\LoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\FormEx\LogForm\LogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\BaseForm\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEx\LoadForm\LoadForm.resx">
+      <DependentUpon>LoadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEx\LogForm\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>

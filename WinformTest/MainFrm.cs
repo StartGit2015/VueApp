@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Y.Core.ComFunc;
@@ -28,12 +29,12 @@ namespace WinformTest
 
     private void buttonEx1_Click(object sender, EventArgs e)
     {
-      base.DoWaitWork(log);
+      base.DoWork(log);
     }
 
     private void log()
     {
-      LogFunc.WriteLog("WinformTest下的log");
+      Thread.Sleep(10000);
     }
   }
 }
