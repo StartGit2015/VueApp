@@ -138,6 +138,9 @@
     <Compile Include="WinForm\FormEx\BaseForm\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\FormEx\BaseForm\BaseForm.BackGroundWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WinForm\FormEx\BaseForm\BaseForm.Render.cs">
       <SubType>Form</SubType>
     </Compile>

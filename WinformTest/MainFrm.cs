@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Y.Core.ComFunc;
 using Y.Core.WinForm.FormEx;
 using Y.Core.WinForm.Utility;
 
@@ -23,6 +24,16 @@ namespace WinformTest
     {
       tabform frm = new tabform();
       AddTabFrm(tabControlEx1,frm);
+    }
+
+    private void buttonEx1_Click(object sender, EventArgs e)
+    {
+      base.DoWaitWork(log);
+    }
+
+    private void log()
+    {
+      LogFunc.WriteLog("WinformTest下的log");
     }
   }
 }

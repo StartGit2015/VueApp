@@ -110,6 +110,8 @@ namespace Y.Core.WinForm.FormEx
       this.KeyPreview = true;
       this.ControlBoxRender = new FormControlBoxRender();
     }
+
+
     #endregion
     #region 窗体属性
 

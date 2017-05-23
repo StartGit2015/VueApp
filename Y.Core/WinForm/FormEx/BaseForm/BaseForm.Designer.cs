@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.bckWorker = new System.ComponentModel.BackgroundWorker();
       this.SuspendLayout();
       // 
       // BaseForm
@@ -42,5 +43,7 @@
     }
 
     #endregion
+
+    public System.ComponentModel.BackgroundWorker bckWorker;
   }
 }
