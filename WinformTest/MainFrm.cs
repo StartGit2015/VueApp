@@ -34,6 +34,7 @@ namespace WinformTest
 
     private void log()
     {
+      textBoxEx1.Text = DateTime.Now.ToString();
       Thread.Sleep(10000);
     }
   }
