@@ -20,7 +20,7 @@ namespace WinformTest
     {
       InitializeComponent();
     }
-
+    private int count = 0;
     private void MainFrm_OnRibbonButtonClick(object sender, Y.Core.WinForm.Utility.BtnEventArgs e)
     {
       tabform frm = new tabform();
@@ -34,7 +34,8 @@ namespace WinformTest
 
     private void log()
     {
-      textBoxEx1.Text = DateTime.Now.ToString();
+      count++;
+      LogFunc.WriteLog(string.Format("第{0}次点击执行的方法。",count));
       Thread.Sleep(10000);
     }
   }

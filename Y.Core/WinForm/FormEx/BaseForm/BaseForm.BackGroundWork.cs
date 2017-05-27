@@ -30,9 +30,19 @@ namespace Y.Core.WinForm.FormEx
       ShowLoading();
       var task = new Task(work);
       LogFunc.WriteLog("new Task(work)");
-      task.Start();
+      try
+      {
+        task.Start();
+      }
+      catch
+      {
+        ShowLoading(false);
+      }
+      finally
+      {
+        ShowLoading(false);
+      }  
       LogFunc.WriteLog("task.Start();");
-      //ShowLoading(false);
     }
 
     /// <summary>
@@ -43,22 +53,19 @@ namespace Y.Core.WinForm.FormEx
     {
       if(loadingFrm == null || loadingFrm.IsDisposed)
       {
-        LogFunc.WriteLog("loadingFrm == null");
         loadingFrm = new LoadForm();
         loadingFrm.TopMost = true;
-        //loadingFrm.Parent = this;
         loadingFrm.Size = this.Size;
-        loadingFrm.Location = this.Location;
+        loadingFrm.Left = this.Left;
+        loadingFrm.Top = this.Top;
       }
 
       if (showOrHid)
       {
         loadingFrm.Show();
-        LogFunc.WriteLog("loadingFrm == Show");
       } else
       {
         loadingFrm.Hide();
-        LogFunc.WriteLog("loadingFrm == Hide");
       }
     }
   }

@@ -44,7 +44,7 @@ namespace Y.Core.WinForm.FormEx
       this.labelEx1.ControlTheme = skinThemeDefault1;
       this.labelEx1.Location = new System.Drawing.Point(172, 145);
       this.labelEx1.Name = "labelEx1";
-      this.labelEx1.Size = new System.Drawing.Size(137, 12);
+      this.labelEx1.Size = new System.Drawing.Size(172, 15);
       this.labelEx1.TabIndex = 0;
       this.labelEx1.Text = "正在运行，请稍等。。。";
       // 
@@ -58,9 +58,20 @@ namespace Y.Core.WinForm.FormEx
       this.Opacity = 0.5D;
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.ResumeLayout(false);
       this.PerformLayout();
 
+    }
+
+    protected override void WndProc(ref Message m)
+    {
+      if (m.Msg == 0x112)
+      {
+        if ((int)m.WParam == 0xF012)
+          return;
+      }
+      base.WndProc(ref m);
     }
   }
 }
