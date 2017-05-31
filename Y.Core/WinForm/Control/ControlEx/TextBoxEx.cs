@@ -117,8 +117,8 @@ namespace Y.Core.WinForm.Control.ControlEx
         this.Size = new Size(180, 22);
         this._TextBox.GotFocus += new EventHandler(_TextBox_GotFocus);
         this._TextBox.LostFocus += new EventHandler(_TextBox_LostFocus);
-        this._pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-    }
+        this._pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; 
+      }
     #endregion
 
     #region Properties
@@ -554,14 +554,12 @@ namespace Y.Core.WinForm.Control.ControlEx
 
     private void _TextBox_LostFocus(object sender, EventArgs e)
       {
-        DrawTipText();
         this._ControlState = EnumControlState.Default;
         this.Invalidate();
       }
 
       private void _TextBox_GotFocus(object sender, EventArgs e)
       {
-        DrawTipText();
         this._ControlState = EnumControlState.HeightLight;
         this.Invalidate();
     }
@@ -570,8 +568,9 @@ namespace Y.Core.WinForm.Control.ControlEx
       {
         base.OnPaint(e);
         this.DrawBorder(e.Graphics);
-    }
-
+        this.DrawTipText(e.Graphics);
+      }
+    
       protected override void OnSizeChanged(EventArgs e)
       {
         base.OnSizeChanged(e);
@@ -616,7 +615,6 @@ namespace Y.Core.WinForm.Control.ControlEx
       public void Focus()
       {
         this._TextBox.Focus();
-        DrawTipText();
       }
 
       public void Select()
@@ -674,7 +672,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         }
       }
 
-    private void DrawTipText()
+    private void DrawTipText(Graphics g)
     {
       if (this.Text.IsNullOrEmpty() && !this._TextBox.Focused && !this._TipText.IsNullOrEmpty())
       {
@@ -699,9 +697,8 @@ namespace Y.Core.WinForm.Control.ControlEx
             rect.Offset(0, 1);
             break;
         }
-        var gg = Graphics.FromHwnd(_TextBox.Handle);
-        GDIHelper.InitializeGraphics(gg);
-        gg.DrawString(_TipText, this.Font, new SolidBrush(this._TipTextColor), rect);
+        GDIHelper.InitializeGraphics(g);
+        g.DrawString(_TipText, this.Font, new SolidBrush(this._TipTextColor), rect);
       }
     }
       #endregion
@@ -726,7 +723,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         this._TextBox.Size = new System.Drawing.Size(223, 14);
         this._TextBox.TabIndex = 0;
         this._TextBox.TextChanged += new System.EventHandler(this._TextBox_TextChanged);
-        // 
+        
         // _pictureBox
         // 
         this._pictureBox.Location = new System.Drawing.Point(6, 0);
@@ -737,8 +734,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         this._pictureBox.Click += new System.EventHandler(this._pictureBox_Click);
       // 
       // TextBox
-       
-        this.BackColor = System.Drawing.Color.Transparent;
+      this.BackColor = System.Drawing.Color.Transparent;
         this.Controls.Add(this._pictureBox);
         this.Controls.Add(this._TextBox);
         this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -749,7 +745,6 @@ namespace Y.Core.WinForm.Control.ControlEx
         ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
-
       }
 
       #endregion
