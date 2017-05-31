@@ -16,7 +16,7 @@ namespace Y.Core.WinForm.Control
 {
   [DefaultEvent("Click")]
   [ToolboxBitmap(typeof(Button))]
-  public partial class ButtonEx : Button,IControlTheme
+  public partial class ButtonEx : Button
   {
       #region 私有属性
 

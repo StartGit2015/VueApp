@@ -107,7 +107,7 @@
     <Compile Include="WinForm\AppCode\{Win32}\Structs\APIsStructs.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Structs\RoundRectangle.cs" />
     <Compile Include="WinForm\AppCode\{Win32}\Structs\Structs.cs" />
-    <Compile Include="WinForm\Control\ComboBoxEx.cs">
+    <Compile Include="WinForm\Control\ControlEx\ComboBoxEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WinForm\Control\ControlEx\ButtonEx.cs">
@@ -126,11 +126,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="WinForm\Control\ControlEx\YToolStripRendere.cs" />
-    <Compile Include="WinForm\Control\IControlTheme.cs" />
-    <Compile Include="WinForm\Control\TextBoxEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinForm\Control\ValiDataManageCmp.cs">
+    <Compile Include="WinForm\Control\ComponentEx\ValiDataManageCmp.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WinForm\FormEx\BaseForm\BaseForm.ControlBox.cs">

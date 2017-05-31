@@ -370,7 +370,7 @@ namespace Y.Core.WinForm.Control.ControlEx
       {
         get
         {
-        return hasText?this._TextBox.Text:"";
+        return this._TextBox.Text;
         }
         set
         {
@@ -517,7 +517,6 @@ namespace Y.Core.WinForm.Control.ControlEx
     /// <value></value>
     /// <returns>
     /// </returns>
-    private bool hasText = false; ///是否有文字
     private string _TipText = "";
     [Category("YProperties")]
     [Browsable(true)]
@@ -529,7 +528,6 @@ namespace Y.Core.WinForm.Control.ControlEx
       set
       {
         this._TipText = value;
-        if (Text.IsNullOrEmpty()) { Text = value; }
       }
     }
 
@@ -554,25 +552,16 @@ namespace Y.Core.WinForm.Control.ControlEx
 
     #region  private Events
 
-    protected override void OnLoad(EventArgs e)
-    {
-      base.OnLoad(e);
-      if (this.Text == "") { this.ForeColor = _TipTextColor; }
-    }
     private void _TextBox_LostFocus(object sender, EventArgs e)
       {
-        if (!hasText) {
-        Text = this._TipText;
-        this.ForeColor = _TipTextColor;
-      }
+        DrawTipText();
         this._ControlState = EnumControlState.Default;
         this.Invalidate();
       }
 
       private void _TextBox_GotFocus(object sender, EventArgs e)
       {
-      this.ForeColor = _ForeColor;
-      if (!hasText) { Text = ""; }
+        DrawTipText();
         this._ControlState = EnumControlState.HeightLight;
         this.Invalidate();
     }
@@ -594,8 +583,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         base.OnCreateControl();
         this.ResetControlSize();
       }
-
-      private void _pictureBox_Click(object sender, EventArgs e)
+    private void _pictureBox_Click(object sender, EventArgs e)
       {
         ImageButtonClickEventHandler handler = base.Events[_ImageButton] as ImageButtonClickEventHandler;
         if (handler != null)
@@ -610,9 +598,6 @@ namespace Y.Core.WinForm.Control.ControlEx
         {
           this.OnTextChanged(sender, e);
         }
-      if (!this._TextBox.Text.IsNullOrEmpty() && this._TextBox.Text != _TipText)
-      { hasText = true; } else
-      { hasText = false; }
     }
 
       private  void TXTextBox_OnImageButtonClick(object sender, EventArgs e)
@@ -631,6 +616,7 @@ namespace Y.Core.WinForm.Control.ControlEx
       public void Focus()
       {
         this._TextBox.Focus();
+        DrawTipText();
       }
 
       public void Select()
@@ -688,6 +674,36 @@ namespace Y.Core.WinForm.Control.ControlEx
         }
       }
 
+    private void DrawTipText()
+    {
+      if (this.Text.IsNullOrEmpty() && !this._TextBox.Focused && !this._TipText.IsNullOrEmpty())
+      {
+        TextFormatFlags flags = TextFormatFlags.NoPadding |
+        TextFormatFlags.Top | TextFormatFlags.EndEllipsis;
+        Rectangle rect = new Rectangle(0,0, _TextBox.Width, _TextBox.Height);
+        //Rectangle rect = new Rectangle(0, this.Height / 2 - this._TextBox.Height / 2, 10, this.Height);
+        switch (this._TextBox.TextAlign)
+        {
+          case HorizontalAlignment.Center:
+            flags = flags | TextFormatFlags.HorizontalCenter;
+            rect.Offset(0, 1);
+            break;
+
+          case HorizontalAlignment.Left:
+            flags = flags | TextFormatFlags.Left;
+            rect.Offset(1, 1);
+            break;
+
+          case HorizontalAlignment.Right:
+            flags = flags | TextFormatFlags.Right;
+            rect.Offset(0, 1);
+            break;
+        }
+        var gg = Graphics.FromHwnd(_TextBox.Handle);
+        GDIHelper.InitializeGraphics(gg);
+        gg.DrawString(_TipText, this.Font, new SolidBrush(this._TipTextColor), rect);
+      }
+    }
       #endregion
 
       #region InitializeComponent

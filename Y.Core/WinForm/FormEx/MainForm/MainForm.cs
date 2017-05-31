@@ -72,9 +72,9 @@ namespace Y.Core.WinForm.FormEx
       private void MainForm_OnSkinButtonClick(object sender, BtnEventArgs e)
       {
           SkinManageForm frm = new SkinManageForm();
-          frm.Location = new Point(SkinBoxRect.Location.X, SkinBoxRect.Location.Y);
+          //frm.Location = new Point(SkinBoxRect.Location.X, SkinBoxRect.Location.Y);
           frm.ShowDialog();
-          frm.Dispose();
+          frm.Close();
       }
 
       #endregion

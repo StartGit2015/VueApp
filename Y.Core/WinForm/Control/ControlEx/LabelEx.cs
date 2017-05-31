@@ -12,7 +12,7 @@ using Y.Core.WinForm.Utility;
 
 namespace Y.Core.WinForm.Control
 {
-  public class LabelEx : Label, IControlTheme
+  public class LabelEx : Label
   {
     /// <summary>
     /// 控件主题
