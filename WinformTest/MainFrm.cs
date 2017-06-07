@@ -24,12 +24,22 @@ namespace WinformTest
     private void MainFrm_OnRibbonButtonClick(object sender, Y.Core.WinForm.Utility.BtnEventArgs e)
     {
       tabform frm = new tabform();
-      AddTabFrm(tabControlEx1,frm);
+      AddTabFrm(tabControlEx1, frm);
     }
 
     private void buttonEx1_Click(object sender, EventArgs e)
     {
-      base.DoWork(log);
+      OutPut(0);
+
+    }
+
+    private void OutPut(int i){
+      LogFunc.WriteLog(string.Format("输入为{0}。", i));
+      if (i < 3)
+      {
+        OutPut(i + 1);
+        LogFunc.WriteLog(string.Format("内部输入为{0}。", i));
+      }
     }
 
     private void log()

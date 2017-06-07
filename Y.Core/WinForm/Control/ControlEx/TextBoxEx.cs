@@ -564,7 +564,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         this.Invalidate();
     }
 
-      protected override void OnPaint(PaintEventArgs e)
+    protected override void OnPaint(PaintEventArgs e)
       {
         base.OnPaint(e);
         this.DrawBorder(e.Graphics);
@@ -582,6 +582,8 @@ namespace Y.Core.WinForm.Control.ControlEx
         base.OnCreateControl();
         this.ResetControlSize();
       }
+
+
     private void _pictureBox_Click(object sender, EventArgs e)
       {
         ImageButtonClickEventHandler handler = base.Events[_ImageButton] as ImageButtonClickEventHandler;
@@ -723,10 +725,9 @@ namespace Y.Core.WinForm.Control.ControlEx
         this._TextBox.Size = new System.Drawing.Size(223, 14);
         this._TextBox.TabIndex = 0;
         this._TextBox.TextChanged += new System.EventHandler(this._TextBox_TextChanged);
-        
-        // _pictureBox
-        // 
-        this._pictureBox.Location = new System.Drawing.Point(6, 0);
+      // _pictureBox
+      // 
+      this._pictureBox.Location = new System.Drawing.Point(6, 0);
         this._pictureBox.Name = "_pictureBox";
         this._pictureBox.Size = new System.Drawing.Size(20, 20);
         this._pictureBox.TabIndex = 1;
@@ -745,7 +746,7 @@ namespace Y.Core.WinForm.Control.ControlEx
         ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
-      }
+    }
 
       #endregion
     }
