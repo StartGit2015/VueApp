@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Y.Core.Dao;
 using Y.Core.Interface;
+using Y.Core.WinForm.FormEx;
 
 namespace DataBaseTest
 {
-    public partial class MainFrm : Form
+    public partial class MainFrm : BaseForm
     {
         private IDao<Content> db;
         public MainFrm()

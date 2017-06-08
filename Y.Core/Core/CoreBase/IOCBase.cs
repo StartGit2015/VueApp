@@ -9,7 +9,7 @@ using Y.Core.Interface;
 
 namespace Y.Core
 {
-    ///IOC管理器
+    ///AutoFac IOC管理器
     public static class IOCBase
     {
         /// <summary>

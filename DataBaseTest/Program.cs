@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Y.Core;
 
 namespace DataBaseTest
 {
@@ -14,9 +15,15 @@ namespace DataBaseTest
         [STAThread]
         static void Main()
         {
+            RegIOC();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainFrm());
+        }
+      
+        private static void RegIOC()
+        {
+      IOCBase.IOCBaseIni();
         }
     }
 }

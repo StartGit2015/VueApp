@@ -12,7 +12,7 @@ namespace DataBaseTest
     //内容管理
     public class ContentServer : ServiceBase<Content>, IDao<Content>
     {
-        public ContentServer(string con= null) :base(con)
+    public ContentServer(string con = "DefaultConnection") :base(con)
         {
         }
     }
