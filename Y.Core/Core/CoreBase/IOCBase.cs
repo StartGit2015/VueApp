@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Y.Core.Dao;
@@ -9,17 +10,19 @@ using Y.Core.Interface;
 
 namespace Y.Core
 {
-    ///AutoFac IOC管理器
+    /// <summary>
+    /// AutoFac IOC管理器
+    /// </summary>
     public static class IOCBase
     {
         /// <summary>
         ///获取对象管理器
         /// </summary>
-        internal static IContainer InstanceContainer { get; set; }
+        private static IContainer InstanceContainer { get; set; }
         /// <summary>
         /// 获取对象注册器
         /// </summary>
-        public static ContainerBuilder Builder { get; set; }
+        private static ContainerBuilder Builder { get; set; }
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -28,16 +31,16 @@ namespace Y.Core
             if(Builder == null)
             {
                 Builder = new ContainerBuilder();
-                InstanceContainer = Builder.Build(Autofac.Builder.ContainerBuildOptions.None);
                 CoreIOCReg();
+                InstanceContainer = Builder.Build(Autofac.Builder.ContainerBuildOptions.None);  
             }
         }
         /// <summary>
-        /// 核心容器注册
+        /// 核心容器注册 数据处理方法
         /// </summary>
-        public static void CoreIOCReg()
+        private static void CoreIOCReg()
         {
-            Builder.RegisterGeneric(typeof(SqlSugarDao<>)).As(typeof(IDao<>));
+          Builder.RegisterGeneric(typeof(SqlSugarDao<>)).As(typeof(IDao<>)).InstancePerLifetimeScope();
         }
         /// <summary>
         /// 注册唯一不共享接口实例
@@ -52,23 +55,33 @@ namespace Y.Core
         /// 获取指定接口实例
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="prms">参数 new NamedParameter("参数名称", "参数值"）</typeparam>
         /// <returns></returns>
-        public static T GetInstance<T>() where T :class
-        {
-            IOCBaseIni();
-            var server = (T)InstanceContainer.Resolve(typeof(T));
-            return server;
-        }
+        public static T GetInstance<T>(Autofac.Core.Parameter prms = null) where T :class
+            {
+                IOCBaseIni();
+                var server = (T)InstanceContainer.Resolve(typeof(T),prms);
+                return server;
+            }
         /// <summary>
         /// 获取指定接口实例
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="prms">参数 new NamedParameter("参数名称", "参数值"）</typeparam>
         /// <returns></returns>
-        public static T GetInstance<T>(bool IsGeneric = true) where T : class
+        public static T GetInstance<T>(bool IsGeneric,Autofac.Core.Parameter prms = null) where T : class
         {
+          try
+          {
             IOCBaseIni();
-            var server = (T)InstanceContainer.Resolve<T>();
+            var server = (T)InstanceContainer.Resolve(typeof(T), prms);
             return server;
+          }
+          catch(Exception ex)
+          {
+            throw ex;  
+          }
+            
         }
     }
 

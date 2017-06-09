@@ -6,27 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Y.Core.Interface;
 using Y.Core.Dao;
+using Autofac;
 
 namespace Y.Core
 {
-    public class ServiceBase<T> :IDao<T> where T : class, new()
+  public class ServiceBase<T> : IService<T> where T : class, new()
     {
         private IDao<T> dao;
         public IDao<T> Dao { get { return dao; } set { dao = value; } }
 
-    //无参构造函数
-    public ServiceBase(string conStr = null)
-    {
-      dao = IOCBase.GetInstance<IDao<T>>(true);
-      //dao = new SqlSugarDao<T>(conStr);
-    }
-    //可注入构造函数
-    public ServiceBase(IDao<T> dao)
+        //无参构造函数 数据库连接默认为 app.config 中 DefaultConnection
+        public ServiceBase()
         {
-            if(dao != null)
-                this.dao = dao;
+          dao = IOCBase.GetInstance<IDao<T>>(true, new NamedParameter("conStr", "DefaultConnection"));
         }
-        
+        //带参构造函数 传入连接字符串
+        public ServiceBase(string conStr)
+        {
+          dao = IOCBase.GetInstance<IDao<T>>(true, new NamedParameter("conStr", conStr));
+        }
         public bool IsWriteLog { get ; set; }
         public ILog Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -109,6 +107,16 @@ namespace Y.Core
         public void RollbackTran()
         {
             dao.RollbackTran();
+        }
+
+        public int ExecuteCommand(string sql)
+        {
+           return dao.ExecuteCommand(sql);
+        }
+
+        public List<TEntity> ExecuteCommand<TEntity>(string sql)
+        {
+            return dao.ExecuteCommand<TEntity>(sql);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Y.Core.Interface
     /// 数据访问层的基础接口
     /// </summary>
     /// <typeparam name="TEntity">操作对象</typeparam>
-    public interface IDao<TEntity>:IDaoTransection,IDependency where TEntity : class
+    public interface IService<TEntity>:IDaoTransection,IDependency where TEntity : class
     {
         
         /// <summary>

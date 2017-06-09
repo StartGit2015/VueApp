@@ -18,6 +18,7 @@ namespace DataBaseTest
     public partial class MainFrm : BaseForm
     {
         private IDao<Content> db;
+        private IDao<Content> sqldb;
         public MainFrm()
         {
             InitializeComponent();
@@ -26,12 +27,13 @@ namespace DataBaseTest
         {
             if (cmb_con.Text != "")
             {
-                db = new ContentServer(cmb_con.Text).Dao;
+                db = new ContentServer();
             }
             else
             {
-                db = new ContentServer().Dao;
+                db = new ContentServer();
             }
+         sqldb = new ContentServer().Dao;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace DataBaseTest
             }
 
             var dt = db.QueryList(o=>o.ID >0);
-
+           
             dgv_data.DataSource = dt;
         }
 

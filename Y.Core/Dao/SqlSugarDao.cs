@@ -24,10 +24,10 @@ namespace Y.Core.Dao
         /// 构造函数 创建DB实例
         /// </summary>
         ///<param name="constr">数据库连接</param>
-        public SqlSugarDao(string constr= "DefaultConnection")
+        public SqlSugarDao(string conStr = "DefaultConnection")
         {
-            var connect = ConfigurationManager.ConnectionStrings[constr].ConnectionString;
-            var providerName = ConfigurationManager.ConnectionStrings[constr].ProviderName;
+            var connect = ConfigurationManager.ConnectionStrings[conStr].ConnectionString;
+            var providerName = ConfigurationManager.ConnectionStrings[conStr].ProviderName;
 
             var DbType = SqlSugarRepository.DbType.SqlServer;
             switch (providerName)
@@ -158,6 +158,16 @@ namespace Y.Core.Dao
             {
                 db.Dispose();
             }
+        }
+
+        public int ExecuteCommand(string sql)
+        {
+            return db.ExecuteCommand(sql);
+        }
+
+        public List<TEntity> ExecuteCommand<TEntity>(string sql)
+        {
+            return db.SqlQuery<TEntity>(sql);
         }
     }
 }

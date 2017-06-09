@@ -73,6 +73,7 @@
     <Compile Include="Core\CoreBase\IOCBase.cs" />
     <Compile Include="Core\CoreBase\ServiceBase.cs" />
     <Compile Include="Dao\SqlSugarDao.cs" />
+    <Compile Include="Interface\IService.cs" />
     <Compile Include="Interface\IDao.cs" />
     <Compile Include="Interface\IDaoTransection.cs" />
     <Compile Include="Interface\IDependency.cs" />
