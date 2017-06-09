@@ -23,7 +23,7 @@ namespace DataBaseTest
       
         private static void RegIOC()
         {
-      IOCBase.IOCBaseIni();
+            IOCBase.IOCBaseIni();
         }
     }
 }
