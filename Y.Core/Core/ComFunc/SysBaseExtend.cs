@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace System
 {
+    /// <summary>
+    /// 基类扩展方法
+    /// </summary>
   public static class SysBaseExtend
   {
     # region object扩展
@@ -121,11 +124,11 @@ namespace System
       return age;
     }
 
-    #region 用到的类
-    /// <summary>
-    /// 年龄
-    /// </summary>
-    public class Age
+        #region 用到的类
+        /// <summary>
+        /// 年龄
+        /// </summary>
+        public class Age
     {
       /// <summary>
       /// 年龄
