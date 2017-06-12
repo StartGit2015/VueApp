@@ -64,10 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ComFunc\ConfigFunc.cs" />
     <Compile Include="Core\ComFunc\FontAwesomeFunc.cs" />
     <Compile Include="Core\ComFunc\LogFunc.cs" />
+    <Compile Include="Core\ComFunc\PinYinFunc.cs" />
     <Compile Include="Core\ComFunc\ResourcesFunc.cs" />
     <Compile Include="Core\ComFunc\SysBaseExtend.cs" />
+    <Compile Include="Core\ComFunc\XmlFunc.cs" />
     <Compile Include="Core\CoreBase\CacheBase.cs" />
     <Compile Include="Core\Core.Enum\FaEnum.cs" />
     <Compile Include="Core\CoreBase\IOCBase.cs" />
@@ -167,7 +170,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Lib\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
