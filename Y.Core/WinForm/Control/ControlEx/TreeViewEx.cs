@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Y.Core.WinForm.SKin;
 using Y.Core.WinForm.Utility;
 
-namespace Y.Core.WinForm.Control.ControlEx
+namespace Y.Core.WinForm.Control
 {
     public partial class TreeViewEx : TreeView
     {

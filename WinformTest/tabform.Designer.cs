@@ -29,7 +29,6 @@
     private void InitializeComponent()
     {
             Y.Core.WinForm.SKin.SkinThemeSunsetRed skinThemeSunsetRed1 = new Y.Core.WinForm.SKin.SkinThemeSunsetRed();
-            Y.Core.WinForm.SKin.SkinThemeDefault skinThemeDefault1 = new Y.Core.WinForm.SKin.SkinThemeDefault();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点4");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点5");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点6");
@@ -54,8 +53,10 @@
             System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("节点3", new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode13});
+            Y.Core.WinForm.SKin.SkinThemeDefault skinThemeDefault1 = new Y.Core.WinForm.SKin.SkinThemeDefault();
             this.tabControlEx1 = new Y.Core.WinForm.Control.TabControlEx();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.treeViewEx1 = new Y.Core.WinForm.Control.TreeViewEx();
             this.textBoxEx2 = new Y.Core.WinForm.Control.ControlEx.TextBoxEx();
             this.buttonEx2 = new Y.Core.WinForm.Control.ButtonEx();
             this.buttonEx1 = new Y.Core.WinForm.Control.ButtonEx();
@@ -66,7 +67,6 @@
             this.textBoxEx3 = new Y.Core.WinForm.Control.ControlEx.TextBoxEx();
             this.textBoxEx1 = new Y.Core.WinForm.Control.ControlEx.TextBoxEx();
             this.controlVerify1 = new CFW.WinFormBase.Controls.ControlVerify();
-            this.treeViewEx1 = new Y.Core.WinForm.Control.ControlEx.TreeViewEx();
             this.tabControlEx1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -120,6 +120,50 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // treeViewEx1
+            // 
+            this.treeViewEx1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
+            this.treeViewEx1.FullRowSelect = true;
+            this.treeViewEx1.HotTracking = true;
+            this.treeViewEx1.ItemHeight = 23;
+            this.treeViewEx1.Location = new System.Drawing.Point(57, 187);
+            this.treeViewEx1.Name = "treeViewEx1";
+            treeNode1.Name = "节点4";
+            treeNode1.Text = "节点4";
+            treeNode2.Name = "节点5";
+            treeNode2.Text = "节点5";
+            treeNode3.Name = "节点6";
+            treeNode3.Text = "节点6";
+            treeNode4.Name = "节点0";
+            treeNode4.Text = "节点0";
+            treeNode5.Name = "节点7";
+            treeNode5.Text = "节点7";
+            treeNode6.Name = "节点8";
+            treeNode6.Text = "节点8";
+            treeNode7.Name = "节点9";
+            treeNode7.Text = "节点9";
+            treeNode8.Name = "节点1";
+            treeNode8.Text = "节点1";
+            treeNode9.Name = "节点10";
+            treeNode9.Text = "节点10";
+            treeNode10.Name = "节点11";
+            treeNode10.Text = "节点11";
+            treeNode11.Name = "节点2";
+            treeNode11.Text = "节点2";
+            treeNode12.Name = "节点12";
+            treeNode12.Text = "节点12";
+            treeNode13.Name = "节点13";
+            treeNode13.Text = "节点13";
+            treeNode14.Name = "节点3";
+            treeNode14.Text = "节点3";
+            this.treeViewEx1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode8,
+            treeNode11,
+            treeNode14});
+            this.treeViewEx1.Size = new System.Drawing.Size(267, 183);
+            this.treeViewEx1.TabIndex = 4;
             // 
             // textBoxEx2
             // 
@@ -277,50 +321,6 @@
             this.textBoxEx1.TipText = "请输入姓名信息！";
             this.textBoxEx1.TipTextColor = System.Drawing.Color.LightCoral;
             // 
-            // treeViewEx1
-            // 
-            this.treeViewEx1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.treeViewEx1.FullRowSelect = true;
-            this.treeViewEx1.HotTracking = true;
-            this.treeViewEx1.ItemHeight = 23;
-            this.treeViewEx1.Location = new System.Drawing.Point(187, 232);
-            this.treeViewEx1.Name = "treeViewEx1";
-            treeNode1.Name = "节点4";
-            treeNode1.Text = "节点4";
-            treeNode2.Name = "节点5";
-            treeNode2.Text = "节点5";
-            treeNode3.Name = "节点6";
-            treeNode3.Text = "节点6";
-            treeNode4.Name = "节点0";
-            treeNode4.Text = "节点0";
-            treeNode5.Name = "节点7";
-            treeNode5.Text = "节点7";
-            treeNode6.Name = "节点8";
-            treeNode6.Text = "节点8";
-            treeNode7.Name = "节点9";
-            treeNode7.Text = "节点9";
-            treeNode8.Name = "节点1";
-            treeNode8.Text = "节点1";
-            treeNode9.Name = "节点10";
-            treeNode9.Text = "节点10";
-            treeNode10.Name = "节点11";
-            treeNode10.Text = "节点11";
-            treeNode11.Name = "节点2";
-            treeNode11.Text = "节点2";
-            treeNode12.Name = "节点12";
-            treeNode12.Text = "节点12";
-            treeNode13.Name = "节点13";
-            treeNode13.Text = "节点13";
-            treeNode14.Name = "节点3";
-            treeNode14.Text = "节点3";
-            this.treeViewEx1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode8,
-            treeNode11,
-            treeNode14});
-            this.treeViewEx1.Size = new System.Drawing.Size(267, 183);
-            this.treeViewEx1.TabIndex = 4;
-            // 
             // tabform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -353,6 +353,6 @@
     private Y.Core.WinForm.Control.ControlEx.TextBoxEx textBoxEx3;
     private Y.Core.WinForm.Control.ControlEx.TextBoxEx textBoxEx4;
     private Y.Core.WinForm.Control.ButtonEx buttonEx3;
-        private Y.Core.WinForm.Control.ControlEx.TreeViewEx treeViewEx1;
+        private Y.Core.WinForm.Control.TreeViewEx treeViewEx1;
     }
 }
