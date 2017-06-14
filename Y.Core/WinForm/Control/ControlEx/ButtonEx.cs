@@ -18,32 +18,32 @@ namespace Y.Core.WinForm.Control
   [ToolboxBitmap(typeof(Button))]
   public partial class ButtonEx : Button
   {
-      #region 私有属性
+    #region 私有属性
 
-      /// <summary>
-      /// 圆角值
-      /// </summary>
-      private int _CornerRadius = 2;
+    /// <summary>
+    /// 圆角值
+    /// </summary>
+    private int _CornerRadius = 2;
 
-      /// <summary>
-      /// 内容边距间隔
-      /// </summary>
-      private int _Margin = 4;
+    /// <summary>
+    /// 内容边距间隔
+    /// </summary>
+    private int _Margin = 4;
 
-      /// <summary>
-      /// 图标大小
-      /// </summary>
-      private Size _ImageSize = new Size(16, 16);
+    /// <summary>
+    /// 图标大小
+    /// </summary>
+    private Size _ImageSize = new Size(16, 16);
 
-      /// <summary>
-      /// 控件的状态
-      /// </summary>
-      private EnumControlState _ControlState;
+    /// <summary>
+    /// 控件的状态
+    /// </summary>
+    private EnumControlState _ControlState;
       
-      /// <summary>
-      /// 控件主题
-      /// </summary>
-      private SkinTheme _theme { get; set; }
+    /// <summary>
+    /// 控件主题
+    /// </summary>
+    private SkinTheme _theme { get; set; }
     private EnumTheme _themeEnum;
     #endregion
 

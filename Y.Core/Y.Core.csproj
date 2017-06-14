@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Core\ComFunc\ConfigFunc.cs" />
     <Compile Include="Core\ComFunc\FontAwesomeFunc.cs" />
+    <Compile Include="Core\ComFunc\IniFunc.cs" />
     <Compile Include="Core\ComFunc\LogFunc.cs" />
     <Compile Include="Core\ComFunc\PinYinFunc.cs" />
     <Compile Include="Core\ComFunc\ResourcesFunc.cs" />
@@ -73,9 +74,10 @@
     <Compile Include="Core\ComFunc\XmlFunc.cs" />
     <Compile Include="Core\CoreBase\CacheBase.cs" />
     <Compile Include="Core\Core.Enum\FaEnum.cs" />
+    <Compile Include="Core\ComFunc\HttpFunc.cs" />
     <Compile Include="Core\CoreBase\IOCBase.cs" />
     <Compile Include="Core\CoreBase\ServiceBase.cs" />
-    <Compile Include="Dao\SqlSugarDao.cs" />
+    <Compile Include="ORM\SqlSugarDao.cs" />
     <Compile Include="Interface\IService.cs" />
     <Compile Include="Interface\IDao.cs" />
     <Compile Include="Interface\IDaoTransection.cs" />
@@ -130,6 +132,9 @@
     </Compile>
     <Compile Include="WinForm\Control\ControlEx\TextBoxEx.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\Control\ControlEx\TreeViewEx.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WinForm\Control\ControlEx\YToolStripRendere.cs" />
     <Compile Include="WinForm\Control\ComponentEx\ValiDataManageCmp.cs">
