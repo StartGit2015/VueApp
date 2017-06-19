@@ -90,6 +90,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Web\Controller\ControllerEx.cs" />
+    <Compile Include="Web\Expression\HtmlHelper.cs" />
     <Compile Include="WinForm\AppCode\SKin\ColorScheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\EnumTheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\SkinManager.cs" />
