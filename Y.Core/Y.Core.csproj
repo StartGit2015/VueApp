@@ -55,6 +55,9 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,6 +94,7 @@
     </Compile>
     <Compile Include="Web\Controller\ControllerEx.cs" />
     <Compile Include="Web\Expression\HtmlHelper.cs" />
+    <Compile Include="Web\Model\NavTree.cs" />
     <Compile Include="WinForm\AppCode\SKin\ColorScheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\EnumTheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\SkinManager.cs" />
