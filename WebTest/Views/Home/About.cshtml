@@ -2,7 +2,15 @@
     ViewBag.Title = "关于";
     Layout = null;
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@using Y.Core.Web.Expression
+@using Y.Core.Web
+<ul>
+    @{
+      foreach (NavTree item in ViewBag.NavList)
+      {
+        Html.NavTree(item);
+      }
+      Html.NavTree((NavTree)ViewBag.NavList[0]);
+    }
+</ul>
 
-<p>Use this area to provide additional information.</p>

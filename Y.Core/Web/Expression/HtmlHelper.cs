@@ -29,7 +29,7 @@ namespace Y.Core.Web.Expression
         /// <param name="navTree">值</param>
         /// <param name="htmlAttributes"></param>
         /// <returns></returns>
-        public static MvcHtmlString NavTree(this HtmlHelper htmlHelper, NavTree navTree, object htmlAttributes)
+        public static MvcHtmlString NavTree(this HtmlHelper htmlHelper, NavTree navTree, object htmlAttributes = null)
         {
             TagBuilder li = new TagBuilder("li");
             if (navTree.IsExpend)
