@@ -11,7 +11,7 @@ namespace WebTest.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+          return View();
         }
 
         public ActionResult About()
@@ -24,7 +24,7 @@ namespace WebTest.Controllers
               {
                 ID = i,
                 DataId = i.ToString(),
-                DataUrl = "action/sss",
+                DataUrl = "/about",
                 Name = "主菜单_" + i.ToString(),
                 ChildNav = new List<NavTree>()
               };
@@ -34,10 +34,9 @@ namespace WebTest.Controllers
                 {
                   ID = i,
                   DataId = i.ToString(),
-                  DataUrl = "action/sss",
-                  Name = "子菜单" + i.ToString(),
+                  DataUrl = "home/about",
+                  Name = "子菜单_" + i.ToString() + j.ToString(),
                 };
-                
                 tree.ChildNav.Add(treec);
               }
               trees.Add(tree);

@@ -75,6 +75,7 @@
     <Compile Include="Core\ComFunc\ResourcesFunc.cs" />
     <Compile Include="Core\ComFunc\SysBaseExtend.cs" />
     <Compile Include="Core\ComFunc\XmlFunc.cs" />
+    <Compile Include="Core\ComFunc\YZMFunc.cs" />
     <Compile Include="Core\CoreBase\CacheBase.cs" />
     <Compile Include="Core\Core.Enum\FaEnum.cs" />
     <Compile Include="Core\ComFunc\HttpFunc.cs" />

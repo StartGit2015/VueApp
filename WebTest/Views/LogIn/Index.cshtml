@@ -1,0 +1,13 @@
+﻿
+@{
+  ViewBag.Title = "login";
+  Layout = null;
+}
+<h1>提示：@ViewBag.Message</h1>
+@using (Html.BeginForm("Index", "login", FormMethod.Post))
+{
+    <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
+    <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
+    <button class="layui-btn" type="submit">提交</button>
+}
+
