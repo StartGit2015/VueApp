@@ -40,19 +40,19 @@ namespace Y.Core.Web.Expression
             {
                 li.AddCssClass("layui-nav-item");
             }
-            
-            li.InnerHtml += String.Format("<a href=\"javascript:; \">{0}</a>", navTree.Name);
+
+            li.InnerHtml += String.Format("<a href=\"javascript:; \">{0}</a><span class=\"layui-nav-more\"></span>", navTree.Name);
 
             //子菜单
             if (navTree.ChildNav.Count > 0)
             {
-                li.InnerHtml += "< dl class=\"layui-nav-child\">";
+                li.InnerHtml += "<dl class=\"layui-nav-child\">";
 
                 foreach (NavTree item in navTree.ChildNav)
                 {
                     li.InnerHtml += String.Format(" <dd><a href=\"javascript:; \" data-url=\"{0}\" data-id = \"{1}\" data-frame=\"{2}\">{3}</a></dd>",item.DataUrl,item.DataId,item.DataFrame,item.Name);
                 }
-                li.InnerHtml += "<\\dl>";
+                li.InnerHtml += "</dl>";
             }
             return new MvcHtmlString(li.ToString());
         }

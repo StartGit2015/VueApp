@@ -4,13 +4,20 @@
 }
 @using Y.Core.Web.Expression
 @using Y.Core.Web
-<ul>
-    @{
-      foreach (NavTree item in ViewBag.NavList)
-      {
-        Html.NavTree(item);
-      }
-      Html.NavTree((NavTree)ViewBag.NavList[0]);
-    }
-</ul>
-
+<div>
+    <ul class="layui-nav layui-nav-tree" lay-filter="leftnav">
+        <li class="layui-nav-item">
+                <a href="/home">首页</a>
+        </li>
+        @{
+          foreach (NavTree item in ViewBag.NavList)
+          {
+            @Html.NavTree(item);
+          }
+        }
+    </ul>
+</div>
+<script>
+    //初始化动态html
+    element.init();
+</script>

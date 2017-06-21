@@ -25,7 +25,7 @@ namespace WebTest.Controllers
                 ID = i,
                 DataId = i.ToString(),
                 DataUrl = "action/sss",
-                Name = "Name" + i.ToString(),
+                Name = "主菜单_" + i.ToString(),
                 ChildNav = new List<NavTree>()
               };
               for (int j = 0; j < 4; j++)
@@ -35,7 +35,7 @@ namespace WebTest.Controllers
                   ID = i,
                   DataId = i.ToString(),
                   DataUrl = "action/sss",
-                  Name = "Name" + i.ToString(),
+                  Name = "子菜单" + i.ToString(),
                 };
                 
                 tree.ChildNav.Add(treec);
@@ -44,7 +44,7 @@ namespace WebTest.Controllers
             }
             
             ViewBag.NavList = trees;
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "about页面";
 
             return View();
         }
