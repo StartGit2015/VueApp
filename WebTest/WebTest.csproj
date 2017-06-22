@@ -270,6 +270,7 @@
     <Content Include="theme\layui\lay\modules\tree.js" />
     <Content Include="theme\layui\lay\modules\upload.js" />
     <Content Include="theme\layui\lay\modules\util.js" />
+    <Content Include="theme\Plug\JsPlug\jparticle.jquery.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -312,6 +313,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\LogIn\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\LogIn\LogIn.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

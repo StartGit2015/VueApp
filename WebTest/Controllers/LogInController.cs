@@ -10,6 +10,10 @@ namespace WebTest.Controllers
 {
     public class LogInController : Controller
     {
+        public ActionResult LogIn()
+    {
+      return View();
+    }
         // GET: LogIn
         public ActionResult Index(string code = "")
         {
