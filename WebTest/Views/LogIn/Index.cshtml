@@ -1,7 +1,7 @@
 ﻿
 @{
   ViewBag.Title = "login";
-  Layout = null;
+  Layout = "";
 }
 <h1>提示：@ViewBag.Message</h1>
 @using (Html.BeginForm("Index", "login", FormMethod.Post,new {@class="layui-form",id="logfrm"}))
@@ -49,7 +49,7 @@
           </tr>
       </tbody>
   </table>
-  <button class="layui-btn" lay-submit  lay-filter="formsubmit">提交</button>
+  <button class="layui-btn"  lay-filter="formsubmit">提交</button>
 }
 
 <script>
@@ -58,14 +58,7 @@
     var layer = layui.layer;
     //监听提交
     form.on('submit(formsubmit)', function (data) {
-        debugger;
-        var data = $("form").serializeArray();
-        var data1 = $("form").serializeObject();
-        console.info(data);
-        console.info(data1);
-        layer.msg(data);
-        console.info(data);
-        layer.msg(JSON.stringify(data));
+        doAjax();
         return false;
     });
 </script>

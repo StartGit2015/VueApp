@@ -10,20 +10,19 @@ namespace WebTest.Controllers
 {
     public class LogInController : Controller
     {
-        public ActionResult LogIn()
-    {
-      return View();
-    }
         // GET: LogIn
         public ActionResult Index(string code = "")
         {
             var rq = Request;
-      var name = rq.QueryString["name"];
+            var name = rq.QueryString["name"];
             ViewBag.Message = "请输入信息！！";
             return View();
         }
-        
-        public ActionResult ValiCode()
+        public JsonResult LogIn()
+        {
+          return Json(new { state=1,message="ok"});
+        }
+    public ActionResult ValiCode()
         {
           var img = new YZMFunc();
           Session["code"] = img.Text;

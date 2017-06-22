@@ -56,7 +56,7 @@
                     <a href="javascript:;"><i class="layui-icon">&#xe613;</i>人员管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="http:///www.baidu.com" data-frame="true" data-id="1">个人管理</a></dd>
-                        <dd><a href="javascript:;" data-url="/login" data-id="2">个人信息</a></dd>
+                        <dd><a href="javascript:;" data-url="/login/index" data-id="2">个人信息</a></dd>
                         <dd><a href="javascript:;" data-url="http:///www.baidu.com" data-frame="true" data-id="3">修改密码</a></dd>
                     </dl>
                 </li>
@@ -72,7 +72,7 @@
                 <li class="layui-nav-item">
                 <a href="javascript:;">市场管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="/login/login" data-id="2">账户注册</a></dd>
+                    <dd><a href="javascript:;" data-url="/login/login" data-id="21">账户注册</a></dd>
                     <dd><a href="javascript:;">系统架构图</a></dd>
                     <dd><a href="javascript:;">推荐关系图</a></dd>
                     <dd><a href="javascript:;">查看推荐关系</a></dd>
@@ -159,6 +159,8 @@
     </div>
     
     @Scripts.Render("~/theme/layui/lay/dest/layui.all.js")@*加载layUi JS文件*@
+    <script src="~/Scripts/Common/Base.js"></script>
+    <script src="~/Scripts/Common/Common.js"></script>
     <script src="~/Scripts/Home/Index.js"></script>
     @RenderSection("scripts", required: false)
 </body>
