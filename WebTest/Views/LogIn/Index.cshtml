@@ -4,10 +4,68 @@
   Layout = null;
 }
 <h1>提示：@ViewBag.Message</h1>
-@using (Html.BeginForm("Index", "login", FormMethod.Post))
+@using (Html.BeginForm("Index", "login", FormMethod.Post,new {@class="layui-form",id="logfrm"}))
 {
-    <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
-    <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
-    <button class="layui-btn" type="submit">提交</button>
+  <table class="layui-table">
+    <thead>
+        <tr>
+          <th>name</th>
+          <th>pwd</th>
+          <th>code</th>
+        </tr> 
+    </thead>
+      <tbody>
+          <tr>
+              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
+              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
+              <td>
+                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
+                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
+              </td>
+          </tr>
+          <tr>
+              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
+              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
+              <td>
+                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
+                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
+              </td>
+          </tr>
+          <tr>
+              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
+              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
+              <td>
+                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
+                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
+              </td>
+          </tr>
+          <tr>
+              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
+              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
+              <td>
+                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
+                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  <button class="layui-btn" lay-submit  lay-filter="formsubmit">提交</button>
 }
 
+<script>
+    var form = layui.form();
+    var $ = layui.jquery;
+    var layer = layui.layer;
+    //监听提交
+    form.on('submit(formsubmit)', function (data) {
+        debugger;
+        var data = $("form").serializeArray();
+        var data1 = $("form").serializeObject();
+        console.info(data);
+        console.info(data1);
+        layer.msg(data);
+        console.info(data);
+        layer.msg(JSON.stringify(data));
+        return false;
+    });
+</script>

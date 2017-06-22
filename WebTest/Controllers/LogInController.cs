@@ -13,16 +13,10 @@ namespace WebTest.Controllers
         // GET: LogIn
         public ActionResult Index(string code = "")
         {
-          var sessionCode = Session["code"] == null ? "" : Session["code"].ToString();
-          if (code != "" && sessionCode == code)
-          {
-            ViewBag.Message = "验证码正确！";
-          }
-          else
-          {
-            ViewBag.Message = "验证码不正确！";
-          }
-      return View();
+            var rq = Request;
+      var name = rq.QueryString["name"];
+            ViewBag.Message = "请输入信息！！";
+            return View();
         }
         
         public ActionResult ValiCode()
