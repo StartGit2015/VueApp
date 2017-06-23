@@ -272,6 +272,7 @@
     <Content Include="theme\layui\lay\modules\tree.js" />
     <Content Include="theme\layui\lay\modules\upload.js" />
     <Content Include="theme\layui\lay\modules\util.js" />
+    <Content Include="theme\Plug\JsPlug\jfTable.js" />
     <Content Include="theme\Plug\JsPlug\jparticle.jquery.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -31,11 +31,11 @@
         var isframe = $(elem).children('a').attr('data-frame') || false;//是否Frame加载 Ture false
         var title = $(elem).children('a').text();           //菜单名称
  
-        if (title == "首页") {
+        if (title === "首页") {
             element.tabChange('tab', 0);
             return;
         }
-        if (url == undefined) return;
+        if (url === undefined) return;
 
         var tabTitleDiv = $('.layui-tab[lay-filter=\'tab\']').children('.layui-tab-title');
         var exist = tabTitleDiv.find('li[lay-id=' + id + ']');
@@ -43,8 +43,10 @@
             //切换到指定索引的卡片
             element.tabChange('tab', id);
         } else {
+            var index = layer.load(1,{
+                                    shade:0.5
+                                });
             if (isframe) {
-                var index = layer.load(1);
                 //由于Ajax调用本地静态页面存在跨域问题，这里用iframe
                 setTimeout(function () {
                     //模拟菜单加载
@@ -55,7 +57,6 @@
                 }, 500);
             }
             else {
-                var index = layer.load(1);
                 $.ajax({
                     type: 'post',
                     url: url,
@@ -83,7 +84,7 @@
         var id = $(elem).children('span').attr('data-id');
         var title = $(elem).children('span').text();
 
-        if (url == undefined) return;
+        if (url === undefined) return;
 
         var tabTitleDiv = $('.layui-tab[lay-filter=\'tab\']').children('.layui-tab-title');
         var exist = tabTitleDiv.find('li[lay-id=' + id + ']');
@@ -123,7 +124,7 @@
 
     //鼠标靠左展开侧边导航
     $(document).mousemove(function (e) {
-        if (e.pageX == 0) {
+        if (e.pageX === 0) {
             showSideNav();
             $('input[lay-filter=sidenav]').siblings('.layui-form-switch').addClass('layui-form-onswitch');
             $('input[lay-filter=sidenav]').prop("checked", true);
@@ -165,62 +166,62 @@
     }
 
 
-    runSteward();
+    //runSteward();
     //管家功能
-    function runSteward() {
-        var layerSteward;   //管家窗口
-        var isStop = false; //是否停止提醒 
+    //function runSteward() {
+    //    var layerSteward;   //管家窗口
+    //    var isStop = false; //是否停止提醒 
 
-        getNotReplyLeaveMessage();
+    //    getNotReplyLeaveMessage();
 
-        //var interval = setInterval(function () {
-        //    getNotReplyLeaveMessage();
-        //}, 60000);  //1分钟提醒一次
+    //    //var interval = setInterval(function () {
+    //    //    getNotReplyLeaveMessage();
+    //    //}, 60000);  //1分钟提醒一次
 
-        function getNotReplyLeaveMessage() {
-            clearInterval(interval); //停止计时器
-            var content = '<p>目前有<span>12</span>条留言未回复<a href="javascript:layer.msg(\'跳转到相应页面\')">点击查看</a></p>';
-            content += '<div class="notnotice" >不再提醒</div>';
-            layerSteward = layer.open({
-                type: 1,
-                title: '管家提醒',
-                shade: 0,
-                resize: false,
-                area: ['340px', '215px'],
-                time: 10000, //10秒后自动关闭
-                skin: 'steward',
-                closeBtn: 1,
-                anim: 2,
-                content: content,
-                end: function () {
-                    if (!isStop) {
-                        interval = setInterval(function () {
-                            if (!isStop) {
-                                clearInterval(interval);
-                                getNotReplyLeaveMessage();
-                            }
-                        }, 60000);
-                    }
-                }
-            });
-            $('.steward').click(function (e) {
-                event.stopPropagation();    //阻止事件冒泡
-            });
-            $('.notnotice').click(function () {
-                isStop = true;
-                layer.close(layerSteward);
-                $('input[lay-filter=steward]').siblings('.layui-form-switch').removeClass('layui-form-onswitch');
-                $('input[lay-filter=steward]').prop("checked", false);
-            });
-            form.on('switch(steward)', function (data) {
-                if (data.elem.checked) {
-                    isStop = false;
-                    clearInterval(interval);
-                    runSteward();
-                } else {
-                    isStop = true;
-                    layer.close(layerSteward);
-                }
-            })
-        }
-    }
+    //    function getNotReplyLeaveMessage() {
+    //        clearInterval(interval); //停止计时器
+    //        var content = '<p>目前有<span>12</span>条留言未回复<a href="javascript:layer.msg(\'跳转到相应页面\')">点击查看</a></p>';
+    //        content += '<div class="notnotice" >不再提醒</div>';
+    //        layerSteward = layer.open({
+    //            type: 1,
+    //            title: '管家提醒',
+    //            shade: 0,
+    //            resize: false,
+    //            area: ['340px', '215px'],
+    //            time: 10000, //10秒后自动关闭
+    //            skin: 'steward',
+    //            closeBtn: 1,
+    //            anim: 2,
+    //            content: content,
+    //            end: function () {
+    //                if (!isStop) {
+    //                    interval = setInterval(function () {
+    //                        if (!isStop) {
+    //                            clearInterval(interval);
+    //                            getNotReplyLeaveMessage();
+    //                        }
+    //                    }, 60000);
+    //                }
+    //            }
+    //        });
+    //        $('.steward').click(function (e) {
+    //            event.stopPropagation();    //阻止事件冒泡
+    //        });
+    //        $('.notnotice').click(function () {
+    //            isStop = true;
+    //            layer.close(layerSteward);
+    //            $('input[lay-filter=steward]').siblings('.layui-form-switch').removeClass('layui-form-onswitch');
+    //            $('input[lay-filter=steward]').prop("checked", false);
+    //        });
+    //        form.on('switch(steward)', function (data) {
+    //            if (data.elem.checked) {
+    //                isStop = false;
+    //                clearInterval(interval);
+    //                runSteward();
+    //            } else {
+    //                isStop = true;
+    //                layer.close(layerSteward);
+    //            }
+    //        })
+    //    }
+    //}

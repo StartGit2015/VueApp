@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Y.Core.Web
+namespace Y.Core.Model
 {
     /// <summary>
     /// 树形导航菜单 数据模型

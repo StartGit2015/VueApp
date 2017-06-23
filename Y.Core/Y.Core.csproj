@@ -95,7 +95,8 @@
     </Compile>
     <Compile Include="Web\Controller\ControllerEx.cs" />
     <Compile Include="Web\Expression\HtmlHelper.cs" />
-    <Compile Include="Web\Model\NavTree.cs" />
+    <Compile Include="BaseModel\NavTree.cs" />
+    <Compile Include="BaseModel\PageInfor.cs" />
     <Compile Include="WinForm\AppCode\SKin\ColorScheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\EnumTheme.cs" />
     <Compile Include="WinForm\AppCode\SKin\SkinManager.cs" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lib\" />
+    <Folder Include="Web\Model\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,31 +1,45 @@
-﻿//操作前确认方法
-function comconfim(url, msg) {
-    layer.confirm(msg, {
-        btn: ['确定', '取消'] //按钮
+﻿
+function comconfim(msg,url,data = null,ajaxtype = 'post') {
+    var index =  layer.confirm(msg, {
+        btn: ['确定', '取消'], //按钮
+        offset: 't',
+        skin: 'layui-layer-molv'
+    }, function (index) {
+        layer.close(index);
+        doAjax(url,ajaxtype, data);
     }, function () {
-        layer.msg('点击了确定', { icon: 1 });
-    }, function () {
-        layer.msg('点击了取消');
+        layer.msg('取消操作');
     }
   )
 }
-
-function doAjax() {
-    var index = layer.load(1);
+//ajax提交数据
+function doAjax(url,ajaxtype = 'post', data = null) {
+    var index = layer.load(1, {
+        shade:0.5
+    });
     $.ajax(
         {
-            type: 'post',
+            type: ajaxtype,
             url: url,
+            data: data,
             success: function (data) {
+                //parent.location.reload();//刷新应用程序
                 layer.close(index);
-                element.tabAdd('tab', { title: title, content: data, id: id });
-                //切换到指定索引的卡片
-                element.tabChange('tab', id);
+                layer.alert(data.message, {
+                    icon: 1,
+                    skin: 'layui-layer-molv' ,
+                    offset: 't',
+                    time:3000
+                });
+
             },
             error: function (e) {
                 var message = e.responseText;
                 layer.close(index);
-                layer.msg(message, { icon: 2 });
+                layer.alert(message, {
+                    icon: 2,
+                    skin: 'layui-layer-lan'
+                });
             }
         }
     );
