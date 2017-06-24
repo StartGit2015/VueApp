@@ -120,7 +120,7 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
     }
 
     JfTable.prototype.init=function () {
-        $("<table class='layui-table'></table>").appendTo(this.$element.html(""));
+        $("<table class='layui-table girdtable'></table>").appendTo(this.$element.html(""));
         if(this.option.url){
             this.ajaxData();
         }
@@ -150,8 +150,9 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
         $.each(toolbar,function (index,item) {
             var btn=$("<button class='layui-btn "+_opt.toolbarClass+"'></button>").appendTo(tool);
             if(item.icon){
-                $("<i class='layui-icon'>"+item.icon+"</i>").appendTo(btn);
-            }else{
+                $("<i class='layui-icon'>" + item.icon + "</i>").appendTo(btn);
+            }
+            if (item.text) {
                 btn.append(item.text);
             }
             btn[0].onclick=eval(item.handle||function (){});//绑定匿名事件
@@ -235,7 +236,7 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
         opt.data = result.list;
     }
 
-    JfTable.methods={
+    JfTable.methods = {
         option: function (jq) {
             return $.data(jq[0], "jfTable").option;
         },

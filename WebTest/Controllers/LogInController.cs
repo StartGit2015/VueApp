@@ -7,11 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Y.Core.ComFunc;
 using Y.Core.Model;
+using Y.Core.Web;
 
 namespace WebTest.Controllers
 {
-    public class LogInController : Controller
-    {
+    public class LogInController : ControllerEx
+  {
         // GET: LogIn
         public ActionResult Index(string code = "")
         {
@@ -38,10 +39,10 @@ namespace WebTest.Controllers
           List<object> obj = new List<object>();
           for (int i = 0; i < 10; i++)
           {
-            var item = new { name = "name_" + i.ToString(), dept = "dept_" + i.ToString() };
+            var item = new { name = "name_" + i.ToString() + base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
             obj.Add(item);
           }
-          return Json(new PageInfor{ totalPage = 10, pageNumber=2,list=obj});
+          return Json(new PageInfor{ totalPage = 10, pageNumber= pageInfor.pageNumber, list=obj});
         }
     }
 }

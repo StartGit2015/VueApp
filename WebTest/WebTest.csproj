@@ -171,6 +171,7 @@
     <Content Include="Scripts\Common\Base.js" />
     <Content Include="Scripts\Common\Common.js" />
     <Content Include="Scripts\Home\Index.js" />
+    <Content Include="theme\layui\css\commstyle.css" />
     <Content Include="theme\layui\css\layui.css" />
     <Content Include="theme\layui\css\layui.mobile.css" />
     <Content Include="theme\layui\css\modules\code.css" />

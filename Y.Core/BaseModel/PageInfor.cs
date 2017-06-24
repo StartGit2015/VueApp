@@ -15,12 +15,15 @@ namespace Y.Core.Model
     /// <summary>
     /// 总页数
     /// </summary>
-    public int totalPage { get { return 1; } set { } }
+    public int totalPage { get; set; }
     /// <summary>
     /// 当前页
     /// </summary>
-    public int pageNumber { get { return 1; } set { } }
-
+    public int pageNumber { get; set; }
+    /// <summary>
+    /// 每页数据量
+    /// </summary>
+    public int pageSize { get; set; }
     /// <summary>
     /// 当前数据集合
     /// </summary>
