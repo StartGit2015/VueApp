@@ -77,20 +77,23 @@
             text:'用户名',//显示的表头
             name: 'name',//显示的数据key
             width: 100,//宽度
-            visible: false
-            //formatter:function(value,row,index){//value 当前值  row 当前行数据  index 当前行索引
-            //}
+            formatter: function (value, row, index) {//value 当前值  row 当前行数据  index 当前行索引
+                return value + '哈哈';
+            }
     }, {
             text:'科室',//显示的表头
             name: 'dept',//显示的数据key
             width: 100,//宽度
+            click: function (ros) {
+                console.log(ros);
+            }
         }],
     method:"post",//请求方式
     toolbarClass:"layui-btn-small",//按钮的样式
     toolbar:[{//按钮数组
             text:"新增",//文字
             icon:"&#xe61f;",//按钮图标
-            handle: function () {//绑定函数
+            handle: function () {//绑定格式化函数
                 layer.msg("点击了新增")
               }
             }, {//按钮数组
@@ -105,7 +108,10 @@
                     });
                     layer.msg("删除" + id)
                 }
-            }],
+        }],
+    rowclick: function (row) {//行点击事件
+        //layer.msg("点击了Row:" + row.index +  row);
+    },
     //事件   一定要return 
     onBeforeLoad: function (param) {
         return param;

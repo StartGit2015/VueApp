@@ -1,5 +1,5 @@
-﻿.girdtable tr.altrow {
-    background-color: #ff0000;
+﻿.girdtableclick {
+    background-color: #afeadc;
 }
 .girdtable tr:hover {
     background-color: #afeadc;

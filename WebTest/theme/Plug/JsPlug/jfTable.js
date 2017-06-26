@@ -205,14 +205,29 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
             for(var j=0,cl=col.length;j<cl;j++){
                 var c=col[j],v=d[c.name],f=c.formatter;
                 if(c.type=='check'){
-                    $("<td><input type='checkbox' value='"+i+"' lay-skin='primary'></td>").appendTo($tr);
+                    $("<td><input type='checkbox' value='" + i + "' lay-skin='primary'></td>").appendTo($tr);
                     continue;
                 }
-                if(typeof f == "function"){
-                    v=f(v,d,i);
+                if (typeof f == "function") {
+                    v = f(v, c, i);//格式化函数 返回格式化后的显示数据
+                }
+                if (typeof f == "function") {
+                    v = f(v, c, i);//格式化函数 返回格式化后的显示数据
+                }
+                if (c.click) {
+                    $(this).onclick = eval(c.click || function () { });//绑定匿名事件
                 }
                 $("<td>"+v+"</td>").appendTo($tr);
             }
+            //行点击事件
+            $tr.bind("click", function ($tr) {
+                if ($(this).hasClass('girdtableclick')) {
+                    $(this).removeClass();
+                } else{
+                    $(this).addClass('girdtableclick');
+                }
+                opt.rowclick(this)
+            });
         }
         opt.onLoadSuccess(dt);
         if(opt.select){
@@ -281,6 +296,7 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
         toolbar:[],
         pageSize:20,
         queryParam: {},
+        rowclick: function(trrow){},
         onBeforeLoad: function (param) {
             return param;
         },
