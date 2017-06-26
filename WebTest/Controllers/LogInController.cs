@@ -44,5 +44,17 @@ namespace WebTest.Controllers
           }
           return Json(new PageInfor{ totalPage = 10, pageNumber= pageInfor.pageNumber, list=obj});
         }
+
+    [HttpGet]
+    public JsonResult loginlist()
+    {
+      List<object> obj = new List<object>();
+      for (int i = 0; i < 10; i++)
+      {
+        var item = new { name = "name_" + i.ToString() + base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
+        obj.Add(item);
+      }
+      return Json(new { list = obj },JsonRequestBehavior.AllowGet);
     }
+  }
 }

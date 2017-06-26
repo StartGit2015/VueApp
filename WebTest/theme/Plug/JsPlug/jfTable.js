@@ -211,9 +211,6 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
                 if (typeof f == "function") {
                     v = f(v, c, i);//格式化函数 返回格式化后的显示数据
                 }
-                if (typeof f == "function") {
-                    v = f(v, c, i);//格式化函数 返回格式化后的显示数据
-                }
                 if (c.click) {
                     $(this).onclick = eval(c.click || function () { });//绑定匿名事件
                 }
@@ -221,11 +218,7 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
             }
             //行点击事件
             $tr.bind("click", function ($tr) {
-                if ($(this).hasClass('girdtableclick')) {
-                    $(this).removeClass();
-                } else{
-                    $(this).addClass('girdtableclick');
-                }
+                $(this).toggleClass('girdtableclick');
                 opt.rowclick(this)
             });
         }
