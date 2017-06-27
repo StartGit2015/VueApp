@@ -182,8 +182,8 @@ layui.define("jquery", function (exports) {
                 pageIndex = $this.data("currMaxPage");
 
         }
-        var parentContainer = $this.data("options").parentContainer;
-
+        var parentContainer = $this.data("options").parentContainer|| $this.parent();;
+        
         var thisid = $this.attr("id");
         var $inputTxt = $("#inputtxt_" + thisid, parentContainer);
         if ($this.data("options").callbackType == "ajax" && $this.data("options").ajaxUrl) {
@@ -425,10 +425,10 @@ layui.define("jquery", function (exports) {
 
         var popWidth = $this.data("options").popWidth && $this.data("options").popWidth != "" ? "width:" + $this.data("options").popWidth + ";" : "";
         if ($div[0]) $div.remove();
-        var html = "<div id='" + divId + "' class='qal_container' style='" + popWidth + "'>"
-            + "<div><input type='text' id='inputtxt_" + id + "' autocomplete='off'/><div>"
-            + (($this.data("options").buttons && $this.data("options").buttons != "") ? "<div id='" + divId + "_buttons' class='qal_btn_div'></div>" : "")
-            + "<div><table  id='" + tableId + "'  class='qal_table'></table></div>"
+        var html = "<div id='" + divId + "' class='querylistDiv' style='" + popWidth + " border-style: solid;'>"
+            + "<div><input type='text' class='layui-input-block' id='inputtxt_" + id + "' autocomplete='off'/><div>"
+            + (($this.data("options").buttons && $this.data("options").buttons != "") ? "<div id='" + divId + "_buttons' class='querylistbtns'></div>" : "")
+            + "<div style='" + popWidth + "'><table  id='" + tableId + "'  class='querylist'></table></div>"
             + "<div id='" + pagingId + "' class='qal_pager' >"
             + "<a id='a_per_" + id + "' href='javascript:void(0)'>上页</a>&nbsp;&nbsp;<a id='a_next_" + id + "' href='javascript:void(0)'>下页</a>"
             + "&nbsp;&nbsp;第<span id='index_" + id + "'>1</span>页&nbsp;&nbsp;共<span id='rowcount_" + id + "'>1</span>条</div></div>";
@@ -437,6 +437,9 @@ layui.define("jquery", function (exports) {
         $inputTxt = $("#" + inputtxtId, $div);
         if ($this.data("options").isShowPaging == "false")
             $("#" + pagingId, $div).hide();
+
+        //设置$div 位置
+
         //设置快捷按钮
         if ($this.data("options").buttons) {
             $divbtns = $("#" + divId + "_buttons", $div);
@@ -459,7 +462,7 @@ layui.define("jquery", function (exports) {
                 if ($this.data("options").buttons[i].text == "</br>" || $this.data("options").buttons[i].text == "<br>")
                     $("<br>").appendTo($divbtns);
                 else {
-                    var $btn = $("<button class='btn btn-blue' type='button' svalue='" + $this.data("options").buttons[i].value + "' width='10px'>" + $this.data("options").buttons[i].text + "</button>").appendTo($divbtns);
+                    var $btn = $("<button type='button' svalue='" + $this.data("options").buttons[i].value + "' width='10px'>" + $this.data("options").buttons[i].text + "</button>").appendTo($divbtns);
                     $btn.unbind("mouseup");
                     $btn.mouseup(function () {
                         isBtnsFocus = true;
