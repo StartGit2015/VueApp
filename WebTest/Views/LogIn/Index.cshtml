@@ -16,31 +16,19 @@
     </thead>
       <tbody>
           <tr>
-              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
-              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
-              <td>
-                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
-                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
-              </td>
-          </tr>
-          <tr>
-              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
-              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
-              <td>
-                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
-                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
-              </td>
-          </tr>
-          <tr>
-              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
-              <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
-              <td>
-                <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
-                <img id="img" src="/LogIn/ValiCode"  onclick="this.src = '/LogIn/ValiCode?k=' + Math.random();" alt='点击更换验证码'  />
-              </td>
-          </tr>
-          <tr>
-              <td><input class="layui-input-block" type="text" name="name" placeholder="请输入name" /></td>
+              <td><input id="inputname" class="layui-input-block" type="text" name="name" placeholder="请选择name" 
+                          valueFieldName="name"
+                           textFieldName="name"
+                           showfields="name,dept"
+                           queryFields="name,dept"
+                           maxRowCount="5"
+                           callbacktype="ajax"
+                           ajaxUrl="login/loginlist"
+                           focusEvent=null
+                           selectedEvent=selected
+                           focusshow="false"
+                           pwidth=300
+                           pheight=200/></td>
               <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
               <td>
                 <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
@@ -51,34 +39,36 @@
   </table>
   <button class="layui-btn" lay-submit lay-filter="formsubmit">提交</button>
 }
-<input id="qal_medict_temp" class="queryautolist layui-input" width:100%" type="text"
+<input id="qal_medict_temp" placeholder="请选择科室及名称" class="layui-input" width:100%" type="text"
        valueFieldName="name"
        textFieldName="name"
        showfields="name,dept"
-       queryfields="name,dept"
-       maxrowcount="10"
+       queryFields="name,dept"
+       maxRowCount="5"
        callbacktype="ajax"
        ajaxUrl="login/loginlist"
        focusEvent=null
-       selectevent=null
-       focusshow="true"
-       popWidth="35%"
+       selectedEvent=selected
+       focusshow="false"
+       pwidth=300
+       pheight=300
        buttons="[{text:'q',value:'q'},{text:'w',value:'w'},{text:'e',value:'e'},{text:'r',value:'r'},{text:'t',value:'t'},{text:'y',value:'y'},{text:'u',value:'u'},{text:'i',value:'i'},{text:'o',value:'o'},{text:'p',value:'p'},{text:'<br>',value:''},{text:'a',value:'a'},{text:'s',value:'s'},{text:'d',value:'d'},{text:'f',value:'f'},{text:'g',value:'g'},{text:'h',value:'h'},{text:'j',value:'j'},{text:'k',value:'k'},{text:'l',value:'l'},{text:'<br>',value:''},{text:'z',value:'z'},{text:'x',value:'x'},{text:'c',value:'c'},{text:'v',value:'v'},{text:'b',value:'b'},{text:'n',value:'n'},{text:'m',value:'m'},{text:'空格',value:' '}]" 
        />
 <div id="table"></div>
 
 <script>
-    var form = layui.form();
+     var form = layui.form();
     var $ = layui.jquery;
     var layer = layui.layer;
 
-    $("#qal_medict_temp").queryautolist('init'
-        @*, {
-        valueFildName: "name", textFieldName: "dept",
-        queryFields: "name,dept",callbacktype='ajax',
-        ajaxUrl:"@Url.Action("loginUser")"
-        }*@
-    );
+    var selected = function (rdata) {
+        console.log(rdata);
+        layer.msg(rdata.name);
+    }
+
+    var med = $("#qal_medict_temp").InputTable();
+    var input = $("#inputname").InputTable();
+
     //监听提交
     form.on('submit(formsubmit)', function (data) {
         comconfim('确定要提交吗？','@Url.Action("login")', null);

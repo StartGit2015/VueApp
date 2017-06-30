@@ -1,42 +1,44 @@
 ﻿/*常用style*/
-table.querylist {
-	font-family: verdana,arial,sans-serif;
-	font-size:11px;
-	color:#333333;
-	border-width: 1px;
-	border-color: #666666;
-	border-collapse: collapse;
-}
-table.querylist th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #dedede;
-}
-table.querylist td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #ffffff;
-}
-querylistDiv{
-    background-color: #09C;
-    height:60px;
+.querylistDiv table{
     width: 100%;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-spacing:1px;
+    background-color:white;
+}
+
+.querylistDiv tr{
+    height:30px;
+    
+}
+
+.querylistDiv{
+    border-style:solid;
+    border-width:1px;
+    background-color: #eeeeee;
+    height:350px;
+    width: 380px;
     position: fixed;
-    bottom: 0px;
+    overflow:auto;
+    /*bottom: 2px;*/
     left: auto;
     right: auto;
-    line-height: 60px;
-    text-align: center;
+    /*line-height: 6px;
+    text-align: center;*/
     _POSITION: absolute;/*兼容IE6*/
     _TOP: expression(offsetParent.scrollTop+document.documentElement.clientHeight-this.offsetHeight);/*兼容IE6*/
 }
-querylistbtns{
-    border-style:solid;
-    background-color:aquamarine
+
+.querylistDiv button{
+    width:35px;
+    height:20px;
+    border:hidden;
+    background-color:#eeeeee;
+    float:left;
+}
+
+.querylistDiv button:hover{
+    background-color:#7CC5E5;
 }
 
 .girdtableclick {

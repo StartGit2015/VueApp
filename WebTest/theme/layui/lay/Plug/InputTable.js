@@ -1,45 +1,32 @@
-﻿//*------------------------------
-//*名称：录入查询下拉列表
-//*功能：用于实现带文件的ajax表单提交
-//*参数：valueControl: 存值控件
-//*      valueFieldName: 数据源选中值字段名称
-//*      textFieldName: 数据源选中文本字段名称,
-//*      queryFields:查询的字段, 
-//*      callbackType:查询方式,"js"-查询本地javascrpt脚本数据（json）,"ajax"-到服务取数据（json）
-//*      ajaxUrl:callbackType为ajax时的服务器端地址
-//*      selectedEvent:选中后事件函数
-//*      selectEvent:选中前回事件函数
-//*      dataList: callbackType为js时的数据对象
-//*      maxRowCount: 显示的最大行数, 
-//*      longDateFields: 要显示长时间格式的字段
-//*      tableRowIndex:查询列表默认的选中行序号
-//*      keyUpTime: null 
-//*      buttons:显示出的查询快捷按钮
-//*      focusShow:设置是否文本框获得焦点就显示下拉列表
-//*      focusEvent:获得焦点时的事件
-//*      nextFocusCtl:本控件失去焦点时获取焦点的下一个控件
-//*      isShowPaging:是否显示分页栏      
-//*      exId:控件id的补充，以防止控件重名
-//*      initConditions:初始化查询条件[{name:'',value}]
-//*      parentContainer:控件父容器
-//*      textToQuery:是否将textControl的值赋值给查询录入控件(true,false)
-//*      initConditions:初始化条件集合--[{ name: 'DeptIds', value:'aa'},{ name: 'DeptIds', value:'11'}]
-//*      initConditionOrAnd:初始化条件集合的关系符号or,and
-//*      initConditionExpr:复杂条件表达式 "({DeptIds}.indexOf({DeptIds.value})&&({MedTypeID}=={MedTypeID.value}||{MedTypeID}=={MedTypeID.value}))"
-//*使用方法：
-//*   (1)$("#txt_test").queryautolist("init", {
-//*            valueFildName: "ID", textFieldName: "Name",
-//*            queryFields: "ID,Name", dataList: aaa
-//*      });
-//*   (2)<input class="queryautolist" type="text" id="txt_test"  valueFieldName="ID" textFieldName="MenuName"
-//*           queryFields="MenuID" maxRowCount="20" ajaxUrl="/Systems/Menu/Test", callbackType="ajax" />
-//*   (3)<input type="text" class="queryautolist" valueFieldName="ID" textFieldName="Name" queryFields="ID,Name" dataList="aaa" id="txt_test2" />
-//*--------------------------
-//(function (jQuery) {
-layui.define("jquery", function (exports) {
-    var jQuery = layui.jquery;
-    var queryJsList = function (_dataList, _queryFields, queryValue, maxRowCount, pageIndex, initConditions) {
-        pageIndex = (!pageIndex || pageIndex < 1) ? 1 : pageIndex;
+﻿
+/*
+编写一个带查询框 和table检索的 插件 InputTable
+*/
+layui.define(['layer'], function (exports) {
+    //var $ = layui.jquery;
+    var layer = layui.layer;
+
+    $.fn.InputTable = function (_opt, args) {
+        if (typeof _opt == "string") {//判断是方法还是对象
+
+            return InputTable.methods[_opt](this, args);
+        }
+        _opt = _opt || {};
+        return this.each(function () {
+            var itb = $.data(this, "InputTable");
+            if (itb) {
+                _opt = $.extend(itb.options, _opt);
+                itb.options = _opt;
+            } else {
+                itb=new InputTable(this,_opt);
+                $(this).data('InputTable',itb);
+            }
+        });
+    }
+
+    //获取查询后数据 返回数据信息
+    var queryJsList = function (_dataList, _queryFields, queryValue, maxRowCount, pageNumber, initConditions) {
+        pageNumber = (!pageNumber || pageNumber < 1) ? 1 : pageNumber;
         var _list = new Array();
         var qfarray = _queryFields.split(",");
         var qlen = qfarray.length;
@@ -101,7 +88,7 @@ layui.define("jquery", function (exports) {
         }
 
         var _len = _list.length;
-        var end = maxRowCount * pageIndex - 1;
+        var end = maxRowCount * pageNumber - 1;
         var start = end - maxRowCount + 1;
         start = start < 0 ? 0 : start > _len ? _len - _len % maxRowCount : start;
         end = end > (_len - 1) ? _len : end;
@@ -110,12 +97,11 @@ layui.define("jquery", function (exports) {
             relist.push(_list[i]);
 
         var maxPage = _len % maxRowCount == 0 ? _len / maxRowCount : parseInt(_len / maxRowCount) + 1;
-        var tmpInt = _len - pageIndex * maxRowCount;
-        pageIndex = tmpInt >= 0 ? pageIndex : (Math.abs(tmpInt) < maxRowCount ? pageIndex : maxPage);
-        //alert("maxPage:" + maxPage + " pageIndex:" + pageIndex+" start:"+start+" end"+end);
-        return { list: relist, pageIndex: pageIndex, rowCount: _len, maxPage: maxPage };
+        var tmpInt = _len - pageNumber * maxRowCount;
+        pageNumber = tmpInt >= 0 ? pageNumber : (Math.abs(tmpInt) < maxRowCount ? pageNumber : maxPage);
+        return { list: relist, pageNumber: pageNumber, rowCount: _len, maxPage: maxPage };
     }
-
+    //创建table数据
     var createTableList = function ($txt, _dataList, showFields, longDateFields, parentContainer) {
         var id = $txt.attr("id");
         var isAjax = $txt.attr("callbacktype") == "ajax" ? true : false;
@@ -171,15 +157,15 @@ layui.define("jquery", function (exports) {
             rows.eq(this.rowIndex).css("backgroundColor", "#7cc5e5");
         });
     }
-
-    var getList = function ($this, pageIndex, fun, kcode) {
+    //根据配置信息 获取数据 创建datatable
+    var getList = function ($this, pageNumber, fun, kcode) {
         if ($this.data("currMaxPage")) {
-            if (pageIndex + 1 == 1)
+            if (pageNumber + 1 == 1)
                 return;
-            if (pageIndex - 1 == $this.data("currMaxPage"))
+            if (pageNumber - 1 == $this.data("currMaxPage"))
                 return;
-            if (pageIndex > $this.data("currMaxPage"))
-                pageIndex = $this.data("currMaxPage");
+            if (pageNumber > $this.data("currMaxPage"))
+                pageNumber = $this.data("currMaxPage");
 
         }
         var parentContainer = $this.data("options").parentContainer|| $this.parent();;
@@ -191,24 +177,24 @@ layui.define("jquery", function (exports) {
 
                 $.getJSON($this.data("options").ajaxUrl,
                     {
-                        queryFileds: $this.data("options").queryFileds,
+                        queryParam: $this.data("options").queryFields,
                         queryValue: $inputTxt.val(),
-                        pageIndex: pageIndex,
-                        maxRowCount: $this.data("options").maxRowCount,
+                        pageNumber: pageNumber,
+                        pageSize: $this.data("options").maxRowCount,
                         initConditions: $this.data("options").initConditions || ""
                     },
                     function (cdata) {
-                        var _len = cdata.rowCount;
+                        var _len = cdata.rowCount || cdata.list.length;
                         var maxRowCount = $this.data("options").maxRowCount;
                         var currMaxPage = _len % maxRowCount == 0 ? _len / maxRowCount : parseInt(_len / maxRowCount) + 1;
-                        $this.data("currMaxPage", currMaxPage);
+                        $this.data("currMaxPage", cdata.totalPage);
                         $this.data("queryList", cdata.list);
                         createTableList($this, cdata.list, $this.data("options").showFields, null, parentContainer);
-                        $("#index_" + thisid, parentContainer).html(cdata.pageIndex);
-                        $("#rowcount_" + thisid, parentContainer).html(cdata.rowCount);
-                        setBtn(thisid, cdata.pageIndex, cdata.maxPage, parentContainer);
+                        $("#index_" + thisid, parentContainer).html(pageNumber);
+                        $("#rowcount_" + thisid, parentContainer).html(cdata.totalPage);
+                        setBtn(thisid, pageNumber, cdata.totalPage, parentContainer);
 
-                        setTablePosition(thisid, parentContainer);
+                        //setTablePosition(thisid, parentContainer);
                         if (fun)
                             fun.apply($this, new Array(cdata));
                     });
@@ -218,60 +204,30 @@ layui.define("jquery", function (exports) {
             var list = typeof ($this.data("options").dataList) == "object" ? $this.data("options").dataList : window[$this.data("options").dataList];
 
             if (!list) {
-                //alert(thisid + "[queryautolist]控件所设置的dataList:'" + $this.attr("dataList") + "'不存在");
                 alert(thisid + "[queryautolist] set the dataList '" + $this.attr("dataList") + "' does not exist");
                 return;
             }
-            var cdata = queryJsList(list, $this.data("options").queryFields, $inputTxt.val(), $this.data("options").maxRowCount, pageIndex, $this.data("options").initConditions);
+            var cdata = queryJsList(list, $this.data("options").queryFields, $inputTxt.val(), $this.data("options").maxRowCount, pageNumber, $this.data("options").initConditions);
             $this.data("currMaxPage", cdata.maxPage);
             $this.data("queryList", cdata.list);
+            //创建table
             createTableList($this, cdata.list, $this.data("options").showFields, null, parentContainer);
-            $("#index_" + thisid, parentContainer).html(cdata.pageIndex);
+            $("#index_" + thisid, parentContainer).html(pageNumber);
             $("#rowcount_" + thisid, parentContainer).html(cdata.rowCount);
-            setBtn(thisid, cdata.pageIndex, cdata.maxPage, parentContainer);
+            setBtn(thisid, pageNumber, cdata.list.length, parentContainer);
 
             if (fun)
                 fun.apply($this, new Array(cdata));
         }
     }
-
-    var setBtn = function (id, pageIndex, maxPage, parentContainer) {
+    //设置翻页按钮
+    var setBtn = function (id, pageNumber, maxPage, parentContainer) {
         $("#a_per_" + id, parentContainer).attr("isDisabled", "false");
         $("#a_next_" + id, parentContainer).attr("isDisabled", "false");
-        if (pageIndex == 1)
+        if (pageNumber == 1)
             $("#a_per_" + id, parentContainer).attr("isDisabled", "true");
-        if (pageIndex == maxPage)
+        if (pageNumber == maxPage)
             $("#a_next_" + id, parentContainer).attr("isDisabled", "true");
-    }
-
-    var setTablePosition = function (id, parentContainer) {
-        var winHeight = $(window).height(); //getWindowHeight();
-        var $txt = $("#" + id, parentContainer);
-        var $table = $("#table_" + id, parentContainer);
-        var $div = $("#div_" + id, parentContainer);
-        var $pDiv = $($table.parent());
-        var btnsHeight = $("#" + id + "_buttons", parentContainer)[0] ? $("#" + id + "_buttons", parentContainer).height() : 0;
-        var tableHeight = $table.height();
-        var divTop = $div.scrollTop();
-        var txtTop = $txt.scrollTop() + $txt.offset().top + 24;
-        var stop = $txt.scrollTop();
-        var sleft = $txt.scrollLeft();
-        var pos = $txt.position();
-        var offset = $txt.offset();
-
-        var pagerHeight = $("#paging_" + id, parentContainer).css("display") == "block" ? $("#paging_" + id, parentContainer).height() : 0;
-        var divTop = stop + offset.top;
-        var divHeight = $div.height() + 20; //tableHeight + pagerHeight + btnsHeight + 20;
-        if (winHeight - divTop < divHeight)
-            divTop = winHeight - divHeight - 20;
-        $div.css({ left: sleft + offset.left, top: divTop });
-        if (divHeight > winHeight) {
-            $pDiv.css("height", winHeight);
-            $pDiv.css("overflow", "auto");
-            $pDiv.css("overflow-x", "hidden");
-            $pDiv.width($table.width() + 20);
-            $table[0].style.width = "100%";
-        }
     }
 
     var setValue = function (inputControl) {//, options) {
@@ -293,40 +249,10 @@ layui.define("jquery", function (exports) {
                 options.textControl.html(txt);
         }
     }
-
-    var _init = function ($this, options) {
-        //return this.each(function () {
-
-        //var $this = $(this);
-        var defaults = {
-            valueControl: undefined,
-            valueFieldName: "",
-            textFieldName: "",
-            showFields: "",
-            initConditions: "",
-            queryFields: "",
-            dataList: "",
-            maxRowCount: 20,
-            textControl: undefined,
-            focusShow: true,
-            nextFocusCtl: undefined,
-            longDateFields: "",
-            tableRowIndex: -1,
-            keyUpTime: null,
-            buttons: "", //[{ text: "a", value: "a" }, { text: "b", value: "b"}],
-            ajaxUrl: "",
-            callbackType: "js",
-            selectedEvent: function () { return true; },
-            selectEvent: function () { return true; },
-            focusEvent: function () { return true; },
-            isShowPaging: true, exId: "",
-            textToQuery: false,
-            parentContainer: undefined,
-            queryStrCase: "",
-            popWidth: ""//upper,lower
-        };
-
-        options = $.extend({}, defaults, options);
+    //配置初始化
+    var InputTable = function (input, options) {
+        options = $.extend({}, InputTable.defaults, options);
+        $this = $(input);
         $this.data("options", options);
         if ($this.attr("parentContainer") || $this.attr("parentContainer") == false)
             $this.data("options").parentContainer = $("#" + $this.attr("parentContainer"));
@@ -405,8 +331,6 @@ layui.define("jquery", function (exports) {
         if ($this.attr("popWidth") && $this.attr("popWidth") != "")
             $this.data("options").popWidth = $this.attr("popWidth");
         var id = $this.attr("id");
-        //id = $this.data("options").exId + ($this.data("options").exId ? "_" : "") + id;
-        //$this.attr("id", id);
         var tableId = "table_" + id;
         var divId = "div_" + id;
         var pagingId = "paging_" + id;
@@ -422,25 +346,35 @@ layui.define("jquery", function (exports) {
         if ($this.attr("dataList"))
             $this.data("options").dataList = $this.attr("dataList");
         $this.attr("autocomplete", "off");
+        if ($this.attr("pwidth")) {
+            $this.data("options").pwidth = $this.attr("pwidth");
+        }
+        $this.attr("autocomplete", "off");
+        if ($this.attr("pheight")) {
+            $this.data("options").pheight = $this.attr("pheight");
+        }
 
-        var popWidth = $this.data("options").popWidth && $this.data("options").popWidth != "" ? "width:" + $this.data("options").popWidth + ";" : "";
+        //设置html
         if ($div[0]) $div.remove();
-        var html = "<div id='" + divId + "' class='querylistDiv' style='" + popWidth + " border-style: solid;'>"
-            + "<div><input type='text' class='layui-input-block' id='inputtxt_" + id + "' autocomplete='off'/><div>"
-            + (($this.data("options").buttons && $this.data("options").buttons != "") ? "<div id='" + divId + "_buttons' class='querylistbtns'></div>" : "")
-            + "<div style='" + popWidth + "'><table  id='" + tableId + "'  class='querylist'></table></div>"
-            + "<div id='" + pagingId + "' class='qal_pager' >"
+        var html = "<div id='" + divId + "' class='querylistDiv' style='border-style: solid;'>"
+            + "<div class='layui-form-item' style='margin-bottom:unset'><input  type='text' id='inputtxt_" + id + "' autocomplete='off'/></div>"
+            + "<div style= 'padding: 0px 0px 0px 0px;' >"
+            + (($this.data("options").buttons && $this.data("options").buttons != "") ? "<div id='" + divId + "_buttons' class=''></div>" : "")
+            + "<div><table  id='" + tableId + "'  class=''></table></div></div>"
+            + "<div id='" + pagingId + "' style='bottom:3px;position:absolute;'>"
             + "<a id='a_per_" + id + "' href='javascript:void(0)'>上页</a>&nbsp;&nbsp;<a id='a_next_" + id + "' href='javascript:void(0)'>下页</a>"
-            + "&nbsp;&nbsp;第<span id='index_" + id + "'>1</span>页&nbsp;&nbsp;共<span id='rowcount_" + id + "'>1</span>条</div></div>";
-
+            + "&nbsp;&nbsp;第<span id='index_" + id + "'>1</span>页&nbsp;&nbsp;共<span id='rowcount_" + id + "'>1</span>条</div>";
         $this.parent().append(html);
+
         $div = $("#" + divId, parentContainer);
         $inputTxt = $("#" + inputtxtId, $div);
-        if ($this.data("options").isShowPaging == "false")
-            $("#" + pagingId, $div).hide();
 
-        //设置$div 位置
+        var inputClass = $this.attr("class");
+        $inputTxt.addClass(inputClass);
 
+        //设置DIV宽高
+        $div.width($this.data("options").pwidth)
+        $div.height($this.data("options").pheight);
         //设置快捷按钮
         if ($this.data("options").buttons) {
             $divbtns = $("#" + divId + "_buttons", $div);
@@ -480,7 +414,7 @@ layui.define("jquery", function (exports) {
 
         var $table = $("#" + tableId, parentContainer);
 
-        $("#a_per_" + id, $div).click(function () {
+         $("#a_per_" + id, $div).click(function () {
             isBtnsFocus = true;
             $inputTxt.focus();
             $this.data("options").tableRowIndex = -1;
@@ -498,7 +432,9 @@ layui.define("jquery", function (exports) {
 
         $this.click(function () {
             $this.focus();
-        });
+            return false;
+           }
+        );
 
         if ($this.data("options").focusShow) {
             $this.focus(function () {
@@ -507,32 +443,30 @@ layui.define("jquery", function (exports) {
                 }
 
                 setTimeout(function () {
-                    //
-                    //$inputTxt.focus();
 
                     if ($this.data("options").focusEvent && $this.data("options").focusEvent != "")
                         $this.data("options").focusEvent.apply($this, new Array($this));
 
                     if (!$this.data("queryList") || $this.data("queryList").length == 0) {
                         getList($this, 1, undefined, 39);
-                        $div.show();
-                        $table.show();
-                        $divbtns.show();
-                        $("#" + pagingId).show();
                     }
-                    else {
-                        $div.show();
-                        $table.show();
-                        $divbtns.show();
-                        $("#" + pagingId).show();
-                    }
-                    setTablePosition(id, parentContainer);
+                    console.log($this);
+                    console.log($div);
+                    $div.show();
+                    $table.show();
+                    $divbtns.show();
+
+                    var offset = $this.offset();
+                    $div.offset({ left: offset.left, top: offset.top });
+
                     $this.blur();
                     $inputTxt.focus();
                 }, 150);
+                return false;
             });
         }
 
+        
         $inputTxt.unbind("keyup");
         $inputTxt.keyup(function (event) {
             if ($this.data("options").queryStrCase == "upper")
@@ -545,9 +479,8 @@ layui.define("jquery", function (exports) {
             var kcode = event.keyCode || event.which || event.charCode;
             if ((kcode > 64 && kcode < 91) || (kcode > 96 && kcode < 111) || (kcode > 47 && kcode < 58) || kcode == 32 || kcode == 8) {
                 getList($this, 1, function (data) {
-                    $("#index_" + id).html(data.pageIndex);
+                    $("#index_" + id).html(data.pageNumber);
                 }, kcode);
-                setTablePosition(id, parentContainer);
                 $this.data("options").tableRowIndex = -1;
             } else if (kcode == 40 || kcode == 38) {//上下键
 
@@ -573,7 +506,7 @@ layui.define("jquery", function (exports) {
                 if ($div.css("display") == "block") {
                     var index = parseInt($.trim($("#index_" + id).html())) - 1;
                     getList($this, index, function (data) {
-                        setBtn(id, data.pageIndex, data.maxPage, parentContainer);
+                        setBtn(id, data.pageNumber, data.maxPage, parentContainer);
                     });
                 }
             }
@@ -582,7 +515,7 @@ layui.define("jquery", function (exports) {
                 if ($div.css("display") == "block") {
                     var index = parseInt($.trim($("#index_" + id).html())) + 1;
                     getList($this, index, function (data) {
-                        setBtn(id, data.pageIndex, data.maxPage, parentContainer);
+                        setBtn(id, data.pageNumber, data.maxPage, parentContainer);
                     });
                 }
             }
@@ -628,12 +561,12 @@ layui.define("jquery", function (exports) {
                 if (wheelDelta > 0) {
                     var index = parseInt($.trim($("#index_" + id).html())) - 1;
                     getList($this, index, function (data) {
-                        setBtn(id, data.pageIndex, data.maxPage, parentContainer);
+                        setBtn(id, data.pageNumber, data.maxPage, parentContainer);
                     });
                 } else {
                     var index = parseInt($.trim($("#index_" + id).html())) + 1;
                     getList($this, index, function (data) {
-                        setBtn(id, data.pageIndex, data.maxPage, parentContainer);
+                        setBtn(id, data.pageNumber, data.maxPage, parentContainer);
                     });
                 }
             }
@@ -647,14 +580,13 @@ layui.define("jquery", function (exports) {
                     isBtnsFocus = false;
             }, 250);
         });
-
         $this.dblclick(function (event) {
-            id = $this.attr("id");
+            //id = $this.attr("id");
             $div.show();
-            setTablePosition(id, parentContainer);
+            //setTablePosition(id, parentContainer);
         });
-
-        $table.click(function () {
+        //table事件
+         $table.click(function () {
             var rdata = $this.data("queryList")[$this.data("options").tableRowIndex];
             var selectEvent = $this.data("options").selectEvent;
             var flag = true;
@@ -669,24 +601,33 @@ layui.define("jquery", function (exports) {
             if ($this.data("options").nextFocusCtl)
                 $this.data("options").nextFocusCtl.focus();
         });
-        //});
     }
 
+    InputTable.defaults = {
+            valueFieldName: "",//'id'获取值
+            textFieldName: "",//'name'text显示值
+            showFields: "",//'id,name,dept'table显示字段
+            queryFields: "",//'name,dept' 查询字段
+            dataList: "",  //数据源
+            maxRowCount: 20,//最大显示数量
+            longDateFields: '', //要显示长时间格式的字段
+            tableRowIndex:0,//查询列表默认的选中行序号
+            textControl: undefined,
+            focusShow: true,//几点text显示列表
+            nextFocusCtl: undefined,//下个焦点控件
+            buttons: "", //[{ text: "a", value: "a" }, { text: "b", value: "b"}],//快捷按钮
+            ajaxUrl: "",//aja地址
+            callbackType: "js",//查询方式,"js"-查询本地javascrpt脚本数据（json）,"ajax"-到服务取数据（json）
+            selectedEvent: function () { return true; },//选中后事件函数
+            selectEvent: function () { return true; },//选中前事件函数
+            parentContainer: undefined,//控件父容器
+            initConditions: "",//初始化条件集合--[{ name: 'DeptIds', value:'aa'},{ name: 'DeptIds', value:'11'}]
+            initConditionOrAnd: "and",//初始化条件集合的关系符号or,and
+            pwidth: 350,//DIV宽
+            pheight:350,//IDV高
+        }
+    //对外方法
     var methods = {
-        init: function (options) {
-            return this.each(function () {
-                var $this = $(this);
-
-                $this.one("focus click", function () {
-                    if ($this.data("options")) return;
-                    _init($this, options);
-                    if (/msie/.test(navigator.userAgent.toLowerCase()) && !$.support.leadingWhitespace) {//判断IE8
-                        $this.click();
-                    }
-
-                });
-            });
-        },
         clear: function () {
             return this.each(function () {
                 var $this = $(this);
@@ -698,28 +639,18 @@ layui.define("jquery", function (exports) {
                 $table.empty();
             });
         }
-    };
-    $.fn.queryautolist = function () {
-
-        var method = arguments[0];
-        if (methods[method]) {
-            method = methods[method];
-            arguments = Array.prototype.slice.call(arguments, 1);
-        } else if (typeof (method) == 'object' || !method) {
-            method = methods.init;
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.selectbox');
-            return this;
-        }
-        return method.apply(this, arguments);
     }
 
+    //局部方法
     Date.prototype.toShortString = function () {
         return this.getYear() + "-" + this.getMonth() + "-" + this.getDay();
     }
     Date.prototype.toLongString = function () {
         return this.getYear() + "-" + this.getMonth() + "-" + this.getDay() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
     }
-//})(jQuery);
-    exports('queryautolist', queryautolist);
-});
+
+
+
+
+    exports('InputTable', InputTable);
+})

@@ -31,10 +31,21 @@ namespace Y.Core.Web
     /// <param name="filterContext"></param>
     protected override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-      pageInfor.pageSize = filterContext.HttpContext.Request.Form["pageSize"].ToInt();
-      pageInfor.totalPage = filterContext.HttpContext.Request.Form["totalPage"].ToInt();
-      pageInfor.pageNumber = filterContext.HttpContext.Request.Form["pageNumber"].ToInt();
-      pageInfor.queryParam = filterContext.HttpContext.Request.Form["queryParam"];
+      if (filterContext.HttpContext.Request.Form.Count > 0)
+      {
+        pageInfor.pageSize = filterContext.HttpContext.Request.Form["pageSize"].ToInt();
+        pageInfor.totalPage = filterContext.HttpContext.Request.Form["totalPage"].ToInt();
+        pageInfor.pageNumber = filterContext.HttpContext.Request.Form["pageNumber"].ToInt();
+        pageInfor.queryParam = filterContext.HttpContext.Request.Form["queryParam"];
+      }
+      else
+      {
+        pageInfor.pageSize = filterContext.HttpContext.Request.QueryString["pageSize"].ToInt();
+        pageInfor.totalPage = filterContext.HttpContext.Request.QueryString["totalPage"].ToInt();
+        pageInfor.pageNumber = filterContext.HttpContext.Request.QueryString["pageNumber"].ToInt();
+        pageInfor.queryParam = filterContext.HttpContext.Request.QueryString["queryParam"];
+      }
+      
       base.OnActionExecuting(filterContext);
     }
   }
