@@ -19,8 +19,8 @@
               <td><input id="inputname" class="layui-input-block" type="text" name="name" placeholder="请选择name" 
                           valueFieldName="name"
                            textFieldName="name"
-                           showfields="name,dept"
-                           queryFields="name,dept"
+                           showfields="id,name,dept"
+                           queryFields="id,name,dept"
                            maxRowCount="5"
                            callbacktype="ajax"
                            ajaxUrl="login/loginlist"
@@ -28,7 +28,7 @@
                            selectedEvent=selected
                            focusshow="false"
                            pwidth=300
-                           pheight=200/></td>
+                           pheight=150/></td>
               <td><input class="layui-input-block" type="text" name="pwd" placeholder="请输入name" /></td>
               <td>
                 <input class="layui-input-block" type="text" name="code" placeholder="请输入验证码" />
@@ -42,8 +42,8 @@
 <input id="qal_medict_temp" placeholder="请选择科室及名称" class="layui-input" width:100%" type="text"
        valueFieldName="name"
        textFieldName="name"
-       showfields="name,dept"
-       queryFields="name,dept"
+       showfields="id,name,dept"
+       queryFields="id,name,dept"
        maxRowCount="5"
        callbacktype="ajax"
        ajaxUrl="login/loginlist"
@@ -55,11 +55,13 @@
        buttons="[{text:'q',value:'q'},{text:'w',value:'w'},{text:'e',value:'e'},{text:'r',value:'r'},{text:'t',value:'t'},{text:'y',value:'y'},{text:'u',value:'u'},{text:'i',value:'i'},{text:'o',value:'o'},{text:'p',value:'p'},{text:'<br>',value:''},{text:'a',value:'a'},{text:'s',value:'s'},{text:'d',value:'d'},{text:'f',value:'f'},{text:'g',value:'g'},{text:'h',value:'h'},{text:'j',value:'j'},{text:'k',value:'k'},{text:'l',value:'l'},{text:'<br>',value:''},{text:'z',value:'z'},{text:'x',value:'x'},{text:'c',value:'c'},{text:'v',value:'v'},{text:'b',value:'b'},{text:'n',value:'n'},{text:'m',value:'m'},{text:'空格',value:' '}]" 
        />
 <div id="table"></div>
+<div id="table2"></div>
 
 <script>
      var form = layui.form();
     var $ = layui.jquery;
     var layer = layui.layer;
+    var input = layui.InputTable;
 
     var selected = function (rdata) {
         console.log(rdata);
@@ -83,7 +85,14 @@
     pageSize:5,//每页数量
     select:true,//是否生成checkbox
 
-    columns: [ {//列数组
+    columns: [{
+        text: 'ID',//显示的表头
+        name: 'id',//显示的数据key
+        width: 100,//宽度
+        click: function (ros) {
+            console.log(ros);
+        }
+    }, {//列数组
             text:'用户名',//显示的表头
             name: 'name',//显示的数据key
             width: 150,//宽度
@@ -134,4 +143,5 @@
     }
 }
     $("#table").jfTable(config);
+    $("#table2").jfTable(config);
 </script>

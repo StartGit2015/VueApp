@@ -39,7 +39,7 @@ namespace WebTest.Controllers
           List<object> obj = new List<object>();
           for (int i = 0; i < 10; i++)
           {
-            var item = new { name = "name_" + i.ToString() + base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
+            var item = new { id = i.ToString(), name = "name_" + i.ToString() + base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
             obj.Add(item);
           }
           return Json(new PageInfor{ totalPage = 10, pageNumber= pageInfor.pageNumber, list=obj});
@@ -51,7 +51,7 @@ namespace WebTest.Controllers
       List<object> obj = new List<object>();
       for (int i = 0; i < 5; i++)
       {
-        var item = new { name = "name_" + i.ToString() + "_页码_" +  base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
+        var item = new { id = i.ToString(),name = "name_" + i.ToString() + "_页码_" +  base.pageInfor.pageNumber.ToString(), dept = "dept_" + i.ToString() };
         obj.Add(item);
       }
       return Json(new PageInfor { totalPage = 50, pageNumber = pageInfor.pageNumber, list = obj},JsonRequestBehavior.AllowGet);

@@ -2,10 +2,7 @@
 /*
 编写一个带查询框 和table检索的 插件 InputTable
 */
-layui.define(['layer'], function (exports) {
-    //var $ = layui.jquery;
-    var layer = layui.layer;
-
+layui.define(['jquery'], function (exports) {
     $.fn.InputTable = function (_opt, args) {
         if (typeof _opt == "string") {//判断是方法还是对象
 
@@ -22,6 +19,17 @@ layui.define(['layer'], function (exports) {
                 $(this).data('InputTable',itb);
             }
         });
+
+        //return function () {
+        //    var itb = $.data(this, "InputTable");
+        //    if (itb) {
+        //        _opt = $.extend(itb.options, _opt);
+        //        itb.options = _opt;
+        //    } else {
+        //        itb = new InputTable(this, _opt);
+        //        $(this).data('InputTable', itb);
+        //    }
+        //}
     }
 
     //获取查询后数据 返回数据信息
@@ -251,7 +259,30 @@ layui.define(['layer'], function (exports) {
     }
     //配置初始化
     var InputTable = function (input, options) {
-        options = $.extend({}, InputTable.defaults, options);
+        var defaults = {
+            valueFieldName: "",//'id'获取值
+            textFieldName: "",//'name'text显示值
+            showFields: "",//'id,name,dept'table显示字段
+            queryFields: "",//'name,dept' 查询字段
+            dataList: "",  //数据源
+            maxRowCount: 20,//最大显示数量
+            longDateFields: '', //要显示长时间格式的字段
+            tableRowIndex: 0,//查询列表默认的选中行序号
+            textControl: undefined,
+            focusShow: true,//几点text显示列表
+            nextFocusCtl: undefined,//下个焦点控件
+            buttons: "", //[{ text: "a", value: "a" }, { text: "b", value: "b"}],//快捷按钮
+            ajaxUrl: "",//aja地址
+            callbackType: "js",//查询方式,"js"-查询本地javascrpt脚本数据（json）,"ajax"-到服务取数据（json）
+            selectedEvent: function () { return true; },//选中后事件函数
+            selectEvent: function () { return true; },//选中前事件函数
+            parentContainer: undefined,//控件父容器
+            initConditions: "",//初始化条件集合--[{ name: 'DeptIds', value:'aa'},{ name: 'DeptIds', value:'11'}]
+            initConditionOrAnd: "and",//初始化条件集合的关系符号or,and
+            pwidth: 350,//DIV宽
+            pheight: 350,//IDV高
+        }
+        options = $.extend({}, defaults, options);
         $this = $(input);
         $this.data("options", options);
         if ($this.attr("parentContainer") || $this.attr("parentContainer") == false)
@@ -450,8 +481,6 @@ layui.define(['layer'], function (exports) {
                     if (!$this.data("queryList") || $this.data("queryList").length == 0) {
                         getList($this, 1, undefined, 39);
                     }
-                    console.log($this);
-                    console.log($div);
                     $div.show();
                     $table.show();
                     $divbtns.show();
@@ -570,7 +599,9 @@ layui.define(['layer'], function (exports) {
                     });
                 }
             }
-        });
+            return false;
+          }
+        );
 
         $inputTxt.bind("blur", function () {
             setTimeout(function () {
@@ -602,30 +633,6 @@ layui.define(['layer'], function (exports) {
                 $this.data("options").nextFocusCtl.focus();
         });
     }
-
-    InputTable.defaults = {
-            valueFieldName: "",//'id'获取值
-            textFieldName: "",//'name'text显示值
-            showFields: "",//'id,name,dept'table显示字段
-            queryFields: "",//'name,dept' 查询字段
-            dataList: "",  //数据源
-            maxRowCount: 20,//最大显示数量
-            longDateFields: '', //要显示长时间格式的字段
-            tableRowIndex:0,//查询列表默认的选中行序号
-            textControl: undefined,
-            focusShow: true,//几点text显示列表
-            nextFocusCtl: undefined,//下个焦点控件
-            buttons: "", //[{ text: "a", value: "a" }, { text: "b", value: "b"}],//快捷按钮
-            ajaxUrl: "",//aja地址
-            callbackType: "js",//查询方式,"js"-查询本地javascrpt脚本数据（json）,"ajax"-到服务取数据（json）
-            selectedEvent: function () { return true; },//选中后事件函数
-            selectEvent: function () { return true; },//选中前事件函数
-            parentContainer: undefined,//控件父容器
-            initConditions: "",//初始化条件集合--[{ name: 'DeptIds', value:'aa'},{ name: 'DeptIds', value:'11'}]
-            initConditionOrAnd: "and",//初始化条件集合的关系符号or,and
-            pwidth: 350,//DIV宽
-            pheight:350,//IDV高
-        }
     //对外方法
     var methods = {
         clear: function () {
@@ -649,8 +656,5 @@ layui.define(['layer'], function (exports) {
         return this.getYear() + "-" + this.getMonth() + "-" + this.getDay() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
     }
 
-
-
-
-    exports('InputTable', InputTable);
+    exports('InputTable');
 })
