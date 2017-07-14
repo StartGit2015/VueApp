@@ -89,28 +89,44 @@
         text: 'ID',//显示的表头
         name: 'id',//显示的数据key
         width: 100,//宽度
+        btn: true,
         click: function (ros) {
-            console.log(ros);
+            console.log(ros.data);
+            layer.msg('点击了id');
         }
-    }, {//列数组
+         }, {//列数组
             text:'用户名',//显示的表头
             name: 'name',//显示的数据key
-            width: 150,//宽度
             formatter: function (value, row, index) {//value 当前值  row 当前行数据  index 当前行索引
-                return value + '_哈哈';
+                return value + '_哈哈' + "<input type='text'>";
             }
-    }, {
+        }, {
             text:'科室',//显示的表头
             name: 'dept',//显示的数据key
             width: 100,//宽度
             click: function (ros) {
                 console.log(ros);
-                layer.msg(ros);
+                layer.msg('dept');
             }
+        }, {
+        text: '操作',//显示的表头
+        name: 'opt',//显示的数据key
+        width: 10,//宽度
+        btn: true,
+        btntext: '删除',
+        click: function (ros) {
+            console.log(ros.data);
+            comconfim('确定要删除' + ros.data.name + '吗？', '@Url.Action("login")', null);
+        },
         },{
             text:'操作',//显示的表头
             name: 'opt',//显示的数据key
-            width: 100//宽度
+            btn: true,
+            btntext: '删除',
+            click: function (ros) {
+                console.log(ros.data);
+                comconfim('确定要删除' + ros.data.name + '吗？', '@Url.Action("login")', null);
+            }
         }],
     method:"post",//请求方式
     toolbarClass:"layui-btn-small",//按钮的样式
@@ -134,7 +150,7 @@
                 }
         }],
     rowclick: function (row) {//行点击事件
-        //layer.msg("点击了Row:" + row.index +  row);
+        layer.msg("点击了Row:" + row.index +  row);
     },
     //事件   一定要return
     onBeforeLoad: function (param) {

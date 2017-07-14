@@ -15,8 +15,14 @@
 //            text:'用户名',//显示的表头
 //            name: 'username',//显示的数据key
 //            width: 100,//宽度
+//            btn:false, //是操作按钮吗
+//            btntext:"删除"//按钮名称
 //            formatter:function(value,row,index){//value 当前值  row 当前行数据  index 当前行索引
-//            }
+//            },
+//            click: function (ros) {//列点击事件 ros为行的数据
+//            console.log(ros);
+//            layer.msg('dept');
+//          }
 //        }],
 //    method:"post",//请求方式
 //    toolbarClass:"layui-btn-small",//按钮的样式
@@ -144,7 +150,6 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
 
 
     //生成工具栏
-
     JfTable.prototype.initToolbar=function () {
         var t=this,$e=t.$element,_opt=t.option,toolbar=_opt.toolbar,tool= $("<div class='layui-btn-group'></div>").prependTo($e);
         $.each(toolbar,function (index,item) {
@@ -184,15 +189,18 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
             $th=$("<thead></thead>").appendTo($table),
             $thr=$("<tr></tr>").appendTo($th),
             $tb=$("<tbody></tbody>").appendTo($table);
-        $tb.html("");
+            $tb.html("");
         if(opt.select){
             $table.wrapAll("<div class='layui-form'></div>");
         }
-        //遍历创建表头
-
+        //遍历创建表头 添加相同列名称合并
         for(var i=0,l=col.length;i<l;i++){
             var c=col[i];
-            i==(l-1)?$("<col>").appendTo($cg):$("<col width='"+c.width+"'>").appendTo($cg);
+            i == (l - 1) ? $("<col>").appendTo($cg) : $("<col width='" + c.width + "'>").appendTo($cg);
+
+            //if (c.text == col[i - 1]) {
+            //    $("", $thr).attr("colSpan",1);
+            //}
             c.type=='check'?$("<th><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></th>").appendTo($thr):$("<th>"+c.text+"</th>").appendTo($thr);
         }
 
@@ -202,21 +210,24 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
             var d=dt[i],$tr=$("<tr></tr>").appendTo($tb);
             //取出对应列值
 
-            for(var j=0,cl=col.length;j<cl;j++){
-                var c = col[j], v = d[c.name], f = c.formatter;
-                $td = $("<td></td>")
+            for (var j = 0, cl = col.length; j < cl; j++){
+                var c = col[j], v = d[c.name], f = c.formatter, click = c.click;
+                $td = c.width ? $("<td width=" + c.width + "></td>") : $("<td></td>");
                 if(c.type=='check'){
                     $("<td><input type='checkbox' value='" + i + "' lay-skin='primary'></td>").appendTo($tr);
                     continue;
                 }
                 if (typeof f == "function") {
-                    v = f(v, c, i);//格式化函数 返回格式化后的显示数据
+                    v = f(v, d, i);//格式化函数 返回格式化后的显示数据
                 }
-                if (c.click) {
-                    $td.onclick = eval(c.click || function () { });//绑定匿名事件
+                if (c.btn == true && c.btntext) {
+                    v = "<button class='layui-btn' style='width:100%;'>" + c.btntext + "</button>";
                 }
                 $td.html(v);
                 $td.appendTo($tr);
+                if (click && typeof click == "function") {
+                    $td.on("click", '', d, click);
+                }
             }
             //行点击事件
             $tr.bind("click", function ($tr) {
