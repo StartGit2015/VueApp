@@ -68,9 +68,8 @@
         layer.msg(rdata.name);
     }
 
-    var input = $("#inputname").InputTable();
     var med = $("#qal_medict_temp").InputTable();
-    
+    //var input = $("#inputname").InputTable();
 
     //监听提交
     form.on('submit(formsubmit)', function (data) {
@@ -98,7 +97,7 @@
             name: 'name',//显示的数据key
             width: 150,//宽度
             formatter: function (value, row, index) {//value 当前值  row 当前行数据  index 当前行索引
-                return value + '哈哈';
+                return value + '_哈哈';
             }
     }, {
             text:'科室',//显示的表头
@@ -106,7 +105,12 @@
             width: 100,//宽度
             click: function (ros) {
                 console.log(ros);
+                layer.msg(ros);
             }
+        },{
+            text:'操作',//显示的表头
+            name: 'opt',//显示的数据key
+            width: 100//宽度
         }],
     method:"post",//请求方式
     toolbarClass:"layui-btn-small",//按钮的样式
@@ -137,6 +141,7 @@
         return param;
     },
     onLoadSuccess: function (data) {
+
         return data;
     },
     dataFilter:function (data) {
@@ -144,5 +149,5 @@
     }
 }
     $("#table").jfTable(config);
-    $("#table2").jfTable(config);
+    //$("#table2").jfTable(config);
 </script>

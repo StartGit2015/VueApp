@@ -203,7 +203,8 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
             //取出对应列值
 
             for(var j=0,cl=col.length;j<cl;j++){
-                var c=col[j],v=d[c.name],f=c.formatter;
+                var c = col[j], v = d[c.name], f = c.formatter;
+                $td = $("<td></td>")
                 if(c.type=='check'){
                     $("<td><input type='checkbox' value='" + i + "' lay-skin='primary'></td>").appendTo($tr);
                     continue;
@@ -212,14 +213,15 @@ layui.define(['form', 'jquery', 'laypage'], function (exports) {
                     v = f(v, c, i);//格式化函数 返回格式化后的显示数据
                 }
                 if (c.click) {
-                    $(this).onclick = eval(c.click || function () { });//绑定匿名事件
+                    $td.onclick = eval(c.click || function () { });//绑定匿名事件
                 }
-                $("<td>"+v+"</td>").appendTo($tr);
+                $td.html(v);
+                $td.appendTo($tr);
             }
             //行点击事件
             $tr.bind("click", function ($tr) {
                 $(this).toggleClass('girdtableclick');
-                opt.rowclick(this)
+                //opt.rowclick(this)
             });
         }
         opt.onLoadSuccess(dt);
